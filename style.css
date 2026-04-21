@@ -79,7 +79,7 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 17px;
     padding: 2px;
     opacity: 0.6;
     transition: 0.2s;
@@ -121,7 +121,7 @@ body {
     padding: 10px 12px;
     cursor: pointer;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 20px;
     margin-bottom: 4px;
     transition: all 0.2s ease;
     border-left: 3px solid transparent; /* アクセント線 */
@@ -150,7 +150,7 @@ body {
 /* グループ内の操作ボタン (✎ と ×) */
 .group-controls {
     display: flex;
-    gap: 4px;
+    gap: 8px;
     opacity: 0; /* 普段は隠す */
     transition: 0.2s;
 }
@@ -163,7 +163,7 @@ body {
     background: none;
     border: none;
     color: #8b949e;
-    font-size: 14px;
+    font-size: 20px;
     cursor: pointer;
     padding: 2px 4px;
     border-radius: 4px;
@@ -220,7 +220,7 @@ table {
 th {
     background-color: #0d1117;
     padding: 8px 4px;
-    font-size: 13px;
+    font-size: 14px;
     text-align: left;
     color: #8b949e;
     border-bottom: 1px solid #30363d;
@@ -237,16 +237,16 @@ input[type="text"], input[type="number"], select {
     background-color: #0d1117;
     border: 1px solid #30363d;
     color: #c9d1d9;
-    padding: 3px 6px;
+    padding: 5px 12px; /* 少し余白を増やして押しやすく */
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 20px;
 }
 
 /* 各入力ボックスの個別幅設定 */
-.edit-label { width: 90px; }
-.edit-lv { width: 30px; text-align: center; }
-.edit-eff-type { width: 65px; }
-.edit-eff-val { width: 35px; text-align: center; }
+.edit-label { width: 160px; }
+.edit-lv { width: 60px; text-align: left; }
+.edit-eff-type { width: 130px; }
+.edit-eff-val { width: 60px; text-align: left; }
 
 /* 属性別カラー */
 .el-fire  { color: #ff7b72; font-weight: bold; }
@@ -276,7 +276,7 @@ input[type="text"], input[type="number"], select {
     padding: 4px 8px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 11px;
+    font-size: 15px;
     font-weight: bold;
     margin-right: 4px;
 }
@@ -290,7 +290,7 @@ input[type="text"], input[type="number"], select {
     padding: 4px 8px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 11px;
+    font-size: 15px;
     font-weight: bold;
 }
 .delete-btn:hover {
