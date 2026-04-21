@@ -1,0 +1,320 @@
+/* ベーススタイル */
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    margin: 0;
+    padding: 0;
+}
+
+.app-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* タブメニュー */
+.tab-menu {
+    background-color: #161b22;
+    padding: 10px 20px 0;
+    border-bottom: 1px solid #30363d;
+}
+
+.tab-btn {
+    background: transparent;
+    color: #8b949e;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-btn.active {
+    color: #58a6ff;
+    border-bottom: 2px solid #58a6ff;
+    font-weight: bold;
+}
+
+/* コンテンツエリア */
+.tab-content {
+    flex: 1;
+    overflow: hidden;
+}
+
+.hidden { display: none !important; }
+
+/* 2カラムレイアウト */
+.db-container {
+    display: flex;
+    height: 100%;
+}
+
+/* 左側サイドバー */
+.db-sidebar {
+    width: 220px; /* 少し幅を広げて操作ボタンのスペースを確保 */
+    background-color: #0d1117;
+    border-right: 1px solid #30363d;
+    padding: 20px 10px;
+}
+
+/* サイドバーヘッダーとバックアップボタン群 */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px 15px;
+    color: #8b949e;
+    font-size: 12px;
+}
+
+.header-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* 📥📤 アイコンボタン */
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px;
+    opacity: 0.6;
+    transition: 0.2s;
+    color: #8b949e;
+}
+
+.icon-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* ＋ ボタンの微調整 */
+.add-btn {
+    background: none;
+    border: none;
+    color: #8b949e;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 5px;
+    transition: color 0.2s;
+}
+
+.add-btn:hover {
+    color: #58a6ff;
+}
+
+/* グループリストの装飾 */
+.group-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 4px;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent; /* アクセント線 */
+}
+
+.group-item:hover {
+    background-color: #1c2128;
+    border-left: 3px solid #30363d;
+}
+
+.group-item.active {
+    background-color: #1f6feb22; /* 透過した青 */
+    color: #58a6ff;
+    font-weight: bold;
+    border-left: 3px solid #58a6ff;
+}
+
+.group-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 8px;
+}
+
+/* グループ内の操作ボタン (✎ と ×) */
+.group-controls {
+    display: flex;
+    gap: 4px;
+    opacity: 0; /* 普段は隠す */
+    transition: 0.2s;
+}
+
+.group-item:hover .group-controls {
+    opacity: 1;
+}
+
+.edit-group-btn, .delete-group-btn {
+    background: none;
+    border: none;
+    color: #8b949e;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+.edit-group-btn:hover {
+    background-color: #30363d;
+    color: #58a6ff;
+}
+
+.delete-group-btn:hover {
+    background-color: #30363d;
+    color: #f85149;
+}
+
+/* 右側メイン */
+.db-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #0d1117;
+}
+
+.db-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.db-title-area { display: flex; align-items: center; gap: 10px; }
+.db-title-area h2 { margin: 0; font-size: 18px; }
+.count { color: #8b949e; font-size: 14px; }
+
+.db-controls { display: flex; gap: 10px; }
+
+/* テーブル */
+.table-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #161b22;
+}
+
+th {
+    background-color: #0d1117;
+    padding: 8px 4px;
+    font-size: 13px;
+    text-align: left;
+    color: #8b949e;
+    border-bottom: 1px solid #30363d;
+    white-space: nowrap;
+}
+
+td {
+    padding: 8px 4px;
+    border-bottom: 1px solid #30363d;
+}
+
+/* 入力欄のデザイン */
+input[type="text"], input[type="number"], select {
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    color: #c9d1d9;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* 各入力ボックスの個別幅設定 */
+.edit-label { width: 90px; }
+.edit-lv { width: 30px; text-align: center; }
+.edit-eff-type { width: 65px; }
+.edit-eff-val { width: 35px; text-align: center; }
+
+/* 属性別カラー */
+.el-fire  { color: #ff7b72; font-weight: bold; }
+.el-water { color: #79c0ff; font-weight: bold; }
+.el-earth { color: #ffa657; font-weight: bold; }
+.el-wind  { color: #7ee787; font-weight: bold; }
+.el-light { color: #d2a8ff; font-weight: bold; }
+.el-dark  { color: #a371f7; font-weight: bold; }
+
+/* ボタン共通 */
+.green-btn {
+    background-color: #238636;
+    color: white;
+    border: 1px solid rgba(240, 246, 252, 0.1);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.green-btn:hover { background-color: #2ea043; }
+
+/* 保存ボタン */
+.edit-btn {
+    background-color: #238636;
+    color: white;
+    border: 1px solid rgba(240, 246, 252, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+    margin-right: 4px;
+}
+.edit-btn:hover { background-color: #2ea043; }
+
+/* 削除ボタン */
+.delete-btn {
+    background-color: #21262d;
+    color: #f85149;
+    border: 1px solid #30363d;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+}
+.delete-btn:hover {
+    background-color: #b62324;
+    color: white;
+}
+
+/* 操作列の幅 */
+td:last-child {
+    white-space: nowrap;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* ダイアログ */
+dialog {
+    background-color: #161b22;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.input-group { margin-bottom: 15px; }
+.input-group label { display: block; margin-bottom: 5px; font-size: 14px; }
+.input-group input { width: 100%; box-sizing: border-box; }

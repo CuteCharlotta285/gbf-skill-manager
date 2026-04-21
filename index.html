@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>GBF Skill Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <nav class="tab-menu">
+            <button class="tab-btn active" data-target="main-screen">武器編成</button>
+            <button class="tab-btn" data-target="db-screen">スキルリスト</button>
+        </nav>
+
+        <section id="main-screen" class="tab-content">
+            <div class="screen-header">
+                <h2>⚔️ 武器編成管理</h2>
+                <button id="btn-open-main" class="primary-btn">＋ 武器を登録</button>
+            </div>
+            <ul id="skill-list"></ul>
+        </section>
+
+        <section id="db-screen" class="tab-content hidden">
+          <div class="db-container">
+            <aside class="db-sidebar">
+              <div class="sidebar-header">
+                <span>グループ</span>
+                <div class="header-controls">
+                    <button id="btn-export" class="icon-btn" title="バックアップ（保存）">📥</button>
+                    <button id="btn-import" class="icon-btn" title="復元（読み込み）">📤</button>
+                    <button id="add-group-btn" class="add-btn">＋</button>
+                </div>
+              </div>
+
+             <input type="file" id="import-file" style="display:none" accept=".json">
+    
+                <ul class="group-list" id="group-list">
+                  <li class="group-item active" data-group="normal_atk">通常攻刃</li>
+                  <li class="group-item" data-group="normal_ranbu">通常乱舞</li>
+                  <li class="group-item" data-group="magna_atk">方陣枠</li>
+                </ul>
+            </aside>
+
+                <main class="db-main">
+                    <div class="db-header">
+                        <div class="db-title-area">
+                            <h2 id="current-group-name">通常攻刃</h2>
+                            <span class="count">(全 22 件)</span>
+                        </div>
+                        <div class="db-controls">
+                            <select id="filter-element">
+                                <option value="all">全属性</option>
+                                <option value="fire">火</option>
+                                <option value="water">水</option>
+                                <option value="earth">土</option>
+                                <option value="wind">風</option>
+                                <option value="light">光</option>
+                                <option value="dark">闇</option>
+                            </select>
+                            <button id="btn-open" class="green-btn">＋ スキル追加</button>
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table id="master-table">
+                            <thead>
+                                <tr>
+                                  <th>属性</th>
+                                  <th>名称</th>
+                                  <th>Lv</th>
+                                  <th>スキル1</th>
+                                  <th>効果量1</th>
+                                  <th>スキル2</th>
+                                  <th>効果量2</th>
+                                  <th>スキル3</th>
+                                  <th>効果量3</th>
+                                  <th>スキル4</th>
+                                  <th>効果量4</th>
+                                  <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="master-body"></tbody>
+                        </table>
+                    </div>
+                </main>
+            </div>
+        </section>
+    </div>
+
+    <dialog id="dial-reg">
+        <form method="dialog">
+            <h2>新規スキル登録</h2>
+            <div class="input-group">
+                <label>名称:</label>
+                <input type="text" id="in-name" placeholder="例：〇〇の攻刃">
+            </div>
+            <div class="input-group">
+                <label>属性:</label>
+                <select id="in-element">
+                    <option value="fire">火</option>
+                    <option value="water">水</option>
+                    <option value="earth">土</option>
+                    <option value="wind">風</option>
+                    <option value="light">光</option>
+                    <option value="dark">闇</option>
+                </select>
+            </div>
+            <div class="btns">
+                <button type="button" id="btn-save" class="green-btn">保存</button>
+                <button type="button" id="btn-close">キャンセル</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script src="skills.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
