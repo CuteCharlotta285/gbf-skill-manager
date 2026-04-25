@@ -1,12 +1,14 @@
 
 // 属性のIDを表示用の日本語に変換するマップ
 const elementMap = {
+    "all": "全属性",
     "fire": "火",
     "water": "水",
     "earth": "土",
     "wind": "風",
     "light": "光",
-    "dark": "闇"
+    "dark": "闇",
+    "hakai": "破壊"
 };
 
 // --- 1. 要素の取得 ---
@@ -98,26 +100,34 @@ function renderMasterDB() {
         const elLabel = skill.element || 'none';
         const elJapanese = elementMap[elLabel] || elLabel;
 
-        // 効果量4枠分のHTMLを生成
+// 効果量4枠分のHTMLを生成
         let effectsHtml = "";
         for(let i = 0; i < 4; i++) {
             const eff = skill.effects[i] || { type: "", value: 0 };
             effectsHtml += `
-                <td><input type="text" value="${eff.type}" class="edit-eff-type" data-index="${i}"></td>
-                <td><input type="number" value="${eff.value}" class="edit-eff-val" data-index="${i}"></td>
+                <td>
+                    <input type="text" value="${eff.type}" class="edit-eff-type" 
+                           data-index="${i}" onblur="saveMaster('${key}', this)">
+                </td>
+                <td>
+                    <input type="number" value="${eff.value}" class="edit-eff-val" 
+                           data-index="${i}" onblur="saveMaster('${key}', this)">
+                </td>
             `;
         }
 
-        tr.innerHTML = `
-            <td class="el-${elLabel}">${elJapanese}</td>
-            <td><input type="text" value="${skill.label}" class="edit-label"></td>
-            <td><input type="number" value="${skill.level}" class="edit-lv"></td>
-            ${effectsHtml}
-            <td>
-                <button class="edit-btn" onclick="saveMaster('${key}', this)">保存</button>
-                <button class="delete-btn" onclick="deleteMaster('${key}')">削除</button>
-            </td>
-        `;
+// renderMasterDB関数内のループ処理の中
+tr.innerHTML = `
+    <td class="el-${elLabel}">${elJapanese}</td>
+    <td><input type="text" value="${skill.label}" class="edit-label" onblur="saveMaster('${key}', this)"></td>
+    <td><input type="number" value="${skill.level}" class="edit-lv" onblur="saveMaster('${key}', this)"></td>
+    ${effectsHtml}
+    <td>
+        <button class="move-btn" onclick="moveSkill(event, '${key}', -1)" title="上へ">▲</button>
+        <button class="move-btn" onclick="moveSkill(event, '${key}', 1)" title="下へ">▼</button>
+        <button class="delete-btn" onclick="deleteMaster('${key}')">削除</button>
+    </td>
+`;
         masterBody.appendChild(tr);
     }
 }
@@ -125,15 +135,14 @@ function renderMasterDB() {
 // フィルタイベント
 document.getElementById('filter-element').onchange = renderMasterDB;
 
-// 保存処理も4枠分取得するように修正
-window.saveMaster = (key, btn) => {
-    const row = btn.parentElement.parentElement;
+window.saveMaster = (key, element) => {
+    // element がボタンでも入力欄でも、一番近い <tr> (行) を探すように変更
+    const row = element.closest('tr');
     const targetSkill = skillDatabase[activeGroupId].skills[key];
     
     targetSkill.label = row.querySelector('.edit-label').value;
     targetSkill.level = Number(row.querySelector('.edit-lv').value);
 
-    // 4枠分のスキル情報を取得
     const types = row.querySelectorAll('.edit-eff-type');
     const vals = row.querySelectorAll('.edit-eff-val');
 
@@ -147,17 +156,27 @@ window.saveMaster = (key, btn) => {
 
     saveToLocalStorage();
 
-    btn.innerText = "DONE";
-    setTimeout(() => btn.innerText = "保存", 1000);
+    // 演出：もし呼び出し元がボタンなら「DONE」にする
+    if (element.tagName === "BUTTON") {
+        element.innerText = "DONE";
+        setTimeout(() => element.innerText = "保存", 1000);
+    } else {
+        // もし呼び出し元が入力欄（input）なら、一瞬光らせる
+        element.classList.add('saved-flash');
+        setTimeout(() => element.classList.remove('saved-flash'), 500);
+    }
 };
 
+// スキル（武器）を削除する関数
 window.deleteMaster = (key) => {
-    if(confirm("このスキルを削除しますか？")) {
-        // 現在のグループから削除
-        delete skillDatabase[activeGroupId].skills[key];
-        saveToLocalStorage(); // 保存を実行！
-        renderMasterDB();
+    // こちらも確認を入れるとより安全です
+    if (!confirm("このスキルデータを削除しますか？")) {
+        return;
     }
+
+    delete skillDatabase[activeGroupId].skills[key];
+    saveToLocalStorage();
+    renderMasterDB();
 };
 
 // --- 5. グループ管理機能 (app.js の一番最後に追加) ---
@@ -191,14 +210,24 @@ function renderSidebar() {
     if (!groupListContainer) return;
     groupListContainer.innerHTML = "";
     
-    for (const id in skillDatabase) {
+// skillDatabaseのキー（ID）を配列にして、現在の順番を管理
+    const groupIds = Object.keys(skillDatabase);
+    
+    groupIds.forEach((id, index) => {
         const li = document.createElement('li');
         li.className = `group-item ${id === activeGroupId ? 'active' : ''}`;
         
-        // 名前、編集ボタン、削除ボタンの順で構成
+// 最初なら「上へ」を隠し、最後なら「下へ」を隠す判定
+        const isFirst = index === 0;
+        const isLast = index === groupIds.length - 1;
+
         li.innerHTML = `
             <span class="group-name">${skillDatabase[id].name}</span>
             <div class="group-controls">
+                <button class="move-btn ${isFirst ? 'is-hidden' : ''}" 
+                        onclick="moveGroup(event, ${index}, -1)" title="上へ">▲</button>
+                <button class="move-btn ${isLast ? 'is-hidden' : ''}" 
+                        onclick="moveGroup(event, ${index}, 1)" title="下へ">▼</button>
                 <button class="edit-group-btn" onclick="renameGroup(event, '${id}')" title="名前を変更">✎</button>
                 <button class="delete-group-btn" onclick="deleteGroup(event, '${id}')" title="削除">×</button>
             </div>
@@ -206,7 +235,7 @@ function renderSidebar() {
         
         li.onclick = () => selectGroup(id);
         groupListContainer.appendChild(li);
-    }
+    });
 }
 
 // グループを切り替える関数
@@ -242,29 +271,25 @@ function loadFromLocalStorage() {
     }
 }
 
+// グループを削除する関数
 window.deleteGroup = (event, id) => {
-    // リストのクリックイベント（グループ選択）が動かないようにする
     event.stopPropagation();
-
-    if (Object.keys(skillDatabase).length <= 1) {
-        alert("これ以上グループを削除できません。");
-        return;
+    
+    // 確認ダイアログを表示
+    if (!confirm(`グループ「${skillDatabase[id].name}」を削除してもよろしいですか？\n中に入っているスキルデータもすべて消去されます。`)) {
+        return; // 「キャンセル」を押したらここで処理を終了
     }
 
-    if (confirm(`グループ「${skillDatabase[id].name}」を削除しますか？\n中のスキルデータもすべて消去されます。`)) {
-        // 1. データを削除
-        delete skillDatabase[id];
-        
-        // 2. もし削除したのが「今開いているグループ」だったら、別のグループに移動する
-        if (activeGroupId === id) {
-            activeGroupId = Object.keys(skillDatabase)[0];
-        }
-        
-        // 3. 保存して再描画
-        saveToLocalStorage();
-        renderSidebar();
-        selectGroup(activeGroupId);
+    delete skillDatabase[id];
+    
+    if (activeGroupId === id) {
+        const keys = Object.keys(skillDatabase);
+        activeGroupId = keys.length > 0 ? keys[0] : null;
     }
+    
+    saveToLocalStorage();
+    renderSidebar();
+    renderMasterDB();
 };
 
 // グループ名を変更する関数
@@ -290,6 +315,34 @@ window.renameGroup = (event, id) => {
             if (titleEl) titleEl.innerText = newName;
         }
     }
+};
+
+// ==========================================
+// グループ名入れ替えボタンの動作
+// ==========================================
+
+window.moveGroup = (event, index, direction) => {
+    event.stopPropagation(); 
+    
+    const keys = Object.keys(skillDatabase);
+    const newIndex = index + direction;
+    
+    if (newIndex < 0 || newIndex >= keys.length) return;
+    
+    const targetKeys = [...keys];
+    const [movedKey] = targetKeys.splice(index, 1);
+    targetKeys.splice(newIndex, 0, movedKey);
+    
+    const newDatabase = {};
+    targetKeys.forEach(key => {
+        newDatabase[key] = skillDatabase[key];
+    });
+    
+    for (let key in skillDatabase) delete skillDatabase[key];
+    Object.assign(skillDatabase, newDatabase);
+    
+    saveToLocalStorage();
+    renderSidebar();
 };
 
 // --- バックアップ（エクスポート）機能 ---
@@ -336,6 +389,51 @@ importFile.onchange = (e) => {
         }
     };
     reader.readAsText(file);
+};
+
+/**
+ * 表示されている全てのスキルを一括で保存する
+ */
+function saveAllSkills() {
+    // テーブル内の全ての「保存」ボタンを取得
+    const saveButtons = document.querySelectorAll('.edit-btn');
+    
+    if (saveButtons.length === 0) {
+        alert("保存するデータがありません。");
+        return;
+    }
+
+    // 全ての保存ボタンを順番にクリック実行
+    saveButtons.forEach(btn => btn.click());
+    
+    alert("全てのスキルを保存しました！");
+}
+
+// スキルの順番を入れ替える関数
+window.moveSkill = (event, key, direction) => {
+    const currentSkills = skillDatabase[activeGroupId].skills;
+    const keys = Object.keys(currentSkills);
+    const index = keys.indexOf(key);
+    const newIndex = index + direction;
+
+    // 範囲外なら何もしない
+    if (newIndex < 0 || newIndex >= keys.length) return;
+
+    // キーの配列を並べ替える
+    const targetKeys = [...keys];
+    const [movedKey] = targetKeys.splice(index, 1);
+    targetKeys.splice(newIndex, 0, movedKey);
+
+    // 新しい順番でオブジェクトを再構築
+    const newSkills = {};
+    targetKeys.forEach(k => {
+        newSkills[k] = currentSkills[k];
+    });
+
+    // データを上書きして保存・再描画
+    skillDatabase[activeGroupId].skills = newSkills;
+    saveToLocalStorage();
+    renderMasterDB();
 };
 
 // app.jsの最後に記述
