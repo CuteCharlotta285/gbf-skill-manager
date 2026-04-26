@@ -2106,7 +2106,7 @@ dark_garen_l_15: { label: "奈落の技錬15", element: "dark", level: 15, effec
       "dark_magna_eiketsu3_15": { label: "黒霧方陣・英傑Ⅲ15", element: "dark", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CBダメ上限", value: 6.8 }] },
       "dark_magna_eiketsu3_20": { label: "黒霧方陣・英傑Ⅲ20", element: "dark", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CBダメ上限", value: 7.8 }] }
     }
-  },
+  }
 
 };
 																									
