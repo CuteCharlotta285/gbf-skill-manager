@@ -308,72 +308,81 @@ dark_ranbu_l_15: { label: "奈落の乱舞15", element: "dark", level: 15, effec
 }																									
 },																									
 																									
-normal_kamui: {																									
-name: "通常神威",																									
-skills: {																									
-fire_kamui_s_10: { label: "火の神威10", element: "fire", level: 10, effects: [{ type: "通常攻刃", value: 10 }, { type: "通常守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-water_kamui_s_10: { label: "水の神威10", element: "water", level: 10, effects: [{ type: "通常攻刃", value: 10 }, { type: "通常守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-earth_kamui_s_10: { label: "土の神威10", element: "earth", level: 10, effects: [{ type: "通常攻刃", value: 10 }, { type: "通常守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-wind_kamui_s_10: { label: "風の神威10", element: "wind", level: 10, effects: [{ type: "通常攻刃", value: 10 }, { type: "通常守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-light_kamui_s_10: { label: "光の神威10", element: "light", level: 10, effects: [{ type: "通常攻刃", value: 10 }, { type: "通常守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-dark_kamui_s_10: { label: "闇の神威10", element: "dark", level: 10, effects: [{ type: "通常攻刃", value: 10 }, { type: "通常守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-																									
-fire_kamui_s_15: { label: "火の神威15", element: "fire", level: 15, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-water_kamui_s_15: { label: "水の神威15", element: "water", level: 15, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-earth_kamui_s_15: { label: "土の神威15", element: "earth", level: 15, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-wind_kamui_s_15: { label: "風の神威15", element: "wind", level: 15, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-light_kamui_s_15: { label: "光の神威15", element: "light", level: 15, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-dark_kamui_s_15: { label: "闇の神威15", element: "dark", level: 15, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-																									
-fire_kamui_s_20: { label: "火の神威20", element: "fire", level: 20, effects: [{ type: "通常攻刃", value: 12.5 }, { type: "通常守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-water_kamui_s_20: { label: "水の神威20", element: "water", level: 20, effects: [{ type: "通常攻刃", value: 12.5 }, { type: "通常守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-earth_kamui_s_20: { label: "土の神威20", element: "earth", level: 20, effects: [{ type: "通常攻刃", value: 12.5 }, { type: "通常守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-wind_kamui_s_20: { label: "風の神威20", element: "wind", level: 20, effects: [{ type: "通常攻刃", value: 12.5 }, { type: "通常守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-light_kamui_s_20: { label: "光の神威20", element: "light", level: 20, effects: [{ type: "通常攻刃", value: 12.5 }, { type: "通常守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-dark_kamui_s_20: { label: "闇の神威20", element: "dark", level: 20, effects: [{ type: "通常攻刃", value: 12.5 }, { type: "通常守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-																									
-fire_kamui_m_10: { label: "業火の神威10", element: "fire", level: 10, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-water_kamui_m_10: { label: "渦潮の神威10", element: "water", level: 10, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-earth_kamui_m_10: { label: "大地の神威10", element: "earth", level: 10, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-wind_kamui_m_10: { label: "竜巻の神威10", element: "wind", level: 10, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-light_kamui_m_10: { label: "雷電の神威10", element: "light", level: 10, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-dark_kamui_m_10: { label: "憎悪の神威10", element: "dark", level: 10, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-																									
-fire_kamui_m_15: { label: "業火の神威15", element: "fire", level: 15, effects: [{ type: "通常攻刃", value: 14.5 }, { type: "通常守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-water_kamui_m_15: { label: "渦潮の神威15", element: "water", level: 15, effects: [{ type: "通常攻刃", value: 14.5 }, { type: "通常守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-earth_kamui_m_15: { label: "大地の神威15", element: "earth", level: 15, effects: [{ type: "通常攻刃", value: 14.5 }, { type: "通常守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-wind_kamui_m_15: { label: "竜巻の神威15", element: "wind", level: 15, effects: [{ type: "通常攻刃", value: 14.5 }, { type: "通常守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-light_kamui_m_15: { label: "雷電の神威15", element: "light", level: 15, effects: [{ type: "通常攻刃", value: 14.5 }, { type: "通常守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-dark_kamui_m_15: { label: "憎悪の神威15", element: "dark", level: 15, effects: [{ type: "通常攻刃", value: 14.5 }, { type: "通常守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-																									
-fire_kamui_m_20: { label: "業火の神威20", element: "fire", level: 20, effects: [{ type: "通常攻刃", value: 15.5 }, { type: "通常守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-water_kamui_m_20: { label: "渦潮の神威20", element: "water", level: 20, effects: [{ type: "通常攻刃", value: 15.5 }, { type: "通常守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-earth_kamui_m_20: { label: "大地の神威20", element: "earth", level: 20, effects: [{ type: "通常攻刃", value: 15.5 }, { type: "通常守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-wind_kamui_m_20: { label: "竜巻の神威20", element: "wind", level: 20, effects: [{ type: "通常攻刃", value: 15.5 }, { type: "通常守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-light_kamui_m_20: { label: "雷電の神威20", element: "light", level: 20, effects: [{ type: "通常攻刃", value: 15.5 }, { type: "通常守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-dark_kamui_m_20: { label: "憎悪の神威20", element: "dark", level: 20, effects: [{ type: "通常攻刃", value: 15.5 }, { type: "通常守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-																									
-fire_kamui_l_10: { label: "紅蓮の神威10", element: "fire", level: 10, effects: [{ type: "通常攻刃", value: 15 }, { type: "通常守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-water_kamui_l_10: { label: "霧氷の神威10", element: "water", level: 10, effects: [{ type: "通常攻刃", value: 15 }, { type: "通常守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-earth_kamui_l_10: { label: "地裂の神威10", element: "earth", level: 10, effects: [{ type: "通常攻刃", value: 15 }, { type: "通常守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-wind_kamui_l_10: { label: "乱気の神威10", element: "wind", level: 10, effects: [{ type: "通常攻刃", value: 15 }, { type: "通常守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-light_kamui_l_10: { label: "天光の神威10", element: "light", level: 10, effects: [{ type: "通常攻刃", value: 15 }, { type: "通常守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-dark_kamui_l_10: { label: "奈落の神威10", element: "dark", level: 10, effects: [{ type: "通常攻刃", value: 15 }, { type: "通常守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-																									
-fire_kamui_l_15: { label: "紅蓮の神威15", element: "fire", level: 15, effects: [{ type: "通常攻刃", value: 18 }, { type: "通常守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-water_kamui_l_15: { label: "霧氷の神威15", element: "water", level: 15, effects: [{ type: "通常攻刃", value: 18 }, { type: "通常守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-earth_kamui_l_15: { label: "地裂の神威15", element: "earth", level: 15, effects: [{ type: "通常攻刃", value: 18 }, { type: "通常守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-wind_kamui_l_15: { label: "乱気の神威15", element: "wind", level: 15, effects: [{ type: "通常攻刃", value: 18 }, { type: "通常守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-light_kamui_l_15: { label: "天光の神威15", element: "light", level: 15, effects: [{ type: "通常攻刃", value: 18 }, { type: "通常守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-dark_kamui_l_15: { label: "奈落の神威15", element: "dark", level: 15, effects: [{ type: "通常攻刃", value: 18 }, { type: "通常守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-																									
-fire_kamui_l_20: { label: "紅蓮の神威20", element: "fire", level: 20, effects: [{ type: "通常攻刃", value: 20 }, { type: "通常守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-water_kamui_l_20: { label: "霧氷の神威20", element: "water", level: 20, effects: [{ type: "通常攻刃", value: 20 }, { type: "通常守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-earth_kamui_l_20: { label: "地裂の神威20", element: "earth", level: 20, effects: [{ type: "通常攻刃", value: 20 }, { type: "通常守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-wind_kamui_l_20: { label: "乱気の神威20", element: "wind", level: 20, effects: [{ type: "通常攻刃", value: 20 }, { type: "通常守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-light_kamui_l_20: { label: "天光の神威20", element: "light", level: 20, effects: [{ type: "通常攻刃", value: 20 }, { type: "通常守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-dark_kamui_l_20: { label: "奈落の神威20", element: "dark", level: 20, effects: [{ type: "通常攻刃", value: 20 }, { type: "通常守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] }																									
-}																									
+normal_kamui: {
+  name: "通常神威",
+  skills: {
+    /* --- 火属性 --- */
+    fire_normal_kamui_10: { label: "火の神威10", element: "fire", level: 10, effects: [{ type: "通常攻刃", value: 10 }, { type: "通常守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_normal_kamui_15: { label: "火の神威15", element: "fire", level: 15, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_normal_kamui_20: { label: "火の神威20", element: "fire", level: 20, effects: [{ type: "通常攻刃", value: 12.5 }, { type: "通常守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_normal_kamui2_10: { label: "業火の神威10", element: "fire", level: 10, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_normal_kamui2_15: { label: "業火の神威15", element: "fire", level: 15, effects: [{ type: "通常攻刃", value: 14.5 }, { type: "通常守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_normal_kamui2_20: { label: "業火の神威20", element: "fire", level: 20, effects: [{ type: "通常攻刃", value: 15.5 }, { type: "通常守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_normal_kamui3_10: { label: "紅蓮の神威10", element: "fire", level: 10, effects: [{ type: "通常攻刃", value: 15 }, { type: "通常守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_normal_kamui3_15: { label: "紅蓮の神威15", element: "fire", level: 15, effects: [{ type: "通常攻刃", value: 18 }, { type: "通常守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_normal_kamui3_20: { label: "紅蓮の神威20", element: "fire", level: 20, effects: [{ type: "通常攻刃", value: 20 }, { type: "通常守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_normal_shinsei_25: { label: "紅蓮の神醒25", element: "fire", level: 25, effects: [{ type: "通常攻刃", value: 24 }, { type: "通常守護", value: 24 }, { type: "与ダメUP", value: 2 }, { type: "", value: 0 }] },
+
+    /* --- 水属性 --- */
+    water_normal_kamui_10: { label: "水の神威10", element: "water", level: 10, effects: [{ type: "通常攻刃", value: 10 }, { type: "通常守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_normal_kamui_15: { label: "水の神威15", element: "water", level: 15, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_normal_kamui_20: { label: "水の神威20", element: "water", level: 20, effects: [{ type: "通常攻刃", value: 12.5 }, { type: "通常守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_normal_kamui2_10: { label: "渦潮の神威10", element: "water", level: 10, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_normal_kamui2_15: { label: "渦潮の神威15", element: "water", level: 15, effects: [{ type: "通常攻刃", value: 14.5 }, { type: "通常守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_normal_kamui2_20: { label: "渦潮の神威20", element: "water", level: 20, effects: [{ type: "通常攻刃", value: 15.5 }, { type: "通常守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_normal_kamui3_10: { label: "霧氷の神威10", element: "water", level: 10, effects: [{ type: "通常攻刃", value: 15 }, { type: "通常守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_normal_kamui3_15: { label: "霧氷の神威15", element: "water", level: 15, effects: [{ type: "通常攻刃", value: 18 }, { type: "通常守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_normal_kamui3_20: { label: "霧氷の神威20", element: "water", level: 20, effects: [{ type: "通常攻刃", value: 20 }, { type: "通常守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_normal_shinsei_25: { label: "霧氷の神醒25", element: "water", level: 25, effects: [{ type: "通常攻刃", value: 24 }, { type: "通常守護", value: 24 }, { type: "与ダメUP", value: 2 }, { type: "", value: 0 }] },
+
+    /* --- 土属性 --- */
+    earth_normal_kamui_10: { label: "土の神威10", element: "earth", level: 10, effects: [{ type: "通常攻刃", value: 10 }, { type: "通常守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_normal_kamui_15: { label: "土の神威15", element: "earth", level: 15, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_normal_kamui_20: { label: "土の神威20", element: "earth", level: 20, effects: [{ type: "通常攻刃", value: 12.5 }, { type: "通常守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_normal_kamui2_10: { label: "大地の神威10", element: "earth", level: 10, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_normal_kamui2_15: { label: "大地の神威15", element: "earth", level: 15, effects: [{ type: "通常攻刃", value: 14.5 }, { type: "通常守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_normal_kamui2_20: { label: "大地の神威20", element: "earth", level: 20, effects: [{ type: "通常攻刃", value: 15.5 }, { type: "通常守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_normal_kamui3_10: { label: "地裂の神威10", element: "earth", level: 10, effects: [{ type: "通常攻刃", value: 15 }, { type: "通常守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_normal_kamui3_15: { label: "地裂の神威15", element: "earth", level: 15, effects: [{ type: "通常攻刃", value: 18 }, { type: "通常守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_normal_kamui3_20: { label: "地裂の神威20", element: "earth", level: 20, effects: [{ type: "通常攻刃", value: 20 }, { type: "通常守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_normal_shinsei_25: { label: "地裂の神醒25", element: "earth", level: 25, effects: [{ type: "通常攻刃", value: 24 }, { type: "通常守護", value: 24 }, { type: "与ダメUP", value: 2 }, { type: "", value: 0 }] },
+
+    /* --- 風属性 --- */
+    wind_normal_kamui_10: { label: "風の神威10", element: "wind", level: 10, effects: [{ type: "通常攻刃", value: 10 }, { type: "通常守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_normal_kamui_15: { label: "風の神威15", element: "wind", level: 15, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_normal_kamui_20: { label: "風の神威20", element: "wind", level: 20, effects: [{ type: "通常攻刃", value: 12.5 }, { type: "通常守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_normal_kamui2_10: { label: "竜巻の神威10", element: "wind", level: 10, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_normal_kamui2_15: { label: "竜巻の神威15", element: "wind", level: 15, effects: [{ type: "通常攻刃", value: 14.5 }, { type: "通常守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_normal_kamui2_20: { label: "竜巻の神威20", element: "wind", level: 20, effects: [{ type: "通常攻刃", value: 15.5 }, { type: "通常守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_normal_kamui3_10: { label: "乱気の神威10", element: "wind", level: 10, effects: [{ type: "通常攻刃", value: 15 }, { type: "通常守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_normal_kamui3_15: { label: "乱気の神威15", element: "wind", level: 15, effects: [{ type: "通常攻刃", value: 18 }, { type: "通常守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_normal_kamui3_20: { label: "乱気の神威20", element: "wind", level: 20, effects: [{ type: "通常攻刃", value: 20 }, { type: "通常守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_normal_shinsei_25: { label: "乱気の神醒25", element: "wind", level: 25, effects: [{ type: "通常攻刃", value: 24 }, { type: "通常守護", value: 24 }, { type: "与ダメUP", value: 2 }, { type: "", value: 0 }] },
+
+    /* --- 光属性 --- */
+    light_normal_kamui_10: { label: "光の神威10", element: "light", level: 10, effects: [{ type: "通常攻刃", value: 10 }, { type: "通常守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_normal_kamui_15: { label: "光の神威15", element: "light", level: 15, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_normal_kamui_20: { label: "光の神威20", element: "light", level: 20, effects: [{ type: "通常攻刃", value: 12.5 }, { type: "通常守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_normal_kamui2_10: { label: "雷電の神威10", element: "light", level: 10, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_normal_kamui2_15: { label: "雷電の神威15", element: "light", level: 15, effects: [{ type: "通常攻刃", value: 14.5 }, { type: "通常守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_normal_kamui2_20: { label: "雷電の神威20", element: "light", level: 20, effects: [{ type: "通常攻刃", value: 15.5 }, { type: "通常守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_normal_kamui3_10: { label: "天光の神威10", element: "light", level: 10, effects: [{ type: "通常攻刃", value: 15 }, { type: "通常守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_normal_kamui3_15: { label: "天光の神威15", element: "light", level: 15, effects: [{ type: "通常攻刃", value: 18 }, { type: "通常守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_normal_kamui3_20: { label: "天光の神威20", element: "light", level: 20, effects: [{ type: "通常攻刃", value: 20 }, { type: "通常守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_normal_shinsei_25: { label: "天光の神醒25", element: "light", level: 25, effects: [{ type: "通常攻刃", value: 24 }, { type: "通常守護", value: 24 }, { type: "与ダメUP", value: 2 }, { type: "", value: 0 }] },
+
+    /* --- 闇属性 --- */
+    dark_normal_kamui_10: { label: "闇の神威10", element: "dark", level: 10, effects: [{ type: "通常攻刃", value: 10 }, { type: "通常守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_normal_kamui_15: { label: "闇の神威15", element: "dark", level: 15, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_normal_kamui_20: { label: "闇の神威20", element: "dark", level: 20, effects: [{ type: "通常攻刃", value: 12.5 }, { type: "通常守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_normal_kamui2_10: { label: "憎悪の神威10", element: "dark", level: 10, effects: [{ type: "通常攻刃", value: 12 }, { type: "通常守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_normal_kamui2_15: { label: "憎悪の神威15", element: "dark", level: 15, effects: [{ type: "通常攻刃", value: 14.5 }, { type: "通常守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_normal_kamui2_20: { label: "憎悪の神威20", element: "dark", level: 20, effects: [{ type: "通常攻刃", value: 15.5 }, { type: "通常守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_normal_kamui3_10: { label: "奈落の神威10", element: "dark", level: 10, effects: [{ type: "通常攻刃", value: 15 }, { type: "通常守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_normal_kamui3_15: { label: "奈落の神威15", element: "dark", level: 15, effects: [{ type: "通常攻刃", value: 18 }, { type: "通常守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_normal_kamui3_20: { label: "奈落の神威20", element: "dark", level: 20, effects: [{ type: "通常攻刃", value: 20 }, { type: "通常守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_normal_shinsei_25: { label: "奈落の神醒25", element: "dark", level: 25, effects: [{ type: "通常攻刃", value: 24 }, { type: "通常守護", value: 24 }, { type: "与ダメUP", value: 2 }, { type: "", value: 0 }] }
+  }
 },																									
 																									
 normal_jinkai: {																									
@@ -1319,33 +1328,839 @@ dark_garen_l_15: { label: "奈落の技錬15", element: "dark", level: 15, effec
 }																									
 },																									
 																									
-magna_atk: {																									
-name: "方陣攻刃",																									
-skills: {																									
-// 方陣攻刃I (SLv10: 10%, SLv15: 12%)																									
-fire_magna_1_10: { label: "機炎方陣・攻刃10", element: "fire", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-water_magna_1_10: { label: "海神方陣・攻刃10", element: "water", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-earth_magna_1_10: { label: "創樹方陣・攻刃10", element: "earth", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-wind_magna_1_10: { label: "嵐竜方陣・攻刃10", element: "wind", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-light_magna_1_10: { label: "騎解方陣・攻刃10", element: "light", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-dark_magna_1_10: { label: "黒霧方陣・攻刃10", element: "dark", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-																									
-// 方陣攻刃II (SLv15: 14.5%)																									
-fire_magna_2_15: { label: "機炎方陣・攻刃II15", element: "fire", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-water_magna_2_15: { label: "海神方陣・攻刃II15", element: "water", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-earth_magna_2_15: { label: "創樹方陣・攻刃II15", element: "earth", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-wind_magna_2_15: { label: "嵐竜方陣・攻刃II15", element: "wind", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-light_magna_2_15: { label: "騎解方陣・攻刃II15", element: "light", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-dark_magna_2_15: { label: "黒霧方陣・攻刃II15", element: "dark", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-																									
-// 方陣攻刃III (SLv15: 18%, SLv20: 20%)																									
-fire_magna_3_15: { label: "機炎方陣・攻刃III15", element: "fire", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-fire_magna_3_20: { label: "機炎方陣・攻刃III20", element: "fire", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-water_magna_3_15: { label: "海神方陣・攻刃III15", element: "water", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-water_magna_3_20: { label: "海神方陣・攻刃III20", element: "water", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] }																									
-}																									
-},																								
-};																									
+magna_kojin: {
+  name: "方陣攻刃",
+  skills: {
+    /* --- 火属性 --- */
+    fire_magna_kojin_10: { label: "機炎方陣・攻刃10", element: "fire", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_kojin_15: { label: "機炎方陣・攻刃15", element: "fire", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_kojin2_10: { label: "機炎方陣・攻刃Ⅱ10", element: "fire", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_kojin2_15: { label: "機炎方陣・攻刃Ⅱ15", element: "fire", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_kojin2_20: { label: "機炎方陣・攻刃Ⅱ20", element: "fire", level: 20, effects: [{ type: "マグナ攻刃", value: 16 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_kojin3_10: { label: "機炎方陣・攻刃Ⅲ10", element: "fire", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_kojin3_15: { label: "機炎方陣・攻刃Ⅲ15", element: "fire", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_kojin3_20: { label: "機炎方陣・攻刃Ⅲ20", element: "fire", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 水属性 --- */
+    water_magna_kojin_10: { label: "海神方陣・攻刃10", element: "water", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_kojin_15: { label: "海神方陣・攻刃15", element: "water", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_kojin2_10: { label: "海神方陣・攻刃Ⅱ10", element: "water", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_kojin2_15: { label: "海神方陣・攻刃Ⅱ15", element: "water", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_kojin2_20: { label: "海神方陣・攻刃Ⅱ20", element: "water", level: 20, effects: [{ type: "マグナ攻刃", value: 16 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_kojin3_10: { label: "海神方陣・攻刃Ⅲ10", element: "water", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_kojin3_15: { label: "海神方陣・攻刃Ⅲ15", element: "water", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_kojin3_20: { label: "海神方陣・攻刃Ⅲ20", element: "water", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 土属性 --- */
+    earth_magna_kojin_10: { label: "創樹方陣・攻刃10", element: "earth", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_kojin_15: { label: "創樹方陣・攻刃15", element: "earth", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_kojin2_10: { label: "創樹方陣・攻刃Ⅱ10", element: "earth", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_kojin2_15: { label: "創樹方陣・攻刃Ⅱ15", element: "earth", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_kojin2_20: { label: "創樹方陣・攻刃Ⅱ20", element: "earth", level: 20, effects: [{ type: "マグナ攻刃", value: 16 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_kojin3_10: { label: "創樹方陣・攻刃Ⅲ10", element: "earth", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_kojin3_15: { label: "創樹方陣・攻刃Ⅲ15", element: "earth", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_kojin3_20: { label: "創樹方陣・攻刃Ⅲ20", element: "earth", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 風属性 --- */
+    wind_magna_kojin_10: { label: "嵐竜方陣・攻刃10", element: "wind", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_kojin_15: { label: "嵐竜方陣・攻刃15", element: "wind", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_kojin2_10: { label: "嵐竜方陣・攻刃Ⅱ10", element: "wind", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_kojin2_15: { label: "嵐竜方陣・攻刃Ⅱ15", element: "wind", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_kojin2_20: { label: "嵐竜方陣・攻刃Ⅱ20", element: "wind", level: 20, effects: [{ type: "マグナ攻刃", value: 16 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_kojin3_10: { label: "嵐竜方陣・攻刃Ⅲ10", element: "wind", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_kojin3_15: { label: "嵐竜方陣・攻刃Ⅲ15", element: "wind", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_kojin3_20: { label: "嵐竜方陣・攻刃Ⅲ20", element: "wind", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 光属性 --- */
+    light_magna_kojin_10: { label: "騎解方陣・攻刃10", element: "light", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_kojin_15: { label: "騎解方陣・攻刃15", element: "light", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_kojin2_10: { label: "騎解方陣・攻刃Ⅱ10", element: "light", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_kojin2_15: { label: "騎解方陣・攻刃Ⅱ15", element: "light", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_kojin2_20: { label: "騎解方陣・攻刃Ⅱ20", element: "light", level: 20, effects: [{ type: "マグナ攻刃", value: 16 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_kojin3_10: { label: "騎解方陣・攻刃Ⅲ10", element: "light", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_kojin3_15: { label: "騎解方陣・攻刃Ⅲ15", element: "light", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_kojin3_20: { label: "騎解方陣・攻刃Ⅲ20", element: "light", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 闇属性 --- */
+    dark_magna_kojin_10: { label: "黒霧方陣・攻刃10", element: "dark", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_kojin_15: { label: "黒霧方陣・攻刃15", element: "dark", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_kojin2_10: { label: "黒霧方陣・攻刃Ⅱ10", element: "dark", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_kojin2_15: { label: "黒霧方陣・攻刃Ⅱ15", element: "dark", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_kojin2_20: { label: "黒霧方陣・攻刃Ⅱ20", element: "dark", level: 20, effects: [{ type: "マグナ攻刃", value: 16 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_kojin3_10: { label: "黒霧方陣・攻刃Ⅲ10", element: "dark", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_kojin3_15: { label: "黒霧方陣・攻刃Ⅲ15", element: "dark", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_kojin3_20: { label: "黒霧方陣・攻刃Ⅲ20", element: "dark", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] }
+  }
+},
+
+magna_juin3: {
+  name: "方陣呪印",
+  skills: {
+    /* --- 火属性 --- */
+    fire_magna_juin3_10: { label: "機炎方陣・呪印Ⅲ10", element: "fire", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "ターンダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_juin3_15: { label: "機炎方陣・呪印Ⅲ15", element: "fire", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "ターンダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_juin3_20: { label: "機炎方陣・呪印Ⅲ20", element: "fire", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "ターンダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 水属性 --- */
+    water_magna_juin3_10: { label: "海神方陣・呪印Ⅲ10", element: "water", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "ターンダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_juin3_15: { label: "海神方陣・呪印Ⅲ15", element: "water", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "ターンダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_juin3_20: { label: "海神方陣・呪印Ⅲ20", element: "water", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "ターンダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 土属性 --- */
+    earth_magna_juin3_10: { label: "創樹方陣・呪印Ⅲ10", element: "earth", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "ターンダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_juin3_15: { label: "創樹方陣・呪印Ⅲ15", element: "earth", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "ターンダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_juin3_20: { label: "創樹方陣・呪印Ⅲ20", element: "earth", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "ターンダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 風属性 --- */
+    wind_magna_juin3_10: { label: "嵐竜方陣・呪印Ⅲ10", element: "wind", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "ターンダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_juin3_15: { label: "嵐竜方陣・呪印Ⅲ15", element: "wind", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "ターンダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_juin3_20: { label: "嵐竜方陣・呪印Ⅲ20", element: "wind", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "ターンダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 光属性 --- */
+    light_magna_juin3_10: { label: "騎解方陣・呪印Ⅲ10", element: "light", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "ターンダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_juin3_15: { label: "騎解方陣・呪印Ⅲ15", element: "light", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "ターンダダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_juin3_20: { label: "騎解方陣・呪印Ⅲ20", element: "light", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "ターンダダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 闇属性 --- */
+    dark_magna_juin3_10: { label: "黒霧方陣・呪印Ⅲ10", element: "dark", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "ターンダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_juin3_15: { label: "黒霧方陣・呪印Ⅲ15", element: "dark", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "ターンダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_juin3_20: { label: "黒霧方陣・呪印Ⅲ20", element: "dark", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "ターンダダメージ", value: -5 }, { type: "", value: 0 }, { type: "", value: 0 }] }
+  }
+},
+
+magna_giko: {
+  name: "方陣技巧",
+  skills: {
+    /* --- 火属性 --- */
+    fire_magna_giko_10: { label: "機炎方陣・技巧10", element: "fire", level: 10, effects: [{ type: "クリティカル", value: 2 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_giko_15: { label: "機炎方陣・技巧15", element: "fire", level: 15, effects: [{ type: "クリティカル", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_giko2_10: { label: "機炎方陣・技巧Ⅱ10", element: "fire", level: 10, effects: [{ type: "クリティカル", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_giko2_15: { label: "機炎方陣・技巧Ⅱ15", element: "fire", level: 15, effects: [{ type: "クリティカル", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_giko2_20: { label: "機炎方陣・技巧Ⅱ20", element: "fire", level: 20, effects: [{ type: "クリティカル", value: 7.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_giko3_10: { label: "機炎方陣・技巧Ⅲ10", element: "fire", level: 10, effects: [{ type: "クリティカル", value: 8 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_giko3_15: { label: "機炎方陣・技巧Ⅲ15", element: "fire", level: 15, effects: [{ type: "クリティカル", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_giko3_20: { label: "機炎方陣・技巧Ⅲ20", element: "fire", level: 20, effects: [{ type: "クリティカル", value: 11 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 水属性 --- */
+    water_magna_giko_10: { label: "海神方陣・技巧10", element: "water", level: 10, effects: [{ type: "クリティカル", value: 2 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_giko_15: { label: "海神方陣・技巧15", element: "water", level: 15, effects: [{ type: "クリティカル", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_giko2_10: { label: "海神方陣・技巧Ⅱ10", element: "water", level: 10, effects: [{ type: "クリティカル", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_giko2_15: { label: "海神方陣・技巧Ⅱ15", element: "water", level: 15, effects: [{ type: "クリティカル", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_giko2_20: { label: "海神方陣・技巧Ⅱ20", element: "water", level: 20, effects: [{ type: "クリティカル", value: 7.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_giko3_10: { label: "海神方陣・技巧Ⅲ10", element: "water", level: 10, effects: [{ type: "クリティカル", value: 8 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_giko3_15: { label: "海神方陣・技巧Ⅲ15", element: "water", level: 15, effects: [{ type: "クリティカル", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_giko3_20: { label: "海神方陣・技巧Ⅲ20", element: "water", level: 20, effects: [{ type: "クリティカル", value: 11 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 土属性 --- */
+    earth_magna_giko_10: { label: "創樹方陣・技巧10", element: "earth", level: 10, effects: [{ type: "クリティカル", value: 2 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_giko_15: { label: "創樹方陣・技巧15", element: "earth", level: 15, effects: [{ type: "クリティカル", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_giko2_10: { label: "創樹方陣・技巧Ⅱ10", element: "earth", level: 10, effects: [{ type: "クリティカル", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_giko2_15: { label: "創樹方陣・技巧Ⅱ15", element: "earth", level: 15, effects: [{ type: "クリティカル", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_giko2_20: { label: "創樹方陣・技巧Ⅱ20", element: "earth", level: 20, effects: [{ type: "クリティカル", value: 7.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_giko3_10: { label: "創樹方陣・技巧Ⅲ10", element: "earth", level: 10, effects: [{ type: "クリティカル", value: 8 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_giko3_15: { label: "創樹方陣・技巧Ⅲ15", element: "earth", level: 15, effects: [{ type: "クリティカル", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_giko3_20: { label: "創樹方陣・技巧Ⅲ20", element: "earth", level: 20, effects: [{ type: "クリティカル", value: 11 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 風属性 --- */
+    wind_magna_giko_10: { label: "嵐竜方陣・技巧10", element: "wind", level: 10, effects: [{ type: "クリティカル", value: 2 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_giko_15: { label: "嵐竜方陣・技巧15", element: "wind", level: 15, effects: [{ type: "クリティカル", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_giko2_10: { label: "嵐竜方陣・技巧Ⅱ10", element: "wind", level: 10, effects: [{ type: "クリティカル", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_giko2_15: { label: "嵐竜方陣・技巧Ⅱ15", element: "wind", level: 15, effects: [{ type: "クリティカル", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_giko2_20: { label: "嵐竜方陣・技巧Ⅱ20", element: "wind", level: 20, effects: [{ type: "クリティカル", value: 7.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_giko3_10: { label: "嵐竜方陣・技巧Ⅲ10", element: "wind", level: 10, effects: [{ type: "クリティカル", value: 8 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_giko3_15: { label: "嵐竜方陣・技巧Ⅲ15", element: "wind", level: 15, effects: [{ type: "クリティカル", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_giko3_20: { label: "嵐竜方陣・技巧Ⅲ20", element: "wind", level: 20, effects: [{ type: "クリティカル", value: 11 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 光属性 --- */
+    light_magna_giko_10: { label: "騎解方陣・技巧10", element: "light", level: 10, effects: [{ type: "クリティカル", value: 2 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_giko_15: { label: "騎解方陣・技巧15", element: "light", level: 15, effects: [{ type: "クリティカル", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_giko2_10: { label: "騎解方陣・技巧Ⅱ10", element: "light", level: 10, effects: [{ type: "クリティカル", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_giko2_15: { label: "騎解方陣・技巧Ⅱ15", element: "light", level: 15, effects: [{ type: "クリティカル", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_giko2_20: { label: "騎解方陣・技巧Ⅱ20", element: "light", level: 20, effects: [{ type: "クリティカル", value: 7.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_giko3_10: { label: "騎解方陣・技巧Ⅲ10", element: "light", level: 10, effects: [{ type: "クリティカル", value: 8 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_giko3_15: { label: "騎解方陣・技巧Ⅲ15", element: "light", level: 15, effects: [{ type: "クリティカル", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_giko3_20: { label: "騎解方陣・技巧Ⅲ20", element: "light", level: 20, effects: [{ type: "クリティカル", value: 11 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 闇属性 --- */
+    dark_magna_giko_10: { label: "黒霧方陣・技巧10", element: "dark", level: 10, effects: [{ type: "クリティカル", value: 2 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_giko_15: { label: "黒霧方陣・技巧15", element: "dark", level: 15, effects: [{ type: "クリティカル", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_giko2_10: { label: "黒霧方陣・技巧Ⅱ10", element: "dark", level: 10, effects: [{ type: "クリティカル", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_giko2_15: { label: "黒霧方陣・技巧Ⅱ15", element: "dark", level: 15, effects: [{ type: "クリティカル", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_giko2_20: { label: "黒霧方陣・技巧Ⅱ20", element: "dark", level: 20, effects: [{ type: "クリティカル", value: 7.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_giko3_10: { label: "黒霧方陣・技巧Ⅲ10", element: "dark", level: 10, effects: [{ type: "クリティカル", value: 8 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_giko3_15: { label: "黒霧方陣・技巧Ⅲ15", element: "dark", level: 15, effects: [{ type: "クリティカル", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_giko3_20: { label: "黒霧方陣・技巧Ⅲ20", element: "dark", level: 20, effects: [{ type: "クリティカル", value: 11 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] }
+  }
+},
+
+magna_setsuna: {
+  name: "方陣刹那",
+  skills: {
+    /* --- 火属性 --- */
+    fire_magna_setsuna_10: { label: "機炎方陣・刹那10", element: "fire", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "クリティカル", value: 2 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_setsuna_15: { label: "機炎方陣・刹那15", element: "fire", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "クリティカル", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_setsuna2_10: { label: "機炎方陣・刹那Ⅱ10", element: "fire", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "クリティカル", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_setsuna2_15: { label: "機炎方陣・刹那Ⅱ15", element: "fire", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "クリティカル", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_setsuna2_20: { label: "機炎方陣・刹那Ⅱ20", element: "fire", level: 20, effects: [{ type: "マグナ攻刃", value: 16 }, { type: "クリティカル", value: 7.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 水属性 --- */
+    water_magna_setsuna_10: { label: "海神方陣・刹那10", element: "water", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "クリティカル", value: 2 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_setsuna_15: { label: "海神方陣・刹那15", element: "water", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "クリティカル", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_setsuna2_10: { label: "海神方陣・刹那Ⅱ10", element: "water", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "クリティカル", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_setsuna2_15: { label: "海神方陣・刹那Ⅱ15", element: "water", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "クリティカル", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_setsuna2_20: { label: "海神方陣・刹那Ⅱ20", element: "water", level: 20, effects: [{ type: "マグナ攻刃", value: 16 }, { type: "クリティカル", value: 7.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 土属性 --- */
+    earth_magna_setsuna_10: { label: "創樹方陣・刹那10", element: "earth", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "クリティカル", value: 2 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_setsuna_15: { label: "創樹方陣・刹那15", element: "earth", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "クリティカル", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_setsuna2_10: { label: "創樹方陣・刹那Ⅱ10", element: "earth", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "クリティカル", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_setsuna2_15: { label: "創樹方陣・刹那Ⅱ15", element: "earth", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "クリティカル", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_setsuna2_20: { label: "創樹方陣・刹那Ⅱ20", element: "earth", level: 20, effects: [{ type: "マグナ攻刃", value: 16 }, { type: "クリティカル", value: 7.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 風属性 --- */
+    wind_magna_setsuna_10: { label: "嵐竜方陣・刹那10", element: "wind", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "クリティカル", value: 2 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_setsuna_15: { label: "嵐竜方陣・刹那15", element: "wind", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "クリティカル", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_setsuna2_10: { label: "嵐竜方陣・刹那Ⅱ10", element: "wind", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "クリティカル", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_setsuna2_15: { label: "嵐竜方陣・刹那Ⅱ15", element: "wind", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "クリティカル", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_setsuna2_20: { label: "嵐竜方陣・刹那Ⅱ20", element: "wind", level: 20, effects: [{ type: "マグナ攻刃", value: 16 }, { type: "クリティカル", value: 7.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 光属性 --- */
+    light_magna_setsuna_10: { label: "騎解方陣・刹那10", element: "light", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "クリティカル", value: 2 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_setsuna_15: { label: "騎解方陣・刹那15", element: "light", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "クリティカル", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_setsuna2_10: { label: "騎解方陣・刹那Ⅱ10", element: "light", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "クリティカル", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_setsuna2_15: { label: "騎解方陣・刹那Ⅱ15", element: "light", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "クリティカル", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_setsuna2_20: { label: "騎解方陣・刹那Ⅱ20", element: "light", level: 20, effects: [{ type: "マグナ攻刃", value: 16 }, { type: "クリティカル", value: 7.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 闇属性 --- */
+    dark_magna_setsuna_10: { label: "黒霧方陣・刹那10", element: "dark", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "クリティカル", value: 2 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_setsuna_15: { label: "黒霧方陣・刹那15", element: "dark", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "クリティカル", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_setsuna2_10: { label: "黒霧方陣・刹那Ⅱ10", element: "dark", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "クリティカル", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_setsuna2_15: { label: "黒霧方陣・刹那Ⅱ15", element: "dark", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "クリティカル", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_setsuna2_20: { label: "黒霧方陣・刹那Ⅱ20", element: "dark", level: 20, effects: [{ type: "マグナ攻刃", value: 16 }, { type: "クリティカル", value: 7.5 }, { type: "", value: 0 }, { type: "", value: 0 }] }
+  }
+},
+
+magna_koki2: {
+  name: "方陣克己",
+  skills: {
+    /* --- 火属性 --- */
+    fire_magna_koki2_10: { label: "機炎方陣・克己Ⅱ10", element: "fire", level: 10, effects: [{ type: "クリティカル", value: 5 }, { type: "DA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_koki2_15: { label: "機炎方陣・克己Ⅱ15", element: "fire", level: 15, effects: [{ type: "クリティカル", value: 6.5 }, { type: "DA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 水属性 --- */
+    water_magna_koki2_10: { label: "海神方陣・克己Ⅱ10", element: "water", level: 10, effects: [{ type: "クリティカル", value: 5 }, { type: "DA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_koki2_15: { label: "海神方陣・克己Ⅱ15", element: "water", level: 15, effects: [{ type: "クリティカル", value: 6.5 }, { type: "DA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 土属性 --- */
+    earth_magna_koki2_10: { label: "創樹方陣・克己Ⅱ10", element: "earth", level: 10, effects: [{ type: "クリティカル", value: 5 }, { type: "DA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_koki2_15: { label: "創樹方陣・克己Ⅱ15", element: "earth", level: 15, effects: [{ type: "クリティカル", value: 6.5 }, { type: "DA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 風属性 --- */
+    wind_magna_koki2_10: { label: "嵐竜方陣・克己Ⅱ10", element: "wind", level: 10, effects: [{ type: "クリティカル", value: 5 }, { type: "DA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_koki2_15: { label: "嵐竜方陣・克己Ⅱ15", element: "wind", level: 15, effects: [{ type: "クリティカル", value: 6.5 }, { type: "DA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 光属性 --- */
+    light_magna_koki2_10: { label: "騎解方陣・克己Ⅱ10", element: "light", level: 10, effects: [{ type: "クリティカル", value: 5 }, { type: "DA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_koki2_15: { label: "騎解方陣・克己Ⅱ15", element: "light", level: 15, effects: [{ type: "クリティカル", value: 6.5 }, { type: "DA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 闇属性 --- */
+    dark_magna_koki2_10: { label: "黒霧方陣・克己Ⅱ10", element: "dark", level: 10, effects: [{ type: "クリティカル", value: 5 }, { type: "DA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_koki2_15: { label: "黒霧方陣・克己Ⅱ15", element: "dark", level: 15, effects: [{ type: "クリティカル", value: 6.5 }, { type: "DA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] }
+  }
+},
+
+magna_muso2: {
+  name: "方陣無双",
+  skills: {
+    /* --- 火属性 --- */
+    fire_magna_muso2_10: { label: "機炎方陣・無双Ⅱ10", element: "fire", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "DA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_muso2_15: { label: "機炎方陣・無双Ⅱ15", element: "fire", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "DA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 水属性 --- */
+    water_magna_muso2_10: { label: "海神方陣・無双Ⅱ10", element: "water", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "DA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_muso2_15: { label: "海神方陣・無双Ⅱ15", element: "water", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "DA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 土属性 --- */
+    earth_magna_muso2_10: { label: "創樹方陣・無双Ⅱ10", element: "earth", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "DA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_muso2_15: { label: "創樹方陣・無双Ⅱ15", element: "earth", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "DA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 風属性 --- */
+    wind_magna_muso2_10: { label: "嵐竜方陣・無双Ⅱ10", element: "wind", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "DA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_muso2_15: { label: "嵐竜方陣・無双Ⅱ15", element: "wind", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "DA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 光属性 --- */
+    light_magna_muso2_10: { label: "騎解方陣・無双Ⅱ10", element: "light", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "DA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_muso2_15: { label: "騎解方陣・無双Ⅱ15", element: "light", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "DA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 闇属性 --- */
+    dark_magna_muso2_10: { label: "黒霧方陣・無双Ⅱ10", element: "dark", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "DA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_muso2_15: { label: "黒霧方陣・無双Ⅱ15", element: "dark", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "DA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }] }
+  }
+},
+
+magna_ranbu2: {
+  name: "方陣乱舞",
+  skills: {
+    /* --- 火属性 --- */
+    fire_magna_ranbu2_10: { label: "機炎方陣・乱舞10", element: "fire", level: 10, effects: [{ type: "マグナ攻刃", value: 5 }, { type: "TA確率", value: 1.35 }, { type: "DA確率", value: 1.35 }, { type: "", value: 0 }] },
+    fire_magna_ranbu2_15: { label: "機炎方陣・乱舞15", element: "fire", level: 15, effects: [{ type: "マグナ攻刃", value: 6.5 }, { type: "TA確率", value: 2 }, { type: "DA確率", value: 2 }, { type: "", value: 0 }] },
+
+    /* --- 水属性 --- */
+    water_magna_ranbu2_10: { label: "海神方陣・乱舞10", element: "water", level: 10, effects: [{ type: "マグナ攻刃", value: 5 }, { type: "TA確率", value: 1.35 }, { type: "DA確率", value: 1.35 }, { type: "", value: 0 }] },
+    water_magna_ranbu2_15: { label: "海神方陣・乱舞15", element: "water", level: 15, effects: [{ type: "マグナ攻刃", value: 6.5 }, { type: "TA確率", value: 2 }, { type: "DA確率", value: 2 }, { type: "", value: 0 }] },
+
+    /* --- 土属性 --- */
+    earth_magna_ranbu2_10: { label: "創樹方陣・乱舞10", element: "earth", level: 10, effects: [{ type: "マグナ攻刃", value: 5 }, { type: "TA確率", value: 1.35 }, { type: "DA確率", value: 1.35 }, { type: "", value: 0 }] },
+    earth_magna_ranbu2_15: { label: "創樹方陣・乱舞15", element: "earth", level: 15, effects: [{ type: "マグナ攻刃", value: 6.5 }, { type: "TA確率", value: 2 }, { type: "DA確率", value: 2 }, { type: "", value: 0 }] },
+
+    /* --- 風属性 --- */
+    wind_magna_ranbu2_10: { label: "嵐竜方陣・乱舞10", element: "wind", level: 10, effects: [{ type: "マグナ攻刃", value: 5 }, { type: "TA確率", value: 1.35 }, { type: "DA確率", value: 1.35 }, { type: "", value: 0 }] },
+    wind_magna_ranbu2_15: { label: "嵐竜方陣・乱舞15", element: "wind", level: 15, effects: [{ type: "マグナ攻刃", value: 6.5 }, { type: "TA確率", value: 2 }, { type: "DA確率", value: 2 }, { type: "", value: 0 }] },
+
+    /* --- 光属性 --- */
+    light_magna_ranbu2_10: { label: "騎解方陣・乱舞10", element: "light", level: 10, effects: [{ type: "マグナ攻刃", value: 5 }, { type: "TA確率", value: 1.35 }, { type: "DA確率", value: 1.35 }, { type: "", value: 0 }] },
+    light_magna_ranbu2_15: { label: "騎解方陣・乱舞15", element: "light", level: 15, effects: [{ type: "マグナ攻刃", value: 6.5 }, { type: "TA確率", value: 2 }, { type: "DA確率", value: 2 }, { type: "", value: 0 }] },
+
+    /* --- 闇属性 --- */
+    dark_magna_ranbu2_10: { label: "黒霧方陣・乱舞10", element: "dark", level: 10, effects: [{ type: "マグナ攻刃", value: 5 }, { type: "TA確率", value: 1.35 }, { type: "DA確率", value: 1.35 }, { type: "", value: 0 }] },
+    dark_magna_ranbu2_15: { label: "黒霧方陣・乱舞15", element: "dark", level: 15, effects: [{ type: "マグナ攻刃", value: 6.5 }, { type: "TA確率", value: 2 }, { type: "DA確率", value: 2 }, { type: "", value: 0 }] }
+  }
+},
+
+magna_shugo: {
+  name: "方陣守護",
+  skills: {
+    /* --- 火属性 --- */
+    fire_magna_shugo_10: { label: "機炎方陣・守護10", element: "fire", level: 10, effects: [{ type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_shugo_15: { label: "機炎方陣・守護15", element: "fire", level: 15, effects: [{ type: "マグナ守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_shugo2_10: { label: "機炎方陣・守護Ⅱ10", element: "fire", level: 10, effects: [{ type: "マグナ守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_shugo2_15: { label: "機炎方陣・守護Ⅱ15", element: "fire", level: 15, effects: [{ type: "マグナ守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_shugo2_20: { label: "機炎方陣・守護Ⅱ20", element: "fire", level: 20, effects: [{ type: "マグナ守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 水属性 --- */
+    water_magna_shugo_10: { label: "海神方陣・守護10", element: "water", level: 10, effects: [{ type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_shugo_15: { label: "海神方陣・守護15", element: "water", level: 15, effects: [{ type: "マグナ守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_shugo2_10: { label: "海神方陣・守護Ⅱ10", element: "water", level: 10, effects: [{ type: "マグナ守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_shugo2_15: { label: "海神方陣・守護Ⅱ15", element: "water", level: 15, effects: [{ type: "マグナ守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_shugo2_20: { label: "海神方陣・守護Ⅱ20", element: "water", level: 20, effects: [{ type: "マグナ守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 土属性 --- */
+    earth_ygg_shugo_10: { label: "ユグ杖守護10", element: "earth", level: 10, effects: [{ type: "マグナ守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_ygg_shugo_15: { label: "ユグ杖守護15", element: "earth", level: 15, effects: [{ type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_ygg_shugo_20: { label: "ユグ杖守護20", element: "earth", level: 20, effects: [{ type: "マグナ守護", value: 13 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_shugo_10: { label: "創樹方陣・守護10", element: "earth", level: 10, effects: [{ type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_shugo_15: { label: "創樹方陣・守護15", element: "earth", level: 15, effects: [{ type: "マグナ守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_shugo2_10: { label: "創樹方陣・守護Ⅱ10", element: "earth", level: 10, effects: [{ type: "マグナ守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_shugo2_15: { label: "創樹方陣・守護Ⅱ15", element: "earth", level: 15, effects: [{ type: "マグナ守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_shugo2_20: { label: "創樹方陣・守護Ⅱ20", element: "earth", level: 20, effects: [{ type: "マグナ守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 風属性 --- */
+    wind_magna_shugo_10: { label: "嵐竜方陣・守護10", element: "wind", level: 10, effects: [{ type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_shugo_15: { label: "嵐竜方陣・守護15", element: "wind", level: 15, effects: [{ type: "マグナ守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_shugo2_10: { label: "嵐竜方陣・守護Ⅱ10", element: "wind", level: 10, effects: [{ type: "マグナ守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_shugo2_15: { label: "嵐竜方陣・守護Ⅱ15", element: "wind", level: 15, effects: [{ type: "マグナ守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_shugo2_20: { label: "嵐竜方陣・守護Ⅱ20", element: "wind", level: 20, effects: [{ type: "マグナ守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 光属性 --- */
+    light_magna_shugo_10: { label: "騎解方陣・守護10", element: "light", level: 10, effects: [{ type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_shugo_15: { label: "騎解方陣・守護15", element: "light", level: 15, effects: [{ type: "マグナ守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_shugo2_10: { label: "騎解方陣・守護Ⅱ10", element: "light", level: 10, effects: [{ type: "マグナ守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_shugo2_15: { label: "騎解方陣・守護Ⅱ15", element: "light", level: 15, effects: [{ type: "マグナ守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_shugo2_20: { label: "騎解方陣・守護Ⅱ20", element: "light", level: 20, effects: [{ type: "マグナ守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 闇属性 --- */
+    dark_magna_shugo_10: { label: "黒霧方陣・守護10", element: "dark", level: 10, effects: [{ type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_shugo_15: { label: "黒霧方陣・守護15", element: "dark", level: 15, effects: [{ type: "マグナ守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_shugo2_10: { label: "黒霧方陣・守護Ⅱ10", element: "dark", level: 10, effects: [{ type: "マグナ守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_shugo2_15: { label: "黒霧方陣・守護Ⅱ15", element: "dark", level: 15, effects: [{ type: "マグナ守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_shugo2_20: { label: "黒霧方陣・守護Ⅱ20", element: "dark", level: 20, effects: [{ type: "マグナ守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] }
+  }
+},
+
+magna_kamui: {
+  name: "方陣神威",
+  skills: {
+    /* --- 火属性 --- */
+    fire_magna_kamui_10: { label: "機炎方陣・神威10", element: "fire", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "マグナ守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_kamui_15: { label: "機炎方陣・神威15", element: "fire", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_kamui_20: { label: "機炎方陣・神威20", element: "fire", level: 20, effects: [{ type: "マグナ攻刃", value: 12.5 }, { type: "マグナ守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_kamui2_10: { label: "機炎方陣・神威Ⅱ10", element: "fire", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_kamui2_15: { label: "機炎方陣・神威Ⅱ15", element: "fire", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "マグナ守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_kamui2_20: { label: "機炎方陣・神威Ⅱ20", element: "fire", level: 20, effects: [{ type: "マグナ攻刃", value: 15.5 }, { type: "マグナ守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_kamui3_10: { label: "機炎方陣・神威Ⅲ10", element: "fire", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "マグナ守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_kamui3_15: { label: "機炎方陣・神威Ⅲ15", element: "fire", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "マグナ守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_kamui3_20: { label: "機炎方陣・神威Ⅲ20", element: "fire", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "マグナ守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_shinsei3_25: { label: "機炎方陣・神醒Ⅲ25", element: "fire", level: 25, effects: [{ type: "マグナ攻刃", value: 24 }, { type: "マグナ守護", value: 24 }, { type: "マグナ与ダメUP", value: 2 }, { type: "", value: 0 }] },
+
+    /* --- 水属性 --- */
+    water_magna_kamui_10: { label: "海神方陣・神威10", element: "water", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "マグナ守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_kamui_15: { label: "海神方陣・神威15", element: "water", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_kamui_20: { label: "海神方陣・神威20", element: "water", level: 20, effects: [{ type: "マグナ攻刃", value: 12.5 }, { type: "マグナ守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_kamui2_10: { label: "海神方陣・神威Ⅱ10", element: "water", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_kamui2_15: { label: "海神方陣・神威Ⅱ15", element: "water", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "マグナ守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_kamui2_20: { label: "海神方陣・神威Ⅱ20", element: "water", level: 20, effects: [{ type: "マグナ攻刃", value: 15.5 }, { type: "マグナ守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_kamui3_10: { label: "海神方陣・神威Ⅲ10", element: "water", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "マグナ守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_kamui3_15: { label: "海神方陣・神威Ⅲ15", element: "water", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "マグナ守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_kamui3_20: { label: "海神方陣・神威Ⅲ20", element: "water", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "マグナ守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_shinsei3_25: { label: "海神方陣・神醒Ⅲ25", element: "water", level: 25, effects: [{ type: "マグナ攻刃", value: 24 }, { type: "マグナ守護", value: 24 }, { type: "マグナ与ダメUP", value: 2 }, { type: "", value: 0 }] },
+
+    /* --- 土属性 --- */
+    earth_magna_kamui_10: { label: "創樹方陣・神威10", element: "earth", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "マグナ守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_kamui_15: { label: "創樹方陣・神威15", element: "earth", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_kamui_20: { label: "創樹方陣・神威20", element: "earth", level: 20, effects: [{ type: "マグナ攻刃", value: 12.5 }, { type: "マグナ守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_kamui2_10: { label: "創樹方陣・神威Ⅱ10", element: "earth", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_kamui2_15: { label: "創樹方陣・神威Ⅱ15", element: "earth", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "マグナ守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_kamui2_20: { label: "創樹方陣・神威Ⅱ20", element: "earth", level: 20, effects: [{ type: "マグナ攻刃", value: 15.5 }, { type: "マグナ守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_kamui3_10: { label: "創樹方陣・神威Ⅲ10", element: "earth", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "マグナ守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_kamui3_15: { label: "創樹方陣・神威Ⅲ15", element: "earth", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "マグナ守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_kamui3_20: { label: "創樹方陣・神威Ⅲ20", element: "earth", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "マグナ守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_shinsei3_25: { label: "創樹方陣・神醒Ⅲ25", element: "earth", level: 25, effects: [{ type: "マグナ攻刃", value: 24 }, { type: "マグナ守護", value: 24 }, { type: "マグナ与ダメUP", value: 2 }, { type: "", value: 0 }] },
+
+    /* --- 風属性 --- */
+    wind_magna_kamui_10: { label: "嵐竜方陣・神威10", element: "wind", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "マグナ守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_kamui_15: { label: "嵐竜方陣・神威15", element: "wind", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_kamui_20: { label: "嵐竜方陣・神威20", element: "wind", level: 20, effects: [{ type: "マグナ攻刃", value: 12.5 }, { type: "マグナ守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_kamui2_10: { label: "嵐竜方陣・神威Ⅱ10", element: "wind", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_kamui2_15: { label: "嵐竜方陣・神威Ⅱ15", element: "wind", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "マグナ守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_kamui2_20: { label: "嵐竜方陣・神威Ⅱ20", element: "wind", level: 20, effects: [{ type: "マグナ攻刃", value: 15.5 }, { type: "マグナ守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_kamui3_10: { label: "嵐竜方陣・神威Ⅲ10", element: "wind", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "マグナ守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_kamui3_15: { label: "嵐竜方陣・神威Ⅲ15", element: "wind", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "マグナ守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_kamui3_20: { label: "嵐竜方陣・神威Ⅲ20", element: "wind", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "マグナ守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_shinsei3_25: { label: "嵐竜方陣・神醒Ⅲ25", element: "wind", level: 25, effects: [{ type: "マグナ攻刃", value: 24 }, { type: "マグナ守護", value: 24 }, { type: "マグナ与ダメUP", value: 2 }, { type: "", value: 0 }] },
+
+    /* --- 光属性 --- */
+    light_magna_kamui_10: { label: "騎解方陣・神威10", element: "light", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "マグナ守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_kamui_15: { label: "騎解方陣・神威15", element: "light", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_kamui_20: { label: "騎解方陣・神威20", element: "light", level: 20, effects: [{ type: "マグナ攻刃", value: 12.5 }, { type: "マグナ守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_kamui2_10: { label: "騎解方陣・神威Ⅱ10", element: "light", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_kamui2_15: { label: "騎解方陣・神威Ⅱ15", element: "light", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "マグナ守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_kamui2_20: { label: "騎解方陣・神威Ⅱ20", element: "light", level: 20, effects: [{ type: "マグナ攻刃", value: 15.5 }, { type: "マグナ守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_kamui3_10: { label: "騎解方陣・神威Ⅲ10", element: "light", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "マグナ守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_kamui3_15: { label: "騎解方陣・神威Ⅲ15", element: "light", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "マグナ守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_kamui3_20: { label: "騎解方陣・神威Ⅲ20", element: "light", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "マグナ守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_shinsei3_25: { label: "騎解方陣・神醒Ⅲ25", element: "light", level: 25, effects: [{ type: "マグナ攻刃", value: 24 }, { type: "マグナ守護", value: 24 }, { type: "マグナ与ダメUP", value: 2 }, { type: "", value: 0 }] },
+
+    /* --- 闇属性 --- */
+    dark_magna_kamui_10: { label: "黒霧方陣・神威10", element: "dark", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "マグナ守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_kamui_15: { label: "黒霧方陣・神威15", element: "dark", level: 15, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_kamui_20: { label: "黒霧方陣・神威20", element: "dark", level: 20, effects: [{ type: "マグナ攻刃", value: 12.5 }, { type: "マグナ守護", value: 12.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_kamui2_10: { label: "黒霧方陣・神威Ⅱ10", element: "dark", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "マグナ守護", value: 12 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_kamui2_15: { label: "黒霧方陣・神威Ⅱ15", element: "dark", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "マグナ守護", value: 14.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_kamui2_20: { label: "黒霧方陣・神威Ⅱ20", element: "dark", level: 20, effects: [{ type: "マグナ攻刃", value: 15.5 }, { type: "マグナ守護", value: 15.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_kamui3_10: { label: "黒霧方陣・神威Ⅲ10", element: "dark", level: 10, effects: [{ type: "マグナ攻刃", value: 15 }, { type: "マグナ守護", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_kamui3_15: { label: "黒霧方陣・神威Ⅲ15", element: "dark", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "マグナ守護", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_kamui3_20: { label: "黒霧方陣・神威Ⅲ20", element: "dark", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "マグナ守護", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_shinsei3_25: { label: "黒霧方陣・神醒Ⅲ25", element: "dark", level: 25, effects: [{ type: "マグナ攻刃", value: 24 }, { type: "マグナ守護", value: 24 }, { type: "マグナ与ダメUP", value: 2 }, { type: "", value: 0 }] }
+  }
+},
+
+magna_hakai: {
+  name: "方陣破壊",
+  skills: {
+    /* --- 火属性 --- */
+    fire_magna_hakai_10: { label: "機炎方陣・破壊10", element: "fire", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "TA確率", value: 1.75 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_hakai_15: { label: "機炎方陣・破壊15", element: "fire", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "TA確率", value: 2.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 水属性 --- */
+    water_magna_hakai_10: { label: "海神方陣・破壊10", element: "water", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "TA確率", value: 1.75 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_hakai_15: { label: "海神方陣・破壊15", element: "water", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "TA確率", value: 2.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 土属性 --- */
+    earth_magna_hakai_10: { label: "創樹方陣・破壊10", element: "earth", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "TA確率", value: 1.75 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_hakai_15: { label: "創樹方陣・破壊15", element: "earth", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "TA確率", value: 2.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 風属性 --- */
+    wind_magna_hakai_10: { label: "嵐竜方陣・破壊10", element: "wind", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "TA確率", value: 1.75 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_hakai_15: { label: "嵐竜方陣・破壊15", element: "wind", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "TA確率", value: 2.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 光属性 --- */
+    light_magna_hakai_10: { label: "騎解方陣・破壊10", element: "light", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "TA確率", value: 1.75 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_hakai_15: { label: "騎解方陣・破壊15", element: "light", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "TA確率", value: 2.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 闇属性 --- */
+    dark_magna_hakai_10: { label: "黒霧方陣・破壊10", element: "dark", level: 10, effects: [{ type: "マグナ攻刃", value: 12 }, { type: "TA確率", value: 1.75 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_hakai_15: { label: "黒霧方陣・破壊15", element: "dark", level: 15, effects: [{ type: "マグナ攻刃", value: 14.5 }, { type: "TA確率", value: 2.5 }, { type: "", value: 0 }, { type: "", value: 0 }] }
+  }
+},
+
+magna_sante: {
+  name: "方陣三手",
+  skills: {
+    /* --- 火属性 --- */
+    fire_magna_sante_10: { label: "機炎方陣・三手10", element: "fire", level: 10, effects: [{ type: "TA確率", value: 2.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_sante_15: { label: "機炎方陣・三手15", element: "fire", level: 15, effects: [{ type: "TA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_sante2_10: { label: "機炎方陣・三手Ⅱ10", element: "fire", level: 10, effects: [{ type: "TA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_sante2_15: { label: "機炎方陣・三手Ⅱ15", element: "fire", level: 15, effects: [{ type: "TA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_sante3_10: { label: "機炎方陣・三手Ⅲ10", element: "fire", level: 10, effects: [{ type: "TA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_sante3_15: { label: "機炎方陣・三手Ⅲ15", element: "fire", level: 15, effects: [{ type: "TA確率", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 水属性 --- */
+    water_magna_sante_10: { label: "海神方陣・三手10", element: "water", level: 10, effects: [{ type: "TA確率", value: 2.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_sante_15: { label: "海神方陣・三手15", element: "water", level: 15, effects: [{ type: "TA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_sante2_10: { label: "海神方陣・三手Ⅱ10", element: "water", level: 10, effects: [{ type: "TA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_sante2_15: { label: "海神方陣・三手Ⅱ15", element: "water", level: 15, effects: [{ type: "TA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_sante3_10: { label: "海神方陣・三手Ⅲ10", element: "water", level: 10, effects: [{ type: "TA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_sante3_15: { label: "海神方陣・三手Ⅲ15", element: "water", level: 15, effects: [{ type: "TA確率", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 土属性 --- */
+    earth_magna_sante_10: { label: "創樹方陣・三手10", element: "earth", level: 10, effects: [{ type: "TA確率", value: 2.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_sante_15: { label: "創樹方陣・三手15", element: "earth", level: 15, effects: [{ type: "TA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_sante2_10: { label: "創樹方陣・三手Ⅱ10", element: "earth", level: 10, effects: [{ type: "TA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_sante2_15: { label: "創樹方陣・三手Ⅱ15", element: "earth", level: 15, effects: [{ type: "TA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_sante3_10: { label: "創樹方陣・三手Ⅲ10", element: "earth", level: 10, effects: [{ type: "TA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_sante3_15: { label: "創樹方陣・三手Ⅲ15", element: "earth", level: 15, effects: [{ type: "TA確率", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 風属性 --- */
+    wind_magna_sante_10: { label: "嵐竜方陣・三手10", element: "wind", level: 10, effects: [{ type: "TA確率", value: 2.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_sante_15: { label: "嵐竜方陣・三手15", element: "wind", level: 15, effects: [{ type: "TA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_sante2_10: { label: "嵐竜方陣・三手Ⅱ10", element: "wind", level: 10, effects: [{ type: "TA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_sante2_15: { label: "嵐竜方陣・三手Ⅱ15", element: "wind", level: 15, effects: [{ type: "TA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_sante3_10: { label: "嵐竜方陣・三手Ⅲ10", element: "wind", level: 10, effects: [{ type: "TA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_sante3_15: { label: "嵐竜方陣・三手Ⅲ15", element: "wind", level: 15, effects: [{ type: "TA確率", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 光属性 --- */
+    light_magna_sante_10: { label: "騎解方陣・三手10", element: "light", level: 10, effects: [{ type: "TA確率", value: 2.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_sante_15: { label: "騎解方陣・三手15", element: "light", level: 15, effects: [{ type: "TA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_sante2_10: { label: "騎解方陣・三手Ⅱ10", element: "light", level: 10, effects: [{ type: "TA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_sante2_15: { label: "騎解方陣・三手Ⅱ15", element: "light", level: 15, effects: [{ type: "TA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_sante3_10: { label: "騎解方陣・三手Ⅲ10", element: "light", level: 10, effects: [{ type: "TA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_sante3_15: { label: "騎解方陣・三手Ⅲ15", element: "light", level: 15, effects: [{ type: "TA確率", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 闇属性 --- */
+    dark_magna_sante_10: { label: "黒霧方陣・三手10", element: "dark", level: 10, effects: [{ type: "TA確率", value: 2.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_sante_15: { label: "黒霧方陣・三手15", element: "dark", level: 15, effects: [{ type: "TA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_sante2_10: { label: "黒霧方陣・三手Ⅱ10", element: "dark", level: 10, effects: [{ type: "TA確率", value: 3.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_sante2_15: { label: "黒霧方陣・三手Ⅱ15", element: "dark", level: 15, effects: [{ type: "TA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_sante3_10: { label: "黒霧方陣・三手Ⅲ10", element: "dark", level: 10, effects: [{ type: "TA確率", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_sante3_15: { label: "黒霧方陣・三手Ⅲ15", element: "dark", level: 15, effects: [{ type: "TA確率", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] }
+  }
+},
+
+magna_konshin: {
+  name: "方陣渾身",
+  skills: {
+    /* --- 火属性 --- */
+    fire_magna_konshin2_10: { label: "機炎方陣・渾身Ⅱ10", element: "fire", level: 10, effects: [{ type: "マグナ渾身", value: 9.39 }, { type: "マグナ渾身", value: 5.26 }, { type: "マグナ渾身", value: 3.07 }, { type: "マグナ渾身", value: 2.23 }] },
+    fire_magna_konshin2_15: { label: "機炎方陣・渾身Ⅱ15", element: "fire", level: 15, effects: [{ type: "マグナ渾身", value: 11.97 }, { type: "マグナ渾身", value: 6.38 }, { type: "マグナ渾身", value: 3.42 }, { type: "マグナ渾身", value: 2.27 }] },
+    fire_magna_konshin3_10: { label: "機炎方陣・渾身Ⅲ10", element: "fire", level: 10, effects: [{ type: "マグナ渾身", value: 11.37 }, { type: "マグナ渾身", value: 6.12 }, { type: "マグナ渾身", value: 3.34 }, { type: "マグナ渾身", value: 2.26 }] },
+    fire_magna_konshin3_15: { label: "機炎方陣・渾身Ⅲ15", element: "fire", level: 15, effects: [{ type: "マグナ渾身", value: 15 }, { type: "マグナ渾身", value: 7.7 }, { type: "マグナ渾身", value: 3.82 }, { type: "マグナ渾身", value: 2.33 }] },
+    fire_magna_konshin3_20: { label: "機炎方陣・渾身Ⅲ20", element: "fire", level: 20, effects: [{ type: "マグナ渾身", value: 16.99 }, { type: "マグナ渾身", value: 8.56 }, { type: "マグナ渾身", value: 4.09 }, { type: "マグナ渾身", value: 2.36 }] },
+
+    /* --- 水属性 --- */
+    water_magna_konshin2_10: { label: "海神方陣・渾身Ⅱ10", element: "water", level: 10, effects: [{ type: "マグナ渾身", value: 9.39 }, { type: "マグナ渾身", value: 5.26 }, { type: "マグナ渾身", value: 3.07 }, { type: "マグナ渾身", value: 2.23 }] },
+    water_magna_konshin2_15: { label: "海神方陣・渾身Ⅱ15", element: "water", level: 15, effects: [{ type: "マグナ渾身", value: 11.97 }, { type: "マグナ渾身", value: 6.38 }, { type: "マグナ渾身", value: 3.42 }, { type: "マグナ渾身", value: 2.27 }] },
+    water_magna_konshin3_10: { label: "海神方陣・渾身Ⅲ10", element: "water", level: 10, effects: [{ type: "マグナ渾身", value: 11.37 }, { type: "マグナ渾身", value: 6.12 }, { type: "マグナ渾身", value: 3.34 }, { type: "マグナ渾身", value: 2.26 }] },
+    water_magna_konshin3_15: { label: "海神方陣・渾身Ⅲ15", element: "water", level: 15, effects: [{ type: "マグナ渾身", value: 15 }, { type: "マグナ渾身", value: 7.7 }, { type: "マグナ渾身", value: 3.82 }, { type: "マグナ渾身", value: 2.33 }] },
+    water_magna_konshin3_20: { label: "海神方陣・渾身Ⅲ20", element: "water", level: 20, effects: [{ type: "マグナ渾身", value: 16.99 }, { type: "マグナ渾身", value: 8.56 }, { type: "マグナ渾身", value: 4.09 }, { type: "マグナ渾身", value: 2.36 }] },
+
+    /* --- 土属性 --- */
+    earth_magna_konshin2_10: { label: "創樹方陣・渾身Ⅱ10", element: "earth", level: 10, effects: [{ type: "マグナ渾身", value: 9.39 }, { type: "マグナ渾身", value: 5.26 }, { type: "マグナ渾身", value: 3.07 }, { type: "マグナ渾身", value: 2.23 }] },
+    earth_magna_konshin2_15: { label: "創樹方陣・渾身Ⅱ15", element: "earth", level: 15, effects: [{ type: "マグナ渾身", value: 11.97 }, { type: "マグナ渾身", value: 6.38 }, { type: "マグナ渾身", value: 3.42 }, { type: "マグナ渾身", value: 2.27 }] },
+    earth_magna_konshin3_10: { label: "創樹方陣・渾身Ⅲ10", element: "earth", level: 10, effects: [{ type: "マグナ渾身", value: 11.37 }, { type: "マグナ渾身", value: 6.12 }, { type: "マグナ渾身", value: 3.34 }, { type: "マグナ渾身", value: 2.26 }] },
+    earth_magna_konshin3_15: { label: "創樹方陣・渾身Ⅲ15", element: "earth", level: 15, effects: [{ type: "マグナ渾身", value: 15 }, { type: "マグナ渾身", value: 7.7 }, { type: "マグナ渾身", value: 3.82 }, { type: "マグナ渾身", value: 2.33 }] },
+    earth_magna_konshin3_20: { label: "創樹方陣・渾身Ⅲ20", element: "earth", level: 20, effects: [{ type: "マグナ渾身", value: 16.99 }, { type: "マグナ渾身", value: 8.56 }, { type: "マグナ渾身", value: 4.09 }, { type: "マグナ渾身", value: 2.36 }] },
+
+    /* --- 風属性 --- */
+    wind_magna_konshin2_10: { label: "嵐竜方陣・渾身Ⅱ10", element: "wind", level: 10, effects: [{ type: "マグナ渾身", value: 9.39 }, { type: "マグナ渾身", value: 5.26 }, { type: "マグナ渾身", value: 3.07 }, { type: "マグナ渾身", value: 2.23 }] },
+    wind_magna_konshin2_15: { label: "嵐竜方陣・渾身Ⅱ15", element: "wind", level: 15, effects: [{ type: "マグナ渾身", value: 11.97 }, { type: "マグナ渾身", value: 6.38 }, { type: "マグナ渾身", value: 3.42 }, { type: "マグナ渾身", value: 2.27 }] },
+    wind_magna_konshin3_10: { label: "嵐竜方陣・渾身Ⅲ10", element: "wind", level: 10, effects: [{ type: "マグナ渾身", value: 11.37 }, { type: "マグナ渾身", value: 6.12 }, { type: "マグナ渾身", value: 3.34 }, { type: "マグナ渾身", value: 2.26 }] },
+    wind_magna_konshin3_15: { label: "嵐竜方陣・渾身Ⅲ15", element: "wind", level: 15, effects: [{ type: "マグナ渾身", value: 15 }, { type: "マグナ渾身", value: 7.7 }, { type: "マグナ渾身", value: 3.82 }, { type: "マグナ渾身", value: 2.33 }] },
+    wind_magna_konshin3_20: { label: "嵐竜方陣・渾身Ⅲ20", element: "wind", level: 20, effects: [{ type: "マグナ渾身", value: 16.99 }, { type: "マグナ渾身", value: 8.56 }, { type: "マグナ渾身", value: 4.09 }, { type: "マグナ渾身", value: 2.36 }] },
+
+    /* --- 光属性 --- */
+    light_magna_konshin2_10: { label: "騎解方陣・渾身Ⅱ10", element: "light", level: 10, effects: [{ type: "マグナ渾身", value: 9.39 }, { type: "マグナ渾身", value: 5.26 }, { type: "マグナ渾身", value: 3.07 }, { type: "マグナ渾身", value: 2.23 }] },
+    light_magna_konshin2_15: { label: "騎解方陣・渾身Ⅱ15", element: "light", level: 15, effects: [{ type: "マグナ渾身", value: 11.97 }, { type: "マグナ渾身", value: 6.38 }, { type: "マグナ渾身", value: 3.42 }, { type: "マグナ渾身", value: 2.27 }] },
+    light_magna_konshin3_10: { label: "騎解方陣・渾身Ⅲ10", element: "light", level: 10, effects: [{ type: "マグナ渾身", value: 11.37 }, { type: "マグナ渾身", value: 6.12 }, { type: "マグナ渾身", value: 3.34 }, { type: "マグナ渾身", value: 2.26 }] },
+    light_magna_konshin3_15: { label: "騎解方陣・渾身Ⅲ15", element: "light", level: 15, effects: [{ type: "マグナ渾身", value: 15 }, { type: "マグナ渾身", value: 7.7 }, { type: "マグナ渾身", value: 3.82 }, { type: "マグナ渾身", value: 2.33 }] },
+    light_magna_konshin3_20: { label: "騎解方陣・渾身Ⅲ20", element: "light", level: 20, effects: [{ type: "マグナ渾身", value: 16.99 }, { type: "マグナ渾身", value: 8.56 }, { type: "マグナ渾身", value: 4.09 }, { type: "マグナ渾身", value: 2.36 }] },
+
+    /* --- 闇属性 --- */
+    dark_magna_konshin2_10: { label: "黒霧方陣・渾身Ⅱ10", element: "dark", level: 10, effects: [{ type: "マグナ渾身", value: 9.39 }, { type: "マグナ渾身", value: 5.26 }, { type: "マグナ渾身", value: 3.07 }, { type: "マグナ渾身", value: 2.23 }] },
+    dark_magna_konshin2_15: { label: "黒霧方陣・渾身Ⅱ15", element: "dark", level: 15, effects: [{ type: "マグナ渾身", value: 11.97 }, { type: "マグナ渾身", value: 6.38 }, { type: "マグナ渾身", value: 3.42 }, { type: "マグナ渾身", value: 2.27 }] },
+    dark_magna_konshin3_10: { label: "黒霧方陣・渾身Ⅲ10", element: "dark", level: 10, effects: [{ type: "マグナ渾身", value: 11.37 }, { type: "マグナ渾身", value: 6.12 }, { type: "マグナ渾身", value: 3.34 }, { type: "マグナ渾身", value: 2.26 }] },
+    dark_magna_konshin3_15: { label: "黒霧方陣・渾身Ⅲ15", element: "dark", level: 15, effects: [{ type: "マグナ渾身", value: 15 }, { type: "マグナ渾身", value: 7.7 }, { type: "マグナ渾身", value: 3.82 }, { type: "マグナ渾身", value: 2.33 }] },
+    dark_magna_konshin3_20: { label: "黒霧方陣・渾身Ⅲ20", element: "dark", level: 20, effects: [{ type: "マグナ渾身", value: 16.99 }, { type: "マグナ渾身", value: 8.56 }, { type: "マグナ渾身", value: 4.09 }, { type: "マグナ渾身", value: 2.36 }] }
+  }
+},
+
+magna_haisui: {
+  name: "方陣背水",
+  skills: {
+    /* --- 火属性 --- */
+    fire_magna_haisui_10: { label: "機炎方陣・背水10", element: "fire", level: 10, effects: [{ type: "マグナ背水", value: 17.99 }, { type: "マグナ背水", value: 11.2 }, { type: "マグナ背水", value: 6 }, { type: "マグナ背水", value: 0 }] },
+    fire_magna_haisui_15: { label: "機炎方陣・背水15", element: "fire", level: 15, effects: [{ type: "マグナ背水", value: 20.99 }, { type: "マグナ背水", value: 13.1 }, { type: "マグナ背水", value: 7 }, { type: "マグナ背水", value: 0 }] },
+    fire_magna_haisui_20: { label: "機炎方陣・背水20", element: "fire", level: 20, effects: [{ type: "マグナ背水", value: 22.4 }, { type: "マグナ背水", value: 14 }, { type: "マグナ背水", value: 7.5 }, { type: "マグナ背水", value: 0 }] },
+    fire_magna_haisui2_10: { label: "機炎方陣・背水Ⅱ10", element: "fire", level: 10, effects: [{ type: "マグナ背水", value: 23.99 }, { type: "マグナ背水", value: 15 }, { type: "マグナ背水", value: 8 }, { type: "マグナ背水", value: 0 }] },
+    fire_magna_haisui2_15: { label: "機炎方陣・背水Ⅱ15", element: "fire", level: 15, effects: [{ type: "マグナ背水", value: 29.99 }, { type: "マグナ背水", value: 18.7 }, { type: "マグナ背水", value: 10 }, { type: "マグナ背水", value: 0 }] },
+    fire_magna_haisui3_10: { label: "機炎方陣・背水Ⅲ10", element: "fire", level: 10, effects: [{ type: "マグナ背水", value: 29.99 }, { type: "マグナ背水", value: 18.7 }, { type: "マグナ背水", value: 10 }, { type: "マグナ背水", value: 0 }] },
+    fire_magna_haisui3_15: { label: "機炎方陣・背水Ⅲ15", element: "fire", level: 15, effects: [{ type: "マグナ背水", value: 37.4 }, { type: "マグナ背水", value: 23.4 }, { type: "マグナ背水", value: 12.5 }, { type: "マグナ背水", value: 0 }] },
+    fire_magna_haisui3_20: { label: "機炎方陣・背水Ⅲ20", element: "fire", level: 20, effects: [{ type: "マグナ背水", value: 40.4 }, { type: "マグナ背水", value: 25.3 }, { type: "マグナ背水", value: 13.5 }, { type: "マグナ背水", value: 0 }] },
+
+    /* --- 水属性 --- */
+    water_magna_haisui_10: { label: "海神方陣・背水10", element: "water", level: 10, effects: [{ type: "マグナ背水", value: 17.99 }, { type: "マグナ背水", value: 11.2 }, { type: "マグナ背水", value: 6 }, { type: "マグナ背水", value: 0 }] },
+    water_magna_haisui_15: { label: "海神方陣・背水15", element: "water", level: 15, effects: [{ type: "マグナ背水", value: 20.99 }, { type: "マグナ背水", value: 13.1 }, { type: "マグナ背水", value: 7 }, { type: "マグナ背水", value: 0 }] },
+    water_magna_haisui_20: { label: "海神方陣・背水20", element: "water", level: 20, effects: [{ type: "マグナ背水", value: 22.4 }, { type: "マグナ背水", value: 14 }, { type: "マグナ背水", value: 7.5 }, { type: "マグナ背水", value: 0 }] },
+    water_magna_haisui2_10: { label: "海神方陣・背水Ⅱ10", element: "water", level: 10, effects: [{ type: "マグナ背水", value: 23.99 }, { type: "マグナ背水", value: 15 }, { type: "マグナ背水", value: 8 }, { type: "マグナ背水", value: 0 }] },
+    water_magna_haisui2_15: { label: "海神方陣・背水Ⅱ15", element: "water", level: 15, effects: [{ type: "マグナ背水", value: 29.99 }, { type: "マグナ背水", value: 18.7 }, { type: "マグナ背水", value: 10 }, { type: "マグナ背水", value: 0 }] },
+    water_magna_haisui3_10: { label: "海神方陣・背水Ⅲ10", element: "water", level: 10, effects: [{ type: "マグナ背水", value: 29.99 }, { type: "マグナ背水", value: 18.7 }, { type: "マグナ背水", value: 10 }, { type: "マグナ背水", value: 0 }] },
+    water_magna_haisui3_15: { label: "海神方陣・背水Ⅲ15", element: "water", level: 15, effects: [{ type: "マグナ背水", value: 37.4 }, { type: "マグナ背水", value: 23.4 }, { type: "マグナ背水", value: 12.5 }, { type: "マグナ背水", value: 0 }] },
+    water_magna_haisui3_20: { label: "海神方陣・背水Ⅲ20", element: "water", level: 20, effects: [{ type: "マグナ背水", value: 40.4 }, { type: "マグナ背水", value: 25.3 }, { type: "マグナ背水", value: 13.5 }, { type: "マグナ背水", value: 0 }] },
+
+    /* --- 土属性 --- */
+    earth_magna_haisui_10: { label: "創樹方陣・背水10", element: "earth", level: 10, effects: [{ type: "マグナ背水", value: 17.99 }, { type: "マグナ背水", value: 11.2 }, { type: "マグナ背水", value: 6 }, { type: "マグナ背水", value: 0 }] },
+    earth_magna_haisui_15: { label: "創樹方陣・背水15", element: "earth", level: 15, effects: [{ type: "マグナ背水", value: 20.99 }, { type: "マグナ背水", value: 13.1 }, { type: "マグナ背水", value: 7 }, { type: "マグナ背水", value: 0 }] },
+    earth_magna_haisui_20: { label: "創樹方陣・背水20", element: "earth", level: 20, effects: [{ type: "マグナ背水", value: 22.4 }, { type: "マグナ背水", value: 14 }, { type: "マグナ背水", value: 7.5 }, { type: "マグナ背水", value: 0 }] },
+    earth_magna_haisui2_10: { label: "創樹方陣・背水Ⅱ10", element: "earth", level: 10, effects: [{ type: "マグナ背水", value: 23.99 }, { type: "マグナ背水", value: 15 }, { type: "マグナ背水", value: 8 }, { type: "マグナ背水", value: 0 }] },
+    earth_magna_haisui2_15: { label: "創樹方陣・背水Ⅱ15", element: "earth", level: 15, effects: [{ type: "マグナ背水", value: 29.99 }, { type: "マグナ背水", value: 18.7 }, { type: "マグナ背水", value: 10 }, { type: "マグナ背水", value: 0 }] },
+    earth_magna_haisui3_10: { label: "創樹方陣・背水Ⅲ10", element: "earth", level: 10, effects: [{ type: "マグナ背水", value: 29.99 }, { type: "マグナ背水", value: 18.7 }, { type: "マグナ背水", value: 10 }, { type: "マグナ背水", value: 0 }] },
+    earth_magna_haisui3_15: { label: "創樹方陣・背水Ⅲ15", element: "earth", level: 15, effects: [{ type: "マグナ背水", value: 37.4 }, { type: "マグナ背水", value: 23.4 }, { type: "マグナ背水", value: 12.5 }, { type: "マグナ背水", value: 0 }] },
+    earth_magna_haisui3_20: { label: "創樹方陣・背水Ⅲ20", element: "earth", level: 20, effects: [{ type: "マグナ背水", value: 40.4 }, { type: "マグナ背水", value: 25.3 }, { type: "マグナ背水", value: 13.5 }, { type: "マグナ背水", value: 0 }] },
+
+    /* --- 風属性 --- */
+    wind_magna_haisui_10: { label: "嵐竜方陣・背水10", element: "wind", level: 10, effects: [{ type: "マグナ背水", value: 17.99 }, { type: "マグナ背水", value: 11.2 }, { type: "マグナ背水", value: 6 }, { type: "マグナ背水", value: 0 }] },
+    wind_magna_haisui_15: { label: "嵐竜方陣・背水15", element: "wind", level: 15, effects: [{ type: "マグナ背水", value: 20.99 }, { type: "マグナ背水", value: 13.1 }, { type: "マグナ背水", value: 7 }, { type: "マグナ背水", value: 0 }] },
+    wind_magna_haisui_20: { label: "嵐竜方陣・背水20", element: "wind", level: 20, effects: [{ type: "マグナ背水", value: 22.4 }, { type: "マグナ背水", value: 14 }, { type: "マグナ背水", value: 7.5 }, { type: "マグナ背水", value: 0 }] },
+    wind_magna_haisui2_10: { label: "嵐竜方陣・背水Ⅱ10", element: "wind", level: 10, effects: [{ type: "マグナ背水", value: 23.99 }, { type: "マグナ背水", value: 15 }, { type: "マグナ背水", value: 8 }, { type: "マグナ背水", value: 0 }] },
+    wind_magna_haisui2_15: { label: "嵐竜方陣・背水Ⅱ15", element: "wind", level: 15, effects: [{ type: "マグナ背水", value: 29.99 }, { type: "マグナ背水", value: 18.7 }, { type: "マグナ背水", value: 10 }, { type: "マグナ背水", value: 0 }] },
+    wind_magna_haisui3_10: { label: "嵐竜方陣・背水Ⅲ10", element: "wind", level: 10, effects: [{ type: "マグナ背水", value: 29.99 }, { type: "マグナ背水", value: 18.7 }, { type: "マグナ背水", value: 10 }, { type: "マグナ背水", value: 0 }] },
+    wind_magna_haisui3_15: { label: "嵐竜方陣・背水Ⅲ15", element: "wind", level: 15, effects: [{ type: "マグナ背水", value: 37.4 }, { type: "マグナ背水", value: 23.4 }, { type: "マグナ背水", value: 12.5 }, { type: "マグナ背水", value: 0 }] },
+    wind_magna_haisui3_20: { label: "嵐竜方陣・背水Ⅲ20", element: "wind", level: 20, effects: [{ type: "マグナ背水", value: 40.4 }, { type: "マグナ背水", value: 25.3 }, { type: "マグナ背水", value: 13.5 }, { type: "マグナ背水", value: 0 }] },
+
+    /* --- 光属性 --- */
+    light_magna_haisui_10: { label: "騎解方陣・背水10", element: "light", level: 10, effects: [{ type: "マグナ背水", value: 17.99 }, { type: "マグナ背水", value: 11.2 }, { type: "マグナ背水", value: 6 }, { type: "マグナ背水", value: 0 }] },
+    light_magna_haisui_15: { label: "騎解方陣・背水15", element: "light", level: 15, effects: [{ type: "マグナ背水", value: 20.99 }, { type: "マグナ背水", value: 13.1 }, { type: "マグナ背水", value: 7 }, { type: "マグナ背水", value: 0 }] },
+    light_magna_haisui_20: { label: "騎解方陣・背水20", element: "light", level: 20, effects: [{ type: "マグナ背水", value: 22.4 }, { type: "マグナ背水", value: 14 }, { type: "マグナ背水", value: 7.5 }, { type: "マグナ背水", value: 0 }] },
+    light_magna_haisui2_10: { label: "騎解方陣・背水Ⅱ10", element: "light", level: 10, effects: [{ type: "マグナ背水", value: 23.99 }, { type: "マグナ背水", value: 15 }, { type: "マグナ背水", value: 8 }, { type: "マグナ背水", value: 0 }] },
+    light_magna_haisui2_15: { label: "騎解方陣・背水Ⅱ15", element: "light", level: 15, effects: [{ type: "マグナ背水", value: 29.99 }, { type: "マグナ背水", value: 18.7 }, { type: "マグナ背水", value: 10 }, { type: "マグナ背水", value: 0 }] },
+    light_magna_haisui3_10: { label: "騎解方陣・背水Ⅲ10", element: "light", level: 10, effects: [{ type: "マグナ背水", value: 29.99 }, { type: "マグナ背水", value: 18.7 }, { type: "マグナ背水", value: 10 }, { type: "マグナ背水", value: 0 }] },
+    light_magna_haisui3_15: { label: "騎解方陣・背水Ⅲ15", element: "light", level: 15, effects: [{ type: "マグナ背水", value: 37.4 }, { type: "マグナ背水", value: 23.4 }, { type: "マグナ背水", value: 12.5 }, { type: "マグナ背水", value: 0 }] },
+    light_magna_haisui3_20: { label: "騎解方陣・背水Ⅲ20", element: "light", level: 20, effects: [{ type: "マグナ背水", value: 40.4 }, { type: "マグナ背水", value: 25.3 }, { type: "マグナ背水", value: 13.5 }, { type: "マグナ背水", value: 0 }] },
+
+    /* --- 闇属性 --- */
+    dark_magna_haisui_10: { label: "黒霧方陣・背水10", element: "dark", level: 10, effects: [{ type: "マグナ背水", value: 17.99 }, { type: "マグナ背水", value: 11.2 }, { type: "マグナ背水", value: 6 }, { type: "マグナ背水", value: 0 }] },
+    dark_magna_haisui_15: { label: "黒霧方陣・背水15", element: "dark", level: 15, effects: [{ type: "マグナ背水", value: 20.99 }, { type: "マグナ背水", value: 13.1 }, { type: "マグナ背水", value: 7 }, { type: "マグナ背水", value: 0 }] },
+    dark_magna_haisui_20: { label: "黒霧方陣・背水20", element: "dark", level: 20, effects: [{ type: "マグナ背水", value: 22.4 }, { type: "マグナ背水", value: 14 }, { type: "マグナ背水", value: 7.5 }, { type: "マグナ背水", value: 0 }] },
+    dark_magna_haisui2_10: { label: "黒霧方陣・背水Ⅱ10", element: "dark", level: 10, effects: [{ type: "マグナ背水", value: 23.99 }, { type: "マグナ背水", value: 15 }, { type: "マグナ背水", value: 8 }, { type: "マグナ背水", value: 0 }] },
+    dark_magna_haisui2_15: { label: "黒霧方陣・背水Ⅱ15", element: "dark", level: 15, effects: [{ type: "マグナ背水", value: 29.99 }, { type: "マグナ背水", value: 18.7 }, { type: "マグナ背水", value: 10 }, { type: "マグナ背水", value: 0 }] },
+    dark_magna_haisui3_10: { label: "黒霧方陣・背水Ⅲ10", element: "dark", level: 10, effects: [{ type: "マグナ背水", value: 29.99 }, { type: "マグナ背水", value: 18.7 }, { type: "マグナ背水", value: 10 }, { type: "マグナ背水", value: 0 }] },
+    dark_magna_haisui3_15: { label: "黒霧方陣・背水Ⅲ15", element: "dark", level: 15, effects: [{ type: "マグナ背水", value: 37.4 }, { type: "マグナ背水", value: 23.4 }, { type: "マグナ背水", value: 12.5 }, { type: "マグナ背水", value: 0 }] },
+    dark_magna_haisui3_20: { label: "黒霧方陣・背水Ⅲ20", element: "dark", level: 20, effects: [{ type: "マグナ背水", value: 40.4 }, { type: "マグナ背水", value: 25.3 }, { type: "マグナ背水", value: 13.5 }, { type: "マグナ背水", value: 0 }] }
+  }
+},
+
+magna_shinkyo: {
+  name: "方陣進境",
+  skills: {
+    /* --- 火屬性 --- */
+    fire_magna_shinkyo2_10: { label: "機炎方陣・進境Ⅱ10", element: "fire", level: 10, effects: [{ type: "マグナ進境", value: 0.7 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_shinkyo2_15: { label: "機炎方陣・進境Ⅱ15", element: "fire", level: 15, effects: [{ type: "マグナ進境", value: 0.8 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_shinkyo3_10: { label: "機炎方陣・進境Ⅲ10", element: "fire", level: 10, effects: [{ type: "マグナ進境", value: 1 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_shinkyo3_15: { label: "機炎方陣・進境Ⅲ15", element: "fire", level: 15, effects: [{ type: "マグナ進境", value: 1.2 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_shinkyo3_20: { label: "機炎方陣・進境Ⅲ20", element: "fire", level: 20, effects: [{ type: "マグナ進境", value: 1.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 水屬性 --- */
+    water_magna_shinkyo2_10: { label: "海神方陣・進境Ⅱ10", element: "water", level: 10, effects: [{ type: "マグナ進境", value: 0.7 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_shinkyo2_15: { label: "海神方陣・進境Ⅱ15", element: "water", level: 15, effects: [{ type: "マグナ進境", value: 0.8 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_shinkyo3_10: { label: "海神方陣・進境Ⅲ10", element: "water", level: 10, effects: [{ type: "マグナ進境", value: 1 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_shinkyo3_15: { label: "海神方陣・進境Ⅲ15", element: "water", level: 15, effects: [{ type: "マグナ進境", value: 1.2 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_shinkyo3_20: { label: "海神方陣・進境Ⅲ20", element: "water", level: 20, effects: [{ type: "マグナ進境", value: 1.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 土屬性 --- */
+    earth_magna_shinkyo2_10: { label: "創樹方陣・進境Ⅱ10", element: "earth", level: 10, effects: [{ type: "マグナ進境", value: 0.7 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_shinkyo2_15: { label: "創樹方陣・進境Ⅱ15", element: "earth", level: 15, effects: [{ type: "マグナ進境", value: 0.8 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_shinkyo3_10: { label: "創樹方陣・進境Ⅲ10", element: "earth", level: 10, effects: [{ type: "マグナ進境", value: 1 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_shinkyo3_15: { label: "創樹方陣・進境Ⅲ15", element: "earth", level: 15, effects: [{ type: "マグナ進境", value: 1.2 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_shinkyo3_20: { label: "創樹方陣・進境Ⅲ20", element: "earth", level: 20, effects: [{ type: "マグナ進境", value: 1.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 風屬性 --- */
+    wind_magna_shinkyo2_10: { label: "嵐竜方陣・進境Ⅱ10", element: "wind", level: 10, effects: [{ type: "マグナ進境", value: 0.7 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_shinkyo2_15: { label: "嵐竜方陣・進境Ⅱ15", element: "wind", level: 15, effects: [{ type: "マグナ進境", value: 0.8 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_shinkyo3_10: { label: "嵐竜方陣・進境Ⅲ10", element: "wind", level: 10, effects: [{ type: "マグナ進境", value: 1 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_shinkyo3_15: { label: "嵐竜方陣・進境Ⅲ15", element: "wind", level: 15, effects: [{ type: "マグナ進境", value: 1.2 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_shinkyo3_20: { label: "嵐竜方陣・進境Ⅲ20", element: "wind", level: 20, effects: [{ type: "マグナ進境", value: 1.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 光屬性 --- */
+    light_magna_shinkyo2_10: { label: "騎解方陣・進境Ⅱ10", element: "light", level: 10, effects: [{ type: "マグナ進境", value: 0.7 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_shinkyo2_15: { label: "騎解方陣・進境Ⅱ15", element: "light", level: 15, effects: [{ type: "マグナ進境", value: 0.8 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_shinkyo3_10: { label: "騎解方陣・進境Ⅲ10", element: "light", level: 10, effects: [{ type: "マグナ進境", value: 1 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_shinkyo3_15: { label: "騎解方陣・進境Ⅲ15", element: "light", level: 15, effects: [{ type: "マグナ進境", value: 1.2 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_shinkyo3_20: { label: "騎解方陣・進境Ⅲ20", element: "light", level: 20, effects: [{ type: "マグナ進境", value: 1.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 闇屬性 --- */
+    dark_magna_shinkyo2_10: { label: "黒霧方陣・進境Ⅱ10", element: "dark", level: 10, effects: [{ type: "マグナ進境", value: 0.7 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_shinkyo2_15: { label: "黒霧方陣・進境Ⅱ15", element: "dark", level: 15, effects: [{ type: "マグナ進境", value: 0.8 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_shinkyo3_10: { label: "黒霧方陣・進境Ⅲ10", element: "dark", level: 10, effects: [{ type: "マグナ進境", value: 1 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_shinkyo3_15: { label: "黒霧方陣・進境Ⅲ15", element: "dark", level: 15, effects: [{ type: "マグナ進境", value: 1.2 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_shinkyo3_20: { label: "黒霧方陣・進境Ⅲ20", element: "dark", level: 20, effects: [{ type: "マグナ進境", value: 1.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] }
+  }
+},
+
+magna_oncho: {
+  name: "方陣恩寵",
+  skills: {
+    /* --- 火屬性 --- */
+    fire_magna_oncho_10: { label: "機炎方陣・恩寵10", element: "fire", level: 10, effects: [{ type: "弱體耐性", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_oncho_15: { label: "機炎方陣・恩寵15", element: "fire", level: 15, effects: [{ type: "弱體耐性", value: 4 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_oncho2_10: { label: "機炎方陣・恩寵Ⅱ10", element: "fire", level: 10, effects: [{ type: "弱體耐性", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_oncho2_15: { label: "機炎方陣・恩寵Ⅱ15", element: "fire", level: 15, effects: [{ type: "弱體耐性", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 水屬性 --- */
+    water_magna_oncho_10: { label: "海神方陣・恩寵10", element: "water", level: 10, effects: [{ type: "弱體耐性", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_oncho_15: { label: "海神方陣・恩寵15", element: "water", level: 15, effects: [{ type: "弱體耐性", value: 4 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_oncho2_10: { label: "海神方陣・恩寵Ⅱ10", element: "water", level: 10, effects: [{ type: "弱體耐性", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_oncho2_15: { label: "海神方陣・恩寵Ⅱ15", element: "water", level: 15, effects: [{ type: "弱體耐性", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 土屬性 --- */
+    earth_magna_oncho_10: { label: "創樹方陣・恩寵10", element: "earth", level: 10, effects: [{ type: "弱體耐性", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_oncho_15: { label: "創樹方陣・恩寵15", element: "earth", level: 15, effects: [{ type: "弱體耐性", value: 4 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_oncho2_10: { label: "創樹方陣・恩寵Ⅱ10", element: "earth", level: 10, effects: [{ type: "弱體耐性", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_oncho2_15: { label: "創樹方陣・恩寵Ⅱ15", element: "earth", level: 15, effects: [{ type: "弱體耐性", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 風屬性 --- */
+    wind_magna_oncho_10: { label: "嵐竜方陣・恩寵10", element: "wind", level: 10, effects: [{ type: "弱體耐性", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_oncho_15: { label: "嵐竜方陣・恩寵15", element: "wind", level: 15, effects: [{ type: "弱體耐性", value: 4 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_oncho2_10: { label: "嵐竜方陣・恩寵Ⅱ10", element: "wind", level: 10, effects: [{ type: "弱體耐性", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_oncho2_15: { label: "嵐竜方陣・恩寵Ⅱ15", element: "wind", level: 15, effects: [{ type: "弱體耐性", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 光屬性 --- */
+    light_magna_oncho_10: { label: "騎解方陣・恩寵10", element: "light", level: 10, effects: [{ type: "弱體耐性", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_oncho_15: { label: "騎解方陣・恩寵15", element: "light", level: 15, effects: [{ type: "弱體耐性", value: 4 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_oncho2_10: { label: "騎解方陣・恩寵Ⅱ10", element: "light", level: 10, effects: [{ type: "弱體耐性", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_oncho2_15: { label: "騎解方陣・恩寵Ⅱ15", element: "light", level: 15, effects: [{ type: "弱體耐性", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 闇屬性 --- */
+    dark_magna_oncho_10: { label: "黒霧方陣・恩寵10", element: "dark", level: 10, effects: [{ type: "弱體耐性", value: 3 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_oncho_15: { label: "黒霧方陣・恩寵15", element: "dark", level: 15, effects: [{ type: "弱體耐性", value: 4 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_oncho2_10: { label: "黒霧方陣・恩寵Ⅱ10", element: "dark", level: 10, effects: [{ type: "弱體耐性", value: 5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_oncho2_15: { label: "黒霧方陣・恩寵Ⅱ15", element: "dark", level: 15, effects: [{ type: "弱體耐性", value: 6.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] }
+  }
+},
+
+magna_chiyu: {
+  name: "方陣治癒",
+  skills: {
+    /* --- 火属性 --- */
+    fire_magna_chiyu3_10: { label: "機炎方陣・治癒Ⅲ10", element: "fire", level: 10, effects: [{ type: "マグナ治癒", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 水属性 --- */
+    water_magna_chiyu3_10: { label: "海神方陣・治癒Ⅲ10", element: "water", level: 10, effects: [{ type: "マグナ治癒", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 土属性 --- */
+    earth_magna_chiyu3_10: { label: "創樹方陣・治癒Ⅲ10", element: "earth", level: 10, effects: [{ type: "マグナ治癒", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 風属性 --- */
+    wind_magna_chiyu3_10: { label: "嵐竜方陣・治癒Ⅲ10", element: "wind", level: 10, effects: [{ type: "マグナ治癒", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 光属性 --- */
+    light_magna_chiyu3_10: { label: "騎解方陣・治癒Ⅲ10", element: "light", level: 10, effects: [{ type: "マグナ治癒", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 闇属性 --- */
+    dark_magna_chiyu3_10: { label: "黒霧方陣・治癒Ⅲ10", element: "dark", level: 10, effects: [{ type: "マグナ治癒", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] }
+  }
+},
+
+magna_hissatsu_eiketsu: {
+  name: "方陣必殺",
+  skills: {
+    /* --- 火属性 --- */
+    fire_magna_hissatsu2_10: { label: "機炎方陣・必殺Ⅱ10", element: "fire", level: 10, effects: [{ type: "奥義ダメ", value: 7 }, { type: "奥義上限UP", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_hissatsu2_15: { label: "機炎方陣・必殺Ⅱ15", element: "fire", level: 15, effects: [{ type: "奥義ダメ", value: 9.5 }, { type: "奥義上限UP", value: 9.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    fire_magna_eiketsu3_10: { label: "機炎方陣・英傑Ⅲ10", element: "fire", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CB上限UP", value: 4.8 }] },
+    fire_magna_eiketsu3_15: { label: "機炎方陣・英傑Ⅲ15", element: "fire", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CB上限UP", value: 6.8 }] },
+    fire_magna_eiketsu3_20: { label: "機炎方陣・英傑Ⅲ20", element: "fire", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CB上限UP", value: 7.8 }] },
+
+    /* --- 水属性 --- */
+    water_magna_hissatsu2_10: { label: "海神方陣・必殺Ⅱ10", element: "water", level: 10, effects: [{ type: "奥義ダメ", value: 7 }, { type: "奥義上限UP", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_hissatsu2_15: { label: "海神方陣・必殺Ⅱ15", element: "water", level: 15, effects: [{ type: "奥義ダメ", value: 9.5 }, { type: "奥義上限UP", value: 9.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    water_magna_eiketsu3_10: { label: "海神方陣・英傑Ⅲ10", element: "water", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CB上限UP", value: 4.8 }] },
+    water_magna_eiketsu3_15: { label: "海神方陣・英傑Ⅲ15", element: "water", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CB上限UP", value: 6.8 }] },
+    water_magna_eiketsu3_20: { label: "海神方陣・英傑Ⅲ20", element: "water", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CB上限UP", value: 7.8 }] },
+
+    /* --- 土属性 --- */
+    earth_magna_hissatsu2_10: { label: "創樹方陣・必殺Ⅱ10", element: "earth", level: 10, effects: [{ type: "奥義ダメ", value: 7 }, { type: "奥義上限UP", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_hissatsu2_15: { label: "創樹方陣・必殺Ⅱ15", element: "earth", level: 15, effects: [{ type: "奥義ダメ", value: 9.5 }, { type: "奥義上限UP", value: 9.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    earth_magna_eiketsu3_10: { label: "創樹方陣・英傑Ⅲ10", element: "earth", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CB上限UP", value: 4.8 }] },
+    earth_magna_eiketsu3_15: { label: "創樹方陣・英傑Ⅲ15", element: "earth", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CB上限UP", value: 6.8 }] },
+    earth_magna_eiketsu3_20: { label: "創樹方陣・英傑Ⅲ20", element: "earth", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CB上限UP", value: 7.8 }] },
+
+    /* --- 風属性 --- */
+    wind_magna_hissatsu2_10: { label: "嵐竜方陣・必殺Ⅱ10", element: "wind", level: 10, effects: [{ type: "奥義ダメ", value: 7 }, { type: "奥義上限UP", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_hissatsu2_15: { label: "嵐竜方陣・必殺Ⅱ15", element: "wind", level: 15, effects: [{ type: "奥義ダメ", value: 9.5 }, { type: "奥義上限UP", value: 9.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    wind_magna_eiketsu3_10: { label: "嵐竜方陣・英傑Ⅲ10", element: "wind", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CB上限UP", value: 4.8 }] },
+    wind_magna_eiketsu3_15: { label: "嵐竜方陣・英傑Ⅲ15", element: "wind", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CB上限UP", value: 6.8 }] },
+    wind_magna_eiketsu3_20: { label: "嵐竜方陣・英傑Ⅲ20", element: "wind", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CB上限UP", value: 7.8 }] },
+
+    /* --- 光属性 --- */
+    light_magna_hissatsu2_10: { label: "騎解方陣・必殺Ⅱ10", element: "light", level: 10, effects: [{ type: "奥義ダメ", value: 7 }, { type: "奥義上限UP", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_hissatsu2_15: { label: "騎解方陣・必殺Ⅱ15", element: "light", level: 15, effects: [{ type: "奥義ダメ", value: 9.5 }, { type: "奥義上限UP", value: 9.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    light_magna_eiketsu3_10: { label: "騎解方陣・英傑Ⅲ10", element: "light", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CB上限UP", value: 4.8 }] },
+    light_magna_eiketsu3_15: { label: "騎解方陣・英傑Ⅲ15", element: "light", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CB上限UP", value: 6.8 }] },
+    light_magna_eiketsu3_20: { label: "騎解方陣・英傑Ⅲ20", element: "light", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CB上限UP", value: 7.8 }] },
+
+    /* --- 闇属性 --- */
+    dark_magna_hissatsu2_10: { label: "黒霧方陣・必殺Ⅱ10", element: "dark", level: 10, effects: [{ type: "奥義ダメ", value: 7 }, { type: "奥義上限UP", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_hissatsu2_15: { label: "黒霧方陣・必殺Ⅱ15", element: "dark", level: 15, effects: [{ type: "奥義ダメ", value: 9.5 }, { type: "奥義上限UP", value: 9.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    dark_magna_eiketsu3_10: { label: "黒霧方陣・英傑Ⅲ10", element: "dark", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CB上限UP", value: 4.8 }] },
+    dark_magna_eiketsu3_15: { label: "黒霧方陣・英傑Ⅲ15", element: "dark", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CB上限UP", value: 6.8 }] },
+    dark_magna_eiketsu3_20: { label: "黒霧方陣・英傑Ⅲ20", element: "dark", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CB上限UP", value: 7.8 }] }
+  }
+},
+
+omega_base: {
+  name: "オメガ",
+  skills: {
+    /* --- オメガ（基本） --- */
+    omega_10: { label: "オメガ10", element: "all", level: 10, effects: [{ type: "EX攻刃", value: 15 }, { type: "HP上昇", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    omega_15: { label: "オメガ15", element: "all", level: 15, effects: [{ type: "EX攻刃", value: 20 }, { type: "HP上昇", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    omega_20: { label: "オメガ20", element: "all", level: 20, effects: [{ type: "EX攻刃", value: 25 }, { type: "HP上昇", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 戦意（攻撃力） --- */
+    omega_seni_10: { label: "オメガ戦意10", element: "all", level: 10, effects: [{ type: "EX攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    omega_seni_15: { label: "オメガ戦意15", element: "all", level: 15, effects: [{ type: "EX攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    omega_seni_20: { label: "オメガ戦意20", element: "all", level: 20, effects: [{ type: "EX攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 闘争（連撃） --- */
+    omega_toso_10: { label: "オメガ闘争10", element: "all", level: 10, effects: [{ type: "TA確率", value: 25 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    omega_toso_15: { label: "オメガ闘争15", element: "all", level: 15, effects: [{ type: "TA確率", value: 25 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    omega_toso_20: { label: "オメガ闘争20", element: "all", level: 20, effects: [{ type: "TA確率", value: 25 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 生命（HP） --- */
+    omega_seimei_10: { label: "オメガ生命10", element: "all", level: 10, effects: [{ type: "HP上昇", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    omega_seimei_15: { label: "オメガ生命15", element: "all", level: 15, effects: [{ type: "HP上昇", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    omega_seimei_20: { label: "オメガ生命20", element: "all", level: 20, effects: [{ type: "HP上昇", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 強壮（通常渾身） --- */
+    omega_kyoso_10: { label: "オメガ強壮10", element: "all", level: 10, effects: [{ type: "通常渾身", value: 13.13 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    omega_kyoso_15: { label: "オメガ強壮15", element: "all", level: 15, effects: [{ type: "通常渾身", value: 17.79 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    omega_kyoso_20: { label: "オメガ強壮20", element: "all", level: 20, effects: [{ type: "通常渾身", value: 20.4 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 激情（通常背水） --- */
+    omega_gekijo_10: { label: "オメガ激情10", element: "all", level: 10, effects: [{ type: "通常背水", value: 29.99 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    omega_gekijo_15: { label: "オメガ激情15", element: "all", level: 15, effects: [{ type: "通常背水", value: 36.49 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    omega_gekijo_20: { label: "オメガ激情20", element: "all", level: 20, effects: [{ type: "通常背水", value: 40.49 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+    /* --- 勇気（クリティカル） --- */
+    omega_yuki_10: { label: "オメガ勇気10", element: "all", level: 10, effects: [{ type: "クリティカル", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    omega_yuki_15: { label: "オメガ勇気15", element: "all", level: 15, effects: [{ type: "クリティカル", value: 17.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+    omega_yuki_20: { label: "オメガ勇気20", element: "all", level: 20, effects: [{ type: "クリティカル", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] }
+  }
+},
+
+syumatu_enhance: {
+  name: "終末",
+  skills: {
+    /* --- SLv20 --- */
+    syumatu_kippa_20: { label: "絶涯（極破）20", element: "all", level: 20, effects: [{ type: "EX攻刃", value: 40 }, { type: "ダメ上限", value: 7 }, { type: "TA確率", value: 25 }, { type: "通常与ダメUP", value: 10 }] },
+    syumatu_kyogi_20: { label: "窮理（極技）20", element: "all", level: 20, effects: [{ type: "EX攻刃", value: 40 }, { type: "ダメ上限", value: 7 }, { type: "アビ上限", value: 30 }, { type: "アビ与ダメUP", value: 10 }] },
+    syumatu_gokuou_20: { label: "天髄（極奥）20", element: "all", level: 20, effects: [{ type: "EX攻刃", value: 40 }, { type: "ダメ上限", value: 7 }, { type: "CB与ダメUP", value: 100 }, { type: "奥義与ダメUP", value: 10 }] },
+
+    /* --- SLv25 --- */
+    syumatu_kippa_25: { label: "絶涯（極破）25", element: "all", level: 25, effects: [{ type: "EX攻刃", value: 40 }, { type: "ダメ上限", value: 7 }, { type: "TA確率", value: 25 }, { type: "通常与ダメUP", value: 10 }] },
+    syumatu_kyogi_25: { label: "窮理（極技）25", element: "all", level: 25, effects: [{ type: "EX攻刃", value: 40 }, { type: "ダメ上限", value: 7 }, { type: "アビ上限", value: 30 }, { type: "アビ与ダメUP", value: 10 }] },
+    syumatu_gokuou_25: { label: "天髄（極奥）25", element: "all", level: 25, effects: [{ type: "EX攻刃", value: 40 }, { type: "ダメ上限", value: 7 }, { type: "CB与ダメUP", value: 100 }, { type: "奥義与ダメUP", value: 10 }] }
+  }
+}
+};
 																									
 																									
 let activeGroupId = "normal_atk";																									
