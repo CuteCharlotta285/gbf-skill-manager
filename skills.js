@@ -1320,7 +1320,7 @@ dark_garen_l_15: { label: "奈落の技錬15", element: "dark", level: 15, effec
 },																									
 																									
 magna_atk: {																									
-name: "方陣枠",																									
+name: "方陣攻刃",																									
 skills: {																									
 // 方陣攻刃I (SLv10: 10%, SLv15: 12%)																									
 fire_magna_1_10: { label: "機炎方陣・攻刃10", element: "fire", level: 10, effects: [{ type: "マグナ攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
