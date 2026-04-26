@@ -2106,8 +2106,122 @@ dark_garen_l_15: { label: "奈落の技錬15", element: "dark", level: 15, effec
       "dark_magna_eiketsu3_15": { label: "黒霧方陣・英傑Ⅲ15", element: "dark", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CBダメ上限", value: 6.8 }] },
       "dark_magna_eiketsu3_20": { label: "黒霧方陣・英傑Ⅲ20", element: "dark", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CBダメ上限", value: 7.8 }] }
     }
-  }
+  },
 
+  omega_base: {
+    name: "オメガ",
+    skills: {
+      /* --- オメガ（基本） --- */
+      "omega_10": { label: "オメガ10", element: "all", level: 10, effects: [{ type: "EX攻刃", value: 15 }, { type: "HP上昇", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+      "omega_15": { label: "オメガ15", element: "all", level: 15, effects: [{ type: "EX攻刃", value: 20 }, { type: "HP上昇", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+      "omega_20": { label: "オメガ20", element: "all", level: 20, effects: [{ type: "EX攻刃", value: 25 }, { type: "HP上昇", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+      /* --- 戦意（攻撃力） --- */
+      "omega_seni_10": { label: "オメガ戦意10", element: "all", level: 10, effects: [{ type: "EX攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+      "omega_seni_15": { label: "オメガ戦意15", element: "all", level: 15, effects: [{ type: "EX攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+      "omega_seni_20": { label: "オメガ戦意20", element: "all", level: 20, effects: [{ type: "EX攻刃", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+      /* --- 闘争（連撃） --- */
+      "omega_toso_10": { label: "オメガ闘争10", element: "all", level: 10, effects: [{ type: "TA確率", value: 25 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+      "omega_toso_15": { label: "オメガ闘争15", element: "all", level: 15, effects: [{ type: "TA確率", value: 25 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+      "omega_toso_20": { label: "オメガ闘争20", element: "all", level: 20, effects: [{ type: "TA確率", value: 25 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+      /* --- 生命（HP） --- */
+      "omega_seimei_10": { label: "オメガ生命10", element: "all", level: 10, effects: [{ type: "HP上昇", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+      "omega_seimei_15": { label: "オメガ生命15", element: "all", level: 15, effects: [{ type: "HP上昇", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+      "omega_seimei_20": { label: "オメガ生命20", element: "all", level: 20, effects: [{ type: "HP上昇", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+      /* --- 強壮（通常渾身） --- */
+      "omega_kyoso_10": { label: "オメガ強壮10", element: "all", level: 10, effects: [{ type: "通常渾身", value: 13.13 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+      "omega_kyoso_15": { label: "オメガ強壮15", element: "all", level: 15, effects: [{ type: "通常渾身", value: 17.79 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+      "omega_kyoso_20": { label: "オメガ強壮20", element: "all", level: 20, effects: [{ type: "通常渾身", value: 20.4 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+      /* --- 激情（通常背水） --- */
+      "omega_gekijo_10": { label: "オメガ激情10", element: "all", level: 10, effects: [{ type: "通常背水", value: 29.99 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+      "omega_gekijo_15": { label: "オメガ激情15", element: "all", level: 15, effects: [{ type: "通常背水", value: 36.49 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+      "omega_gekijo_20": { label: "オメガ激情20", element: "all", level: 20, effects: [{ type: "通常背水", value: 40.49 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+
+      /* --- 勇気（クリティカル） --- */
+      "omega_yuki_10": { label: "オメガ勇気10", element: "all", level: 10, effects: [{ type: "クリティカル", value: 15 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+      "omega_yuki_15": { label: "オメガ勇気15", element: "all", level: 15, effects: [{ type: "クリティカル", value: 17.5 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },
+      "omega_yuki_20": { label: "オメガ勇気20", element: "all", level: 20, effects: [{ type: "クリティカル", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] }
+    }
+  },
+
+  syumatu_enhance = {
+    name: "終末",
+    skills: {
+    /* --- SLv20 --- */
+    "syumatu_kippa_20": { 
+      label: "絶涯（極破）20", 
+      element: "all", 
+      level: 20, 
+      effects: [
+        { type: "EX攻刃", value: 40 }, 
+        { type: "ダメ上限", value: 7 }, 
+        { type: "TA確率", value: 25 }, 
+        { type: "通常与ダメUP", value: 10 }
+      ] 
+    },
+    "syumatu_kyogi_20": { 
+      label: "窮理（極技）20", 
+      element: "all", 
+      level: 20, 
+      effects: [
+        { type: "EX攻刃", value: 40 }, 
+        { type: "ダメ上限", value: 7 }, 
+        { type: "アビ上限", value: 30 }, 
+        { type: "アビ与ダメUP", value: 10 }
+      ] 
+    },
+    "syumatu_gokuou_20": { 
+      label: "天髄（極奥）20", 
+      element: "all", 
+      level: 20, 
+      effects: [
+        { type: "EX攻刃", value: 40 }, 
+        { type: "ダメ上限", value: 7 }, 
+        { type: "CB与ダメUP", value: 100 }, 
+        { type: "奥義与ダメUP", value: 10 }
+      ] 
+    },
+
+    /* --- SLv25 --- */
+    "syumatu_kippa_25": { 
+      label: "絶涯（極破）25", 
+      element: "all", 
+      level: 25, 
+      effects: [
+        { type: "EX攻刃", value: 40 }, 
+        { type: "ダメ上限", value: 7 }, 
+        { type: "TA確率", value: 25 }, 
+        { type: "通常与ダメUP", value: 10 }
+      ] 
+    },
+    "syumatu_kyogi_25": { 
+      label: "窮理（極技）25", 
+      element: "all", 
+      level: 25, 
+      effects: [
+        { type: "EX攻刃", value: 40 }, 
+        { type: "ダメ上限", value: 7 }, 
+        { type: "アビ上限", value: 30 }, 
+        { type: "アビ与ダメUP", value: 10 }
+      ] 
+    },
+    "syumatu_gokuou_25": { 
+      label: "天髄（極奥）25", 
+      element: "all", 
+      level: 25, 
+      effects: [
+        { type: "EX攻刃", value: 40 }, 
+        { type: "ダメ上限", value: 7 }, 
+        { type: "CB与ダメUP", value: 100 }, 
+        { type: "奥義与ダメUP", value: 10 }
+      ] 
+    }
+  }
+  }
 };
 																									
 let activeGroupId = "normal_atk";																									
