@@ -1344,7 +1344,7 @@ fire_magna_3_20: { label: "機炎方陣・攻刃III20", element: "fire", level: 
 water_magna_3_15: { label: "海神方陣・攻刃III15", element: "water", level: 15, effects: [{ type: "マグナ攻刃", value: 18 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
 water_magna_3_20: { label: "海神方陣・攻刃III20", element: "water", level: 20, effects: [{ type: "マグナ攻刃", value: 20 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] }																									
 }																									
-}																								
+},																								
 };																									
 																									
 																									
