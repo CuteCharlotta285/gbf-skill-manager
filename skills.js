@@ -309,7 +309,7 @@ dark_ranbu_l_15: { label: "奈落の乱舞15", element: "dark", level: 15, effec
 },																									
 																									
   normal_kamui: {
-    name: "通常枠（神威）",
+    name: "通常神威",
     skills: {
       /* --- 火属性 --- */
       "fire_normal_kamui_10": { label: "火の神威10", element: "fire", level: 10, effects: [{ type: "通常攻刃", value: 10 }, { type: "通常守護", value: 10 }, { type: "", value: 0 }, { type: "", value: 0 }] },
