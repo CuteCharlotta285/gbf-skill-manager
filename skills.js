@@ -86,7 +86,7 @@ earth_kojin3_xxl_15: { label: "地裂の攻刃Ⅲ15", element: "earth", level: 1
 wind_kojin3_xxl_15: { label: "乱気の攻刃Ⅲ15", element: "wind", level: 15, effects: [{ type: "通常攻刃", value: 22 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
 light_kojin3_xxl_15: { label: "天光の攻刃Ⅲ15", element: "light", level: 15, effects: [{ type: "通常攻刃", value: 22 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
 dark_kojin3_xxl_15: { label: "奈落の攻刃Ⅲ15", element: "dark", level: 15, effects: [{ type: "通常攻刃", value: 22 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 }] },																									
-custom_1777073044897: {label: "劫風の攻刃15", element: "wind", level: 10, effects: [ { type: "通常攻刃", value: 33 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 } ] }																									
+wind_gouhuu: {label: "劫風の攻刃15", element: "wind", level: 15, effects: [ { type: "通常攻刃", value: 33 }, { type: "", value: 0 }, { type: "", value: 0 }, { type: "", value: 0 } ] }																									
 }																									
 },																									
 																									
@@ -2067,44 +2067,44 @@ dark_garen_l_15: { label: "奈落の技錬15", element: "dark", level: 15, effec
       /* --- 火属性 --- */
       "fire_magna_hissatsu2_10": { label: "機炎方陣・必殺Ⅱ10", element: "fire", level: 10, effects: [{ type: "奥義ダメ", value: 7 }, { type: "奥義上限UP", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }] },
       "fire_magna_hissatsu2_15": { label: "機炎方陣・必殺Ⅱ15", element: "fire", level: 15, effects: [{ type: "奥義ダメ", value: 9.5 }, { type: "奥義上限UP", value: 9.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
-      "fire_magna_eiketsu3_10": { label: "機炎方陣・英傑Ⅲ10", element: "fire", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CBダメ上限", value: 4.8 }] },
-      "fire_magna_eiketsu3_15": { label: "機炎方陣・英傑Ⅲ15", element: "fire", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CBダメ上限", value: 6.8 }] },
-      "fire_magna_eiketsu3_20": { label: "機炎方陣・英傑Ⅲ20", element: "fire", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CBダメ上限", value: 7.8 }] },
+      "fire_magna_eiketsu3_10": { label: "機炎方陣・英傑Ⅲ10", element: "fire", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CB上限UP", value: 4.8 }] },
+      "fire_magna_eiketsu3_15": { label: "機炎方陣・英傑Ⅲ15", element: "fire", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CB上限UP", value: 6.8 }] },
+      "fire_magna_eiketsu3_20": { label: "機炎方陣・英傑Ⅲ20", element: "fire", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CB上限UP", value: 7.8 }] },
 
       /* --- 水属性 --- */
       "water_magna_hissatsu2_10": { label: "海神方陣・必殺Ⅱ10", element: "water", level: 10, effects: [{ type: "奥義ダメ", value: 7 }, { type: "奥義上限UP", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }] },
       "water_magna_hissatsu2_15": { label: "海神方陣・必殺Ⅱ15", element: "water", level: 15, effects: [{ type: "奥義ダメ", value: 9.5 }, { type: "奥義上限UP", value: 9.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
-      "water_magna_eiketsu3_10": { label: "海神方陣・英傑Ⅲ10", element: "water", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CBダメ上限", value: 4.8 }] },
-      "water_magna_eiketsu3_15": { label: "海神方陣・英傑Ⅲ15", element: "water", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CBダメ上限", value: 6.8 }] },
-      "water_magna_eiketsu3_20": { label: "海神方陣・英傑Ⅲ20", element: "water", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CBダメ上限", value: 7.8 }] },
+      "water_magna_eiketsu3_10": { label: "海神方陣・英傑Ⅲ10", element: "water", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CB上限UP", value: 4.8 }] },
+      "water_magna_eiketsu3_15": { label: "海神方陣・英傑Ⅲ15", element: "water", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CB上限UP", value: 6.8 }] },
+      "water_magna_eiketsu3_20": { label: "海神方陣・英傑Ⅲ20", element: "water", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CB上限UP", value: 7.8 }] },
 
       /* --- 土属性 --- */
       "earth_magna_hissatsu2_10": { label: "創樹方陣・必殺Ⅱ10", element: "earth", level: 10, effects: [{ type: "奥義ダメ", value: 7 }, { type: "奥義上限UP", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }] },
       "earth_magna_hissatsu2_15": { label: "創樹方陣・必殺Ⅱ15", element: "earth", level: 15, effects: [{ type: "奥義ダメ", value: 9.5 }, { type: "奥義上限UP", value: 9.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
-      "earth_magna_eiketsu3_10": { label: "創樹方陣・英傑Ⅲ10", element: "earth", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CBダメ上限", value: 4.8 }] },
-      "earth_magna_eiketsu3_15": { label: "創樹方陣・英傑Ⅲ15", element: "earth", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CBダメ上限", value: 6.8 }] },
-      "earth_magna_eiketsu3_20": { label: "創樹方陣・英傑Ⅲ20", element: "earth", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CBダメ上限", value: 7.8 }] },
+      "earth_magna_eiketsu3_10": { label: "創樹方陣・英傑Ⅲ10", element: "earth", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CB上限UP", value: 4.8 }] },
+      "earth_magna_eiketsu3_15": { label: "創樹方陣・英傑Ⅲ15", element: "earth", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CB上限UP", value: 6.8 }] },
+      "earth_magna_eiketsu3_20": { label: "創樹方陣・英傑Ⅲ20", element: "earth", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CB上限UP", value: 7.8 }] },
 
       /* --- 風属性 --- */
       "wind_magna_hissatsu2_10": { label: "嵐竜方陣・必殺Ⅱ10", element: "wind", level: 10, effects: [{ type: "奥義ダメ", value: 7 }, { type: "奥義上限UP", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }] },
       "wind_magna_hissatsu2_15": { label: "嵐竜方陣・必殺Ⅱ15", element: "wind", level: 15, effects: [{ type: "奥義ダメ", value: 9.5 }, { type: "奥義上限UP", value: 9.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
-      "wind_magna_eiketsu3_10": { label: "嵐竜方陣・英傑Ⅲ10", element: "wind", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CBダメ上限", value: 4.8 }] },
-      "wind_magna_eiketsu3_15": { label: "嵐竜方陣・英傑Ⅲ15", element: "wind", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CBダメ上限", value: 6.8 }] },
-      "wind_magna_eiketsu3_20": { label: "嵐竜方陣・英傑Ⅲ20", element: "wind", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CBダメ上限", value: 7.8 }] },
+      "wind_magna_eiketsu3_10": { label: "嵐竜方陣・英傑Ⅲ10", element: "wind", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CB上限UP", value: 4.8 }] },
+      "wind_magna_eiketsu3_15": { label: "嵐竜方陣・英傑Ⅲ15", element: "wind", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CB上限UP", value: 6.8 }] },
+      "wind_magna_eiketsu3_20": { label: "嵐竜方陣・英傑Ⅲ20", element: "wind", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CB上限UP", value: 7.8 }] },
 
       /* --- 光属性 --- */
       "light_magna_hissatsu2_10": { label: "騎解方陣・必殺Ⅱ10", element: "light", level: 10, effects: [{ type: "奥義ダメ", value: 7 }, { type: "奥義上限UP", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }] },
       "light_magna_hissatsu2_15": { label: "騎解方陣・必殺Ⅱ15", element: "light", level: 15, effects: [{ type: "奥義ダメ", value: 9.5 }, { type: "奥義上限UP", value: 9.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
-      "light_magna_eiketsu3_10": { label: "騎解方陣・英傑Ⅲ10", element: "light", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CBダメ上限", value: 4.8 }] },
-      "light_magna_eiketsu3_15": { label: "騎解方陣・英傑Ⅲ15", element: "light", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CBダメ上限", value: 6.8 }] },
-      "light_magna_eiketsu3_20": { label: "騎解方陣・英傑Ⅲ20", element: "light", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CBダメ上限", value: 7.8 }] },
+      "light_magna_eiketsu3_10": { label: "騎解方陣・英傑Ⅲ10", element: "light", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CB上限UP", value: 4.8 }] },
+      "light_magna_eiketsu3_15": { label: "騎解方陣・英傑Ⅲ15", element: "light", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CB上限UP", value: 6.8 }] },
+      "light_magna_eiketsu3_20": { label: "騎解方陣・英傑Ⅲ20", element: "light", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CB上限UP", value: 7.8 }] },
 
       /* --- 闇属性 --- */
       "dark_magna_hissatsu2_10": { label: "黒霧方陣・必殺Ⅱ10", element: "dark", level: 10, effects: [{ type: "奥義ダメ", value: 7 }, { type: "奥義上限UP", value: 7 }, { type: "", value: 0 }, { type: "", value: 0 }] },
       "dark_magna_hissatsu2_15": { label: "黒霧方陣・必殺Ⅱ15", element: "dark", level: 15, effects: [{ type: "奥義ダメ", value: 9.5 }, { type: "奥義上限UP", value: 9.5 }, { type: "", value: 0 }, { type: "", value: 0 }] },
-      "dark_magna_eiketsu3_10": { label: "黒霧方陣・英傑Ⅲ10", element: "dark", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CBダメ上限", value: 4.8 }] },
-      "dark_magna_eiketsu3_15": { label: "黒霧方陣・英傑Ⅲ15", element: "dark", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CBダメ上限", value: 6.8 }] },
-      "dark_magna_eiketsu3_20": { label: "黒霧方陣・英傑Ⅲ20", element: "dark", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CBダメ上限", value: 7.8 }] }
+      "dark_magna_eiketsu3_10": { label: "黒霧方陣・英傑Ⅲ10", element: "dark", level: 10, effects: [{ type: "奥義ダメ", value: 10 }, { type: "奥義上限UP", value: 4.8 }, { type: "CBダメ", value: 12 }, { type: "CB上限UP", value: 4.8 }] },
+      "dark_magna_eiketsu3_15": { label: "黒霧方陣・英傑Ⅲ15", element: "dark", level: 15, effects: [{ type: "奥義ダメ", value: 12.5 }, { type: "奥義上限UP", value: 6.8 }, { type: "CBダメ", value: 14.5 }, { type: "CB上限UP", value: 6.8 }] },
+      "dark_magna_eiketsu3_20": { label: "黒霧方陣・英傑Ⅲ20", element: "dark", level: 20, effects: [{ type: "奥義ダメ", value: 14.5 }, { type: "奥義上限UP", value: 7.8 }, { type: "CBダメ", value: 16.5 }, { type: "CB上限UP", value: 7.8 }] }
     }
   },
 
