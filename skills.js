@@ -2219,7 +2219,7 @@ dark_garen_l_15: { label: "奈落の技錬15", element: "dark", level: 15, effec
         { type: "CB与ダメUP", value: 100 }, 
         { type: "奥義与ダメUP", value: 10 } ] }
     }
-  },
+  }
 };
 																									
 let activeGroupId = "normal_atk";																									
