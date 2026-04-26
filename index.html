@@ -9,6 +9,7 @@
     <div class="app-wrapper">
         <nav class="tab-menu">
             <button class="tab-btn active" data-target="main-screen">武器編成</button>
+            <button class="tab-btn" data-target="weapon-screen">武器リスト</button>
             <button class="tab-btn" data-target="db-screen">スキルリスト</button>
         </nav>
 
@@ -17,8 +18,114 @@
                 <h2>⚔️ 武器編成管理</h2>
                 <button id="btn-open-main" class="primary-btn">＋ 武器を登録</button>
             </div>
-            <ul id="skill-list"></ul>
         </section>
+
+<section id="weapon-screen" class="tab-content hidden">
+    <div class="weapon-db-container">
+        
+        <aside class="weapon-db-sidebar">
+            <div class="weapon-sidebar-header">
+                <span>シリーズ</span>
+                <div class="weapon-header-controls">
+                    <button id="weapon-btn-export" class="weapon-icon-btn" title="バックアップ（保存）">📥</button>
+                    <button id="weapon-btn-import" class="weapon-icon-btn" title="復元（読み込み）">📤</button>
+                    <button id="weapon-add-group-btn" class="weapon-add-btn">＋</button>
+                </div>
+            </div>
+
+            <input type="file" id="weapon-import-file" style="display:none" accept=".json">
+            
+            <ul id="weapon-group-list" class="weapon-group-list">
+                </ul>
+        </aside>
+
+        <main class="weapon-db-main">
+            <div class="weapon-db-header">
+                <div class="weapon-db-title-area">
+                    <h2 id="weapon-current-group-name">スペリオル</h2>
+                    <span id="weapon-current-count" class="weapon-count">(全 0 件)</span>
+                </div>
+                <div class="weapon-db-controls">
+                    <select id="weapon-filter-element">
+                        <option value="all">全属性</option>
+                        <option value="fire">火</option>
+                        <option value="water">水</option>
+                        <option value="earth">土</option>
+                        <option value="wind">風</option>
+                        <option value="light">光</option>
+                        <option value="dark">闇</option>
+                    </select>
+                    <button id="add-weapon-btn" class="weapon-green-btn">＋ 武器追加</button>
+                    <button id="weapon-save-all-btn" class="weapon-save-all-btn" onclick="saveAllWeapons()">一括保存</button>
+                </div>
+            </div>
+
+            <div class="weapon-weapon-table-wrapper">
+                <table id="weapon-master-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 80px;">属性</th>
+                            <th>名称</th>
+                            <th style="width: 60px;">レベル</th>
+                            <th>スキル1</th>
+                            <th>効果量1</th>
+                            <th>スキル2</th>
+                            <th>効果量2</th>
+                            <th>スキル3</th>
+                            <th>効果量3</th>
+                            <th>スキル4</th>
+                            <th>効果量4</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="weapon-master-body">
+                        </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</section>
+
+<dialog id="dial-weapon-reg">
+    <form method="dialog">
+        <h2>新規武器登録</h2>
+        <div class="input-group">
+            <label>武器名:</label>
+            <input type="text" id="we-name" placeholder="例：エクスカリバー">
+        </div>
+        <div class="input-group">
+            <label>属性:</label>
+            <select id="we-element">
+                <option value="fire">火</option>
+                <option value="water">水</option>
+                <option value="earth">土</option>
+                <option value="wind">風</option>
+                <option value="light">光</option>
+                <option value="dark">闇</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>シリーズ:</label> <select id="we-weapon_series">
+                <option value="speriol_weapon">スペリオル武器</option>
+                <option value="ruminas_weapon">ルミナス武器</option>
+                <option value="kojo_weapon">恒常武器</option>
+                <option value="limited_weapon">リミテッド武器</option>
+                <option value="season_limited_weapon">季節限定武器</option>
+                <option value="syumatu_weapon">終末武器</option>
+                <option value="corabo_weapon">コラボ武器</option>
+            </select>
+        </div>
+
+        <div class="btns">
+            <button type="button" id="btn-weapon-save-exec" class="green-btn">登録</button>
+            <button type="button" id="weapon-dialog-close">キャンセル</button>
+        </div>
+    </form>
+</dialog>
+
+
+
+
 
         <section id="db-screen" class="tab-content hidden">
           <div class="db-container">
@@ -35,9 +142,7 @@
              <input type="file" id="import-file" style="display:none" accept=".json">
     
                 <ul class="group-list" id="group-list">
-                  <li class="group-item active" data-group="normal_atk">通常攻刃</li>
-                  <li class="group-item" data-group="normal_ranbu">通常乱舞</li>
-                  <li class="group-item" data-group="magna_atk">方陣枠</li>
+
                 </ul>
             </aside>
 
@@ -45,8 +150,7 @@
                     <div class="db-header">
                         <div class="db-title-area">
                             <h2 id="current-group-name">通常攻刃</h2>
-                            <span class="count">(全 22 件)</span>
-
+                            <span class="count">(全 73 件)</span>
                         </div>
                         <div class="db-controls">
                             <select id="filter-element">
@@ -115,6 +219,7 @@
     </dialog>
 
     <script src="skills.js"></script>
+    <script src="weapons.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

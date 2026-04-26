@@ -1,3 +1,60 @@
+// ==========================================
+// 1. データの初期化（ファイルの最上部に置く）
+// ==========================================
+weaponDatabase = JSON.parse(localStorage.getItem('weapon_db_data')) || window.defaultWeaponDatabase;
+let activeWeaponGroupId = Object.keys(weaponDatabase)[0] || null;
+
+// ==========================================
+// 2. ページ読み込み時の起動処理
+// ==========================================
+
+function findValueFromSkillDb(label) {
+    if (!label || label === "" || label === "(なし)") return 0;
+    
+    // skills.js で定義されている skillDatabase をループ
+    for (const gid in skillDatabase) {
+        const group = skillDatabase[gid];
+        if (!group.skills) continue;
+        const found = Object.values(group.skills).find(s => s.label === label);
+        if (found && found.effects && found.effects[0]) {
+            return found.effects[0].value;
+        }
+    }
+    return 0;
+}
+
+function refreshAllWeaponSkillValues() {
+    console.log("全スキルの数値を最新化しています...");
+    if (!weaponDatabase) return;
+
+    Object.keys(weaponDatabase).forEach(groupId => {
+        const group = weaponDatabase[groupId];
+        Object.keys(group.weapons).forEach(weaponId => {
+            const wp = group.weapons[weaponId];
+            for (let i = 1; i <= 4; i++) {
+                const skillLabel = wp[`skill${i}`];
+                if (skillLabel && skillLabel !== "" && skillLabel !== "(なし)") {
+                    // findValueFromSkillDb を使って数値を最新にする
+                    wp[`skill${i}Val`] = findValueFromSkillDb(skillLabel);
+                }
+            }
+        });
+    });
+}
+
+window.onload = () => {
+    console.log("初期化開始...");
+    
+    // 1. まず数値を最新化
+    refreshAllWeaponSkillValues(); 
+    
+    // 2. その数値を使って画面を作る
+    renderWeaponSidebar();
+    renderWeaponMasterDB(); 
+    
+    console.log("初期化完了");
+};
+
 
 // 属性のIDを表示用の日本語に変換するマップ
 const elementMap = {
@@ -21,6 +78,16 @@ const btnSave = document.getElementById('btn-save');
 const dialReg = document.getElementById('dial-reg');
 const skillList = document.getElementById('skill-list');
 const masterBody = document.getElementById('master-body');
+const weaponMasterBody = document.getElementById('weapon-master-body');
+const weaponGroupListContainer = document.getElementById('weapon-group-list');
+
+// 武器追加ボタン（メインエリアのボタンなど）にイベント登録
+const btnAddWeapon = document.getElementById('add-weapon-btn');
+const dialWeaponReg = document.getElementById('dial-weapon-reg');
+const btnWeaponClose = document.getElementById('weapon-dialog-close'); // キャンセルボタン等
+// 武器の保存処理
+const btnWeaponSave = document.getElementById('btn-weapon-save-exec');
+
 
 // --- 2. タブ切り替え機能 ---
 tabs.forEach(tab => {
@@ -32,9 +99,475 @@ tabs.forEach(tab => {
         contents.forEach(c => c.classList.add('hidden'));
         document.getElementById(target).classList.remove('hidden');
 
+        if(target === 'weapon-screen') renderWeaponMasterDB();
         if(target === 'db-screen') renderMasterDB();
     };
 });
+
+
+
+// ****************************
+// **  武器リストページ       **
+// ****************************
+
+// --- 1. 武器データ管理変数 ---
+// スキルリスト(gbfSkillManagerData)とは別のキーで保存
+
+// 2. イベント登録（ここに追加！）
+if (btnAddWeapon) {
+    btnAddWeapon.onclick = () => {
+        // スキル選択肢を最新の状態にする関数があればここで呼ぶ
+        if (typeof updateSkillSelects === 'function') updateSkillSelects();
+        
+        const dial = document.getElementById('dial-weapon-reg');
+        if (dial) dial.showModal();
+    };
+}
+
+// --- 武器登録ダイアログ操作 ---
+const openWeaponDial = () => {
+    if (dialWeaponReg) {
+        // スキル選択肢を最新にする関数があればここで呼ぶ
+        if (typeof updateSkillSelects === 'function') updateSkillSelects();
+        dialWeaponReg.showModal();
+    }
+};
+
+// ダイアログを開く
+if(btnAddWeapon) btnAddWeapon.onclick = openWeaponDial;
+// キャンセルボタンの動作
+if(btnWeaponClose) {   
+btnWeaponClose.onclick = () => dialWeaponReg.close();
+}
+
+if(btnWeaponSave) btnWeaponSave.onclick = () => {
+    const nameEl = document.getElementById('we-name');
+    const elementEl = document.getElementById('we-element');
+    
+    if(!nameEl || !nameEl.value) return alert("武器名称を入力してください");
+
+    // 新規武器IDの生成
+    const newWeaponKey = "wp_" + Date.now();
+    
+    // 現在選択中の武器シリーズ（グループ）にデータを追加
+    // ※武器はレベル200、スキル1〜4の構造で初期化
+    weaponDatabase[activeWeaponGroupId].weapons[newWeaponKey] = {
+        label: nameEl.value,
+        element: elementEl.value,
+        level: 200, 
+        skill1: "", skill1Val: 0,
+        skill2: "", skill2Val: 0,
+        skill3: "", skill3Val: 0,
+        skill4: "", skill4Val: 0
+    };
+
+    saveWeaponToLocalStorage(); // 武器専用の保存関数を実行
+    renderWeaponMasterDB();    // 武器テーブルを再描画
+    
+    dialWeaponReg.close();      // ダイアログを閉じる
+    
+    // 入力欄をリセット
+    nameEl.value = "";
+};
+
+/**
+ * スキル名が変更された際に、効果量を自動セットする
+ */
+window.handleSkillChange = (weaponKey, skillIndex, selectEl) => {
+    const selectedLabel = selectEl.value;
+    // IDを使って入力欄を特定
+    const valInput = document.getElementById(`val-${weaponKey}-${skillIndex}`);
+    
+    console.log("選択されたスキル:", selectedLabel); // デバッグ用
+
+    let autoValue = 0;
+
+    if (selectedLabel !== "") {
+        // skillDatabaseの中を総当たりで検索
+        for (const groupId in skillDatabase) {
+            const group = skillDatabase[groupId];
+            if (!group.skills) continue;
+
+            for (const sKey in group.skills) {
+                const skill = group.skills[sKey];
+                // ラベル名が一致するかチェック
+                if (skill.label === selectedLabel) {
+                    if (skill.effects && skill.effects.length > 0) {
+                        autoValue = skill.effects[0].value;
+                        console.log("マッチした数値:", autoValue);
+                        break;
+                    }
+                }
+            }
+            if (autoValue !== 0) break;
+        }
+    }
+
+    // 画面に反映
+    if (valInput) {
+        valInput.value = autoValue;
+    } else {
+        console.error("入力欄が見つかりません: " + `val-${weaponKey}-${skillIndex}`);
+    }
+
+    // データベース保存
+    const currentGroup = weaponDatabase[activeWeaponGroupId];
+    if (currentGroup && currentGroup.weapons[weaponKey]) {
+        currentGroup.weapons[weaponKey][`skill${skillIndex}`] = selectedLabel;
+        currentGroup.weapons[weaponKey][`skill${skillIndex}Val`] = autoValue;
+        saveWeaponToLocalStorage();
+    }
+};
+
+// --- 2. 武器テーブル描画関数 ---
+function renderWeaponMasterDB() {
+    if (!weaponMasterBody) return;
+    weaponMasterBody.innerHTML = "";
+
+const filterEl = document.getElementById('weapon-filter-element').value;
+    const currentGroup = weaponDatabase[activeWeaponGroupId];
+    const currentWeapons = currentGroup.weapons;
+
+    // 件数カウント更新
+    const weaponKeys = Object.keys(currentWeapons);
+    const countEl = document.getElementById('weapon-current-count');
+    if (countEl) {
+        countEl.innerText = `(全 ${weaponKeys.length} 件)`;
+    }
+
+weaponKeys.forEach(key => {
+        const wp = currentWeapons[key];
+
+        // フィルタリング
+        if (filterEl !== 'all' && wp.element !== filterEl) return;
+
+        const tr = document.createElement('tr');
+        const elLabel = wp.element || 'none';
+        const elJapanese = elementMap[elLabel] || elLabel;
+
+// スキル選択肢の生成（スキルデータベースから動的に取得する想定）
+        // ここでは4枠分ループ
+        let skillsHtml = "";
+        for (let i = 1; i <= 4; i++) {
+            const sKey = wp[`skill${i}`] || "";
+            const sVal = wp[`skill${i}Val`] || 0;
+            
+            // スキル名のプルダウン（簡易版：実際は全スキルリストからoptionを生成）
+// skillsHtml を生成しているループ内
+skillsHtml += `
+    <td>
+        <select class="weapon-edit-skill" data-index="${i}" 
+                onchange="handleSkillChange('${key}', ${i}, this)"> 
+            <option value="">(なし)</option>
+            ${generateSkillOptions(sKey)} 
+        </select>
+    </td>
+    <td>
+        <input type="number" value="${sVal}" class="weapon-edit-eff-val" 
+               id="val-${key}-${i}"  
+               readonly 
+               tabindex="-1"
+               style="background-color: #1c2128; color: #8b949e; cursor: not-allowed; border: 1px solid #30363d;">
+    </td>
+`;
+        }
+
+        tr.innerHTML = `
+            <td class="weapon-el-${elLabel}">${elJapanese}</td>
+            <td><input type="text" value="${wp.label}" class="weapon-edit-label" onblur="saveWeaponMaster('${key}', this)"></td>
+            <td><input type="number" value="${wp.level}" class="weapon-edit-lv" onblur="saveWeaponMaster('${key}', this)"></td>
+            ${skillsHtml}
+            <td>
+                <button class="weapon-move-btn" onclick="moveWeapon(event, '${key}', -1)">▲</button>
+                <button class="weapon-move-btn" onclick="moveWeapon(event, '${key}', 1)">▼</button>
+                <button class="weapon-delete-btn" onclick="deleteWeaponMaster('${key}')">削除</button>
+            </td>
+        `;
+        weaponMasterBody.appendChild(tr);
+    });
+}
+
+// スキル選択肢を生成するヘルパー（スキルリスト側のデータを利用）
+function generateSkillOptions(selectedLabel) { // 引数名をlabelに合わせておくと分かりやすい
+    let options = "";
+    Object.keys(skillDatabase).forEach(gid => {
+        const group = skillDatabase[gid];
+        options += `<optgroup label="${group.name}">`;
+        Object.keys(group.skills).forEach(sk => {
+            const skill = group.skills[sk];
+            // valueを sk(ID) ではなく skill.label(名前) にする
+            const isSelected = skill.label === selectedLabel ? "selected" : "";
+            options += `<option value="${skill.label}" ${isSelected}>${skill.label}</option>`;
+        });
+        options += `</optgroup>`;
+    });
+    return options;
+}
+
+// --- 3. 保存・編集ロジック ---
+window.saveWeaponMaster = (key, element) => {
+    const row = element.closest('tr');
+    const targetWp = weaponDatabase[activeWeaponGroupId].weapons[key];
+    
+    targetWp.label = row.querySelector('.weapon-edit-label').value;
+    targetWp.level = Number(row.querySelector('.weapon-edit-lv').value);
+    targetWp.element = row.cells[0].className.replace('weapon-el-', '');
+
+    const skillSelects = row.querySelectorAll('.weapon-edit-skill');
+    const valInputs = row.querySelectorAll('.weapon-edit-eff-val');
+
+    for (let i = 0; i < 4; i++) {
+        targetWp[`skill${i+1}`] = skillSelects[i].value;
+        targetWp[`skill${i+1}Val`] = Number(valInputs[i].value);
+    }
+
+    saveWeaponToLocalStorage();
+    element.classList.add('weapon-saved-flash');
+    setTimeout(() => element.classList.remove('weapon-saved-flash'), 500);
+};
+
+// --- 4. グループ（シリーズ）管理 ---
+function renderWeaponSidebar() {
+    if (!weaponGroupListContainer) return;
+    weaponGroupListContainer.innerHTML = "";
+    
+    const groupIds = Object.keys(weaponDatabase);
+    groupIds.forEach((id, index) => {
+        const li = document.createElement('li');
+        li.className = `weapon-group-item ${id === activeWeaponGroupId ? 'active' : ''}`;
+        
+        const isFirst = index === 0;
+        const isLast = index === groupIds.length - 1;
+
+        li.innerHTML = `
+            <span class="weapon-group-name">${weaponDatabase[id].name}</span>
+            <div class="weapon-group-controls">
+                <button class="weapon-move-btn ${isFirst ? 'is-hidden' : ''}" onclick="moveWeaponGroup(event, ${index}, -1)">▲</button>
+                <button class="weapon-move-btn ${isLast ? 'is-hidden' : ''}" onclick="moveWeaponGroup(event, ${index}, 1)">▼</button>
+                <button class="weapon-edit-group-btn" onclick="renameWeaponGroup(event, '${id}')">✎</button>
+                <button class="weapon-delete-group-btn" onclick="deleteWeaponGroup(event, '${id}')">×</button>
+            </div>
+        `;
+        li.onclick = () => selectWeaponGroup(id);
+        weaponGroupListContainer.appendChild(li);
+    });
+}
+
+function selectWeaponGroup(id) {
+    activeWeaponGroupId = id;
+    renderWeaponSidebar();
+    const titleEl = document.getElementById('weapon-current-group-name');
+    if (titleEl) titleEl.innerText = weaponDatabase[activeWeaponGroupId].name;
+    renderWeaponMasterDB();
+}
+
+// 武器追加ボタン（ダイアログ表示）
+// 「シリーズ」の横にある「＋」ボタン
+const weaponAddGroupBtn = document.getElementById('weapon-add-group-btn'); 
+
+if (weaponAddGroupBtn) {
+    weaponAddGroupBtn.onclick = () => {
+        const groupName = prompt("新しいシリーズ名を入力してください");
+        if (groupName) {
+            const groupId = "wgroup_" + Date.now();
+            weaponDatabase[groupId] = {
+                name: groupName,
+                weapons: {}
+            };
+            saveWeaponToLocalStorage();
+            renderWeaponSidebar();
+            selectWeaponGroup(groupId);
+        }
+    };
+}
+
+// --- 武器シリーズの並び替え関数 ---
+window.moveWeaponGroup = (event, index, direction) => {
+    event.stopPropagation(); // 親要素（li）のクリックイベントを止める
+
+    const keys = Object.keys(weaponDatabase);
+    const newIndex = index + direction;
+
+    // 範囲外なら何もしない
+    if (newIndex < 0 || newIndex >= keys.length) return;
+
+    // キーの配列を並び替え
+    const targetKeys = [...keys];
+    const [movedKey] = targetKeys.splice(index, 1);
+    targetKeys.splice(newIndex, 0, movedKey);
+
+    // 新しい順番でオブジェクトを再構築
+    const newDatabase = {};
+    targetKeys.forEach(key => {
+        newDatabase[key] = weaponDatabase[key];
+    });
+
+    // 元のデータベースの中身を入れ替え
+    for (let key in weaponDatabase) delete weaponDatabase[key];
+    Object.assign(weaponDatabase, newDatabase);
+
+    // 保存と再描画（武器専用の関数名であることを確認してください）
+    if (typeof saveWeaponToLocalStorage === 'function') {
+        saveWeaponToLocalStorage();
+    }
+    renderWeaponSidebar();
+};
+
+// --- 武器シリーズ名の変更関数 ---
+window.renameWeaponGroup = (event, id) => {
+    event.stopPropagation();
+    const oldName = weaponDatabase[id].name;
+    const newName = prompt("新しいシリーズ名を入力してください", oldName);
+
+    if (newName && newName !== oldName) {
+        weaponDatabase[id].name = newName;
+        saveWeaponToLocalStorage();
+        renderWeaponSidebar();
+    }
+};
+
+// --- 武器シリーズの削除関数 ---
+window.deleteWeaponGroup = (event, id) => {
+    event.stopPropagation();
+    if (!confirm(`シリーズ「${weaponDatabase[id].name}」を削除してもよろしいですか？`)) return;
+
+    delete weaponDatabase[id];
+
+    // 削除したグループを表示中だった場合の処理
+    if (activeWeaponGroupId === id) {
+        const keys = Object.keys(weaponDatabase);
+        activeWeaponGroupId = keys.length > 0 ? keys[0] : null;
+    }
+
+    saveWeaponToLocalStorage();
+    renderWeaponSidebar();
+    renderWeaponMasterDB();
+};
+
+// --- 5. 共通処理 (LocalStorage / インポート・エクスポート) ---
+
+function saveWeaponToLocalStorage() {
+    localStorage.setItem('gbfWeaponManagerData', JSON.stringify(weaponDatabase));
+}
+
+function saveAllWeapons() {
+    saveWeaponToLocalStorage();
+    alert("全ての武器データを保存しました。");
+    renderWeaponMasterDB();
+}
+
+// 武器削除
+window.deleteWeaponMaster = (key) => {
+    if (!confirm("この武器データを削除しますか？")) return;
+    delete weaponDatabase[activeWeaponGroupId].weapons[key];
+    saveWeaponToLocalStorage();
+    renderWeaponMasterDB();
+};
+
+// 武器の並び替え
+window.moveWeapon = (event, key, direction) => {
+    const currentWps = weaponDatabase[activeWeaponGroupId].weapons;
+    const keys = Object.keys(currentWps);
+    const index = keys.indexOf(key);
+    const newIndex = index + direction;
+
+    if (newIndex < 0 || newIndex >= keys.length) return;
+
+    const targetKeys = [...keys];
+    const [movedKey] = targetKeys.splice(index, 1);
+    targetKeys.splice(newIndex, 0, movedKey);
+
+    const newWps = {};
+    targetKeys.forEach(k => newWps[k] = currentWps[k]);
+    weaponDatabase[activeWeaponGroupId].weapons = newWps;
+    saveWeaponToLocalStorage();
+    renderWeaponMasterDB();
+};
+
+// 初期化実行
+document.getElementById('weapon-filter-element').onchange = renderWeaponMasterDB;
+renderWeaponSidebar();
+renderWeaponMasterDB();
+
+// --- 武器バックアップ（エクスポート）機能 ---
+const weaponBtnExport = document.getElementById('weapon-btn-export');
+if (weaponBtnExport) {
+    weaponBtnExport.onclick = () => {
+        // 武器データをJSON文字列に変換
+        const dataStr = JSON.stringify(weaponDatabase, null, 2);
+        const blob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        
+        // ダウンロード用のリンクを作成して実行
+        const a = document.createElement('a');
+        const date = new Date().toISOString().split('T')[0];
+        a.href = url;
+        a.download = `gbf_weapons_backup_${date}.json`; // ファイル名を武器用に変更
+        a.click();
+        
+        URL.revokeObjectURL(url);
+    };
+}
+
+// --- 武器復元（インポート）機能 ---
+const weaponImportFile = document.getElementById('weapon-import-file');
+const weaponBtnImport = document.getElementById('weapon-btn-import');
+
+if (weaponBtnImport && weaponImportFile) {
+    weaponBtnImport.onclick = () => weaponImportFile.click();
+
+    weaponImportFile.onchange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            try {
+                const importedData = JSON.parse(event.target.result);
+                
+                // バリデーション：インポートされたデータが武器データっぽいか簡易チェック
+                // (データ構造が武器グループ形式であることを確認)
+                const firstKey = Object.keys(importedData)[0];
+                if (firstKey && !importedData[firstKey].weapons && !importedData[firstKey].list) {
+                     throw new Error("Invalid format");
+                }
+
+                if (confirm("武器データを上書きして復元しますか？現在の武器データは消去されます。")) {
+                    // 既存の武器データを削除
+                    for (let key in weaponDatabase) delete weaponDatabase[key];
+                    // 新しいデータを流し込む
+                    Object.assign(weaponDatabase, importedData);
+                    
+                    // 武器専用の保存関数を実行
+                    saveWeaponToLocalStorage();
+                    
+                    alert("武器データを復元しました。");
+                    location.reload(); 
+                }
+            } catch (err) {
+                alert("武器バックアップファイルの形式が正しくないか、ファイルが壊れています。");
+            }
+        };
+        reader.readAsText(file);
+        
+        // 同じファイルを再度選択しても発火するようにリセット
+        e.target.value = '';
+    };
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // --- 3. ダイアログ操作 ---
 const openDial = () => dialReg.showModal();
@@ -73,6 +606,19 @@ if(btnSave) btnSave.onclick = () => {
 // app.js の renderMasterDB 関数を差し替え
 function renderMasterDB() {
     if(!masterBody) return;
+
+    // --- 追加: 安全チェック ---
+    if (!activeGroupId || !skillDatabase[activeGroupId]) {
+        console.warn("有効なスキルグループが選択されていません。ID:", activeGroupId);
+        masterBody.innerHTML = '<tr><td colspan="11" style="text-align:center;">グループを選択してください</td></tr>';
+        
+        // 件数表示も0にリセット
+        const countEl = document.querySelector('.weapon-count'); // クラス名はご自身の環境に合わせてください
+        if (countEl) countEl.innerText = `(全 0 件)`;
+        return; 
+    }
+    // --- ここまで ---
+
     masterBody.innerHTML = "";
     
     const filterEl = document.getElementById('filter-element').value;
@@ -88,7 +634,6 @@ function renderMasterDB() {
     if (countEl) {
         countEl.innerText = `(全 ${totalCount} 件)`;
     }
-    // --- ここまで ---
 
     for (const key in currentSkills) {
         const skill = currentSkills[key];
@@ -436,7 +981,37 @@ window.moveSkill = (event, key, direction) => {
     renderMasterDB();
 };
 
+// app.js の最後の方（app.js:697付近を含む場所）
+
+function initApp() {
+    // 1. データを読み込む
+    loadFromLocalStorage(); 
+
+    // 2. スキルグループの初期値設定
+    const skillKeys = Object.keys(skillDatabase);
+    if (skillKeys.length > 0) {
+        // activeGroupId が空、もしくは存在しないIDなら、最初のIDを入れる
+        if (!activeGroupId || !skillDatabase[activeGroupId]) {
+            activeGroupId = skillKeys[0];
+        }
+    }
+
+    // 3. 武器グループの初期値設定
+    const weaponKeys = Object.keys(weaponDatabase);
+    if (weaponKeys.length > 0) {
+        if (!activeWeaponGroupId || !weaponDatabase[activeWeaponGroupId]) {
+            activeWeaponGroupId = weaponKeys[0];
+        }
+    }
+
 // app.jsの最後に記述
 loadFromLocalStorage(); // データを読み込む
-renderSidebar();        // サイドバーを表示する
-renderMasterDB();       // テーブルを表示する
+renderSidebar();        // スキルサイドバー
+renderMasterDB();       // スキルテーブル
+renderWeaponSidebar();  // 武器サイドバー
+renderWeaponMasterDB(); // 武器テーブル
+
+}
+
+// 最後に実行
+initApp();

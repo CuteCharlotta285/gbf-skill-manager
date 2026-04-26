@@ -42,7 +42,481 @@ body {
     overflow: hidden;
 }
 
+/* active クラスがついているものだけを表示する */
+.tab-content.hidden {
+    display: none;
+}
+
 .hidden { display: none !important; }
+
+
+/*********************************
+**********************************
+　　　武器リストページのレイアウト
+**********************************
+**********************************/
+
+/* 2カラムレイアウト */
+.weapon-db-container {
+    display: flex;
+    height: 100%;
+}
+
+/* 左側サイドバー */
+.weapon-db-sidebar {
+    width: 220px; /* 少し幅を広げて操作ボタンのスペースを確保 */
+    background-color: #0d1117;
+    border-right: 1px solid #30363d;
+    padding: 20px 10px;
+}
+
+/* サイドバーヘッダーとバックアップボタン群 */
+.weapon-sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px 15px;
+    color: #8b949e;
+    font-size: 12px;
+}
+
+.weapon-header-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* 📥📤 アイコンボタン */
+.weapon-icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    padding: 2px;
+    opacity: 0.6;
+    transition: 0.2s;
+    color: #8b949e;
+}
+
+.weapon-icon-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* ＋ ボタンの微調整 */
+.weapon-add-btn {
+    background: none;
+    border: none;
+    color: #8b949e;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 5px;
+    transition: color 0.2s;
+}
+
+.weapon-add-btn:hover {
+    color: #58a6ff;
+}
+
+/* 武器リスト用のグループアイテム（接頭辞を区別） */
+.weapon-group-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.weapon-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 3px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 4px;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent; /* アクセント線 */
+}
+
+.weapon-group-item:hover {
+    background-color: #1c2128;
+    border-left: 3px solid #30363d;
+}
+
+.weapon-group-item.active {
+    background-color: #1f6feb22; /* 透過した青 */
+    color: #58a6ff;
+    font-weight: bold;
+    border-left: 3px solid #58a6ff;
+}
+
+.weapon-group-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 8px;
+}
+
+/* 移動ボタンのスタイル */
+.weapon-move-btn {
+    background: none;
+    border: none;
+    color: #8b949e;
+    font-size: 13px; /* 少し小さめに */
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+.weapon-move-btn:hover {
+    background-color: #30363d;
+    color: #58a6ff;
+}
+
+/* 一番上と一番下のボタンを無効っぽく見せる工夫（オプション） */
+/* 最初の子要素の「上へ」ボタンと、最後の子要素の「下へ」ボタンを隠す場合はJS側で制御が必要 */
+
+/* ボタンを隠すためのクラス */
+.weapon-move-btn.is-hidden {
+    visibility: hidden;
+    pointer-events: none; /* クリックもできないようにする */
+}
+
+/* グループ内の操作ボタン (✎ と ×) */
+.weapon-group-controls {
+    display: flex;
+    gap: 4px;
+    opacity: 0; /* 普段は隠す */
+    transition: 0.2s;
+}
+
+.weapon-group-item:hover .weapon-group-controls {
+    opacity: 1; /* 透明度を1にして表示 */
+}
+
+.weapon-edit-group-btn, .weapon-delete-group-btn {
+    background: none;
+    border: none;
+    color: #8b949e;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 2px 2px;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+.weapon-edit-group-btn:hover {
+    background-color: #30363d;
+    color: #58a6ff;
+}
+
+.weapon-delete-group-btn:hover {
+    background-color: #30363d;
+    color: #f85149;
+}
+
+/* 右側メイン */
+.weapon-db-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #0d1117;
+}
+
+/* ヘッダー：左と右に振り分ける */
+.weapon-db-header {
+    display: flex;
+    justify-content: space-between; /* これでタイトルとボタンが左右に分かれます */
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* 左側：タイトルと件数 */
+.weapon-db-title-area {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.weapon-db-title-area h2 {
+    margin: 0;
+    font-size: 25px;
+    color: #c9d1d9;
+}
+
+.weapon-count {
+    color: #8b949e;
+    font-size: 20px;
+}
+
+/* 右側メインのボタンエリア */
+.weapon-db-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0; /* このエリア自体が縮まないように固定 */
+}
+
+/* ボタンのサイズ適正化 */
+.weapon-save-all-btn, 
+.weapon-add-weapon-btn, 
+.weapon-db-controls select {
+    height: 32px; /* 高さを統一 */
+    padding: 0 12px;
+    font-size: 20px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* ボタンの高さを32pxで統一し、文字サイズを適正化 */
+.weapon-save-all-btn, 
+.weapon-green-btn, 
+#weapon-filter-element {
+    height: 32px; 
+    padding: 0 10px; /* 左右の余白を少し削って横幅を確保 */
+    font-size: 20px; /* 14pxより少し小さくして「はみ出し」を防止 */
+    white-space: nowrap;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* 一括保存ボタンの専用色（GitHub風の緑） */
+.weapon-save-all-btn {
+    background-color: #238636;
+    color: white;
+    border: 1px solid rgba(240, 246, 252, 0.1);
+    font-weight: bold;
+}
+
+/* 読み取り専用時の入力欄をスッキリさせる */
+input[readonly] {
+    border-color: transparent;
+    background-color: transparent;
+    cursor: default;
+    outline: none;
+}
+
+.weapon-weapon-table-wrapper {
+    flex: 1;
+    overflow-x: auto; /* 横スクロールを強制 */
+    overflow-y: auto;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    background-color: #161b22;
+    display: block;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    min-width: 1000px; /* 操作ボタンまでしっかり見える幅に設定 */
+    border-collapse: collapse;
+    background-color: #161b22;
+}
+
+th {
+    background-color: #0d1117;
+    padding: 5px 15px;
+    font-size: 18px;
+    text-align: center;
+    color: #8b949e;
+    border-bottom: 1px solid #30363d;
+    white-space: nowrap;
+}
+
+td {
+    padding: 4px 1px;
+    border-bottom: 1px solid #30363d;
+}
+
+/* 入力欄のデザイン */
+input[type="text"], input[type="number"], select {
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    text-align: right;
+    color: #c9d1d9;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 18px; /* ← 20pxから14pxに下げるとシュッとします */
+}
+
+/* フォーム用の特別な入力欄（ダイアログ内など）だけ100%にする */
+.weapon-input-group input {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 20px; /* 入力しやすさのために少しだけ大きく */
+}
+
+/* 各入力ボックスの個別幅設定 */
+.weapon-edit-label { width: 150px; }
+.weapon-edit-lv { width: 50px; text-align: left; }
+.weapon-edit-skill { width: 200px; }
+.weapon-edit-eff-val { width: 75px; text-align: left; }
+
+/* 属性別カラー */
+.weapon-el-all  { color: #ffffff; font-weight: bold; }
+.weapon-el-fire  { color: #ff7b72; font-weight: bold; }
+.weapon-el-water { color: #79c0ff; font-weight: bold; }
+.weapon-el-earth { color: #ffa657; font-weight: bold; }
+.weapon-el-wind  { color: #7ee787; font-weight: bold; }
+.weapon-el-light { color: #fbff1b; font-weight: bold; }
+.weapon-el-dark  { color: #a371f7; font-weight: bold; }
+.weapon-el-hakai  { color: #270401; font-weight: bold; }
+
+/* ボタン共通 */
+.weapon-green-btn {
+    background-color: #238636;
+    color: white;
+    border: 1px solid rgba(240, 246, 252, 0.1);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.weapon-green-btn:hover { background-color: #2ea043; }
+
+/* 保存ボタン */
+.weapon-edit-btn {
+    background-color: #238636;
+    color: white;
+    border: 1px solid rgba(240, 246, 252, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    margin-right: 4px;
+}
+.weapon-edit-btn:hover { background-color: #2ea043; }
+
+/* 削除ボタン */
+.weapon-delete-btn {
+    background-color: #21262d;
+    color: #f85149;
+    border: 1px solid #30363d;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+.weapon-delete-btn:hover {
+    background-color: #b62324;
+    color: white;
+}
+
+/* 操作列の幅 */
+td:last-child {
+    white-space: nowrap;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* ダイアログ */
+dialog {
+    background-color: #161b22;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+/* 保存された時に一瞬だけ光るアニメーション */
+@keyframes save-flash {
+    0% { background-color: #238636; }
+    100% { background-color: #0d1117; }
+}
+
+.weapon-saved-flash {
+    animation: save-flash 0.5s ease-out;
+}
+
+/* 移動ボタンのスタイル */
+.weapon-move-btn {
+    background-color: #21262d;
+    color: #8b949e;
+    border: 1px solid #30363d;
+    padding: 4px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-right: 2px;
+    transition: 0.2s;
+}
+
+.weapon-move-btn:hover {
+    background-color: #30363d;
+    color: #58a6ff;
+}
+
+/* 操作列の幅をボタン3つ分に調整 */
+td:last-child {
+    white-space: nowrap;
+    min-width: 120px; /* ボタン3つ並ぶように少し広げる */
+    text-align: center;
+}
+
+/* 左側のサイドバー全体の設定 */
+.db-sidebar {
+    width: 220px; /* 必要に応じて幅を調整してください */
+    
+    /* 画面の高さに合わせる設定 */
+    height: calc(100vh - 100px); /* 100pxはタブメニューや余白の分です。微調整してください */
+    
+    /* 中身がはみ出た場合にスクロールさせる */
+    display: flex;
+    flex-direction: column;
+}
+
+/* スキルグループが並んでいるリスト部分をスクロールさせる */
+.weapon-group-list {
+    flex: 1;            /* 残りの高さをすべて使う */
+    overflow-y: auto;   /* 縦方向にスクロールを出す */
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    /* スクロールバーの見た目をスッキリさせる設定（任意） */
+    scrollbar-width: thin;
+}
+
+/* ChromeやEdge用のスクロールバーデザイン（任意） */
+.weapon-group-list::-webkit-scrollbar {
+    width: 6px;
+}
+.weapon-group-list::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+.weapon-input-group { margin-bottom: 15px; }
+.weapon-input-group label { display: block; margin-bottom: 5px; font-size: 20px; }
+.weapon-input-group input { width: 100%; box-sizing: border-box; }
+
+
+
+/*********************************
+**********************************
+　　スキルリストページのレイアウト
+**********************************
+**********************************/
 
 /* 2カラムレイアウト */
 .db-container {

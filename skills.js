@@ -2163,6 +2163,6 @@ syumatu_enhance: {
 };
 																									
 																									
-let activeGroupId = "normal_atk";																									
+let activeGroupId = "normal_kojin";																									
 																									
 																								
