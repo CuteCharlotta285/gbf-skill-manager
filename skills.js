@@ -2217,10 +2217,8 @@ dark_garen_l_15: { label: "奈落の技錬15", element: "dark", level: 15, effec
         { type: "EX攻刃", value: 40 }, 
         { type: "ダメ上限", value: 7 }, 
         { type: "CB与ダメUP", value: 100 }, 
-        { type: "奥義与ダメUP", value: 10 }
-      ] 
+        { type: "奥義与ダメUP", value: 10 } ] }
     }
-  }
   }
 };
 																									
