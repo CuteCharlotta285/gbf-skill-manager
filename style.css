@@ -353,7 +353,7 @@ input[type="text"], input[type="number"], select {
     color: #c9d1d9;
     padding: 5px 12px;
     border-radius: 4px;
-    font-size: 18px; /* ← 20pxから14pxに下げるとシュッとします */
+    font-size: 16px; /* ← 20pxから14pxに下げるとシュッとします */
 }
 
 /* フォーム用の特別な入力欄（ダイアログ内など）だけ100%にする */
@@ -364,10 +364,10 @@ input[type="text"], input[type="number"], select {
 }
 
 /* 各入力ボックスの個別幅設定 */
-.weapon-edit-label { width: 150px; }
+.weapon-edit-label { width: 185px; }
 .weapon-edit-lv { width: 50px; text-align: left; }
-.weapon-edit-skill { width: 200px; }
-.weapon-edit-eff-val { width: 75px; text-align: left; }
+.weapon-edit-skill { width: 190px; }
+.weapon-edit-eff-val { width: 60px; text-align: left; }
 
 /* 属性別カラー */
 .weapon-el-all  { color: #ffffff; font-weight: bold; }
@@ -813,7 +813,7 @@ input[type="text"], input[type="number"], select {
     color: #c9d1d9;
     padding: 5px 12px;
     border-radius: 4px;
-    font-size: 18px; /* ← 20pxから14pxに下げるとシュッとします */
+    font-size: 15px; /* ← 20pxから14pxに下げるとシュッとします */
 }
 
 /* フォーム用の特別な入力欄（ダイアログ内など）だけ100%にする */
