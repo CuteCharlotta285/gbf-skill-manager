@@ -474,7 +474,7 @@ td:last-child {
 }
 
 /* 左側のサイドバー全体の設定 */
-.db-sidebar {
+.weapon-db-sidebar {
     width: 220px; /* 必要に応じて幅を調整してください */
     
     /* 画面の高さに合わせる設定 */
