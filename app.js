@@ -252,6 +252,8 @@ function updateSkillTotals() {
     "ブースト": "val-boost",
     "襲刃": "val-shujin",
     "HP": "val-hp",
+    "通常守護": null,
+    "マグナ守護": null,
     "回復上限": "val-heal-limit",
     "防御": "val-def",
     "弱体耐性": "val-deb-res",
@@ -333,15 +335,22 @@ function updateSkillTotals() {
     }
   });
 
-  // 画面反映
+  totals["HP"] = totals["通常守護"] + totals["マグナ守護"];
+
+// 画面反映
   Object.keys(skillMap).forEach(category => {
     const htmlId = skillMap[category];
+    if (!htmlId) return; // IDがない項目（通常守護など）は表示をスキップ
+
     const element = document.getElementById(htmlId);
     if (element) {
       const val = totals[category];
+
+      // 表示形式の出し分け
       if (category.includes("与ダメ") || category === "オーバーHP") {
         element.innerText = val.toLocaleString();
       } else {
+        // HPも含め、基本は % 表示
         element.innerText = `${Math.round(val * 100) / 100}%`;
       }
     }
