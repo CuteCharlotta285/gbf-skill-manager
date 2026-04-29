@@ -13,12 +13,264 @@
             <button class="tab-btn" data-target="db-screen">スキルリスト</button>
         </nav>
 
-        <section id="main-screen" class="tab-content">
-            <div class="screen-header">
-                <h2>⚔️ 武器編成管理</h2>
-                <button id="btn-open-main" class="primary-btn">＋ 武器を登録</button>
+    <section id="main-screen" class="tab-content">
+      <div class="main-content">
+        <div id="calc"> 
+          <div class="calc-layout">
+
+          <section class="grid-box chara-area">
+            <h2>キャラクター編成 (メイン 4 / サブ 2)</h2>
+            <div class="slots-container" id="chara-slots"></div>
+          </section>
+
+            <section class="grid-box weapon-area">
+              <h2>武器編成 (メイン武器 1 / サブ 9 / EX 3)</h2>
+              <div class="slots-container" id="weapon-slots"></div>
+            </section>
+
+          <section class="grid-box result-area">
+            <h2>計算結果 / 予測ダメージ</h2>
+
+            <div class="character-damage-container">
+              <p class="section-title">キャラ別予測ダメージ</p>
+              <div id="char-damage-list">
+                <div class="char-dmg-row">
+                  <span class="char-name">主人公</span
+                  ><span class="char-dmg-val">0</span>
+                </div>
+                <div class="char-dmg-row">
+                  <span class="char-name">メイン1</span
+                  ><span class="char-dmg-val">0</span>
+                </div>
+                <div class="char-dmg-row">
+                  <span class="char-name">メイン2</span
+                  ><span class="char-dmg-val">0</span>
+                </div>
+                <div class="char-dmg-row">
+                  <span class="char-name">メイン3</span
+                  ><span class="char-dmg-val">0</span>
+                </div>
+              </div>
             </div>
-        </section>
+
+            <hr class="divider" />
+
+<p class="section-title">スキル合計値</p>
+<div class="skill-summary-grid">
+  <div class="skill-item">
+    <span class="label">攻刃</span>
+    <span class="val" id="val-atk">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">M攻刃</span>
+    <span class="val" id="val-m-atk">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">EX攻刃</span>
+    <span class="val" id="val-ex-atk">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">EX攻刃(特殊)</span>
+    <span class="val" id="val-ex-atk-sp">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">渾身</span>
+    <span class="val" id="val-konshin">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">M渾身</span>
+    <span class="val" id="val-m-konshin">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">背水</span>
+    <span class="val" id="val-haisui">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">M背水</span>
+    <span class="val" id="val-m-haisui">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">属性攻撃</span>
+    <span class="val" id="val-ele-atk">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">属性攻撃(進境)</span>
+    <span class="val" id="val-ele-shinkyo">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">クリティカル</span>
+    <span class="val" id="val-crit">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">カウンター率</span>
+    <span class="val" id="val-counter">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">DA確率</span>
+    <span class="val" id="val-da">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">TA確率</span>
+    <span class="val" id="val-ta">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">ブースト</span>
+    <span class="val" id="val-boost">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">襲刃</span>
+    <span class="val" id="val-shujin">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">HP</span>
+    <span class="val" id="val-hp">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">回復上限</span>
+    <span class="val" id="val-heal-limit">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">防御</span>
+    <span class="val" id="val-def">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">弱体耐性</span>
+    <span class="val" id="val-deb-res">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">属性軽減</span>
+    <span class="val" id="val-ele-red">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">ダメ上限</span>
+    <span class="val" id="val-dmg-limit">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">ダメ上限(特殊)</span>
+    <span class="val" id="val-dmg-limit-sp">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">与ダメ</span>
+    <span class="val" id="val-yodmg-base">0</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">対有利与ダメ</span>
+    <span class="val" id="val-fav-yodmg">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">対無属性与ダメ</span>
+    <span class="val" id="val-none-yodmg">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">通常ダメ上限</span>
+    <span class="val" id="val-norm-limit">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">通常ダメ上限(特殊)</span>
+    <span class="val" id="val-norm-limit-sp">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">通常与ダメ(特殊)</span>
+    <span class="val" id="val-norm-yodmg-sp">0</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">アビダメ</span>
+    <span class="val" id="val-abil-dmg">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">アビダメ上限</span>
+    <span class="val" id="val-abil-limit">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">アビダメ上限(特殊)</span>
+    <span class="val" id="val-abil-limit-sp">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">アビ与ダメ(特殊)</span>
+    <span class="val" id="val-abil-yodmg-sp">0</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">奥義ダメ</span>
+    <span class="val" id="val-ougi-dmg">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">奥義ダメ上限</span>
+    <span class="val" id="val-ougi-limit">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">奥義ダメ上限(特殊)</span>
+    <span class="val" id="val-ougi-limit-sp">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">奥義与ダメ(特殊)</span>
+    <span class="val" id="val-ougi-yodmg-sp">0</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">与ダメ</span>
+    <span class="val" id="val-yodmg-gen">0</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">アビ与ダメ</span>
+    <span class="val" id="val-abil-yodmg">0</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">奥義与ダメ</span>
+    <span class="val" id="val-ougi-yodmg">0</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">CBダメ</span>
+    <span class="val" id="val-cb-dmg">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">CBダメ上限</span>
+    <span class="val" id="val-cb-limit">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">防御無視</span>
+    <span class="val" id="val-ignore-def">OFF</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">奥義ゲージ上昇</span>
+    <span class="val" id="val-ougi-up">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">オーバーHP</span>
+    <span class="val" id="val-over-hp">0</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">ダメ上限緩和</span>
+    <span class="val" id="val-limit-relax">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">オーバークリ</span>
+    <span class="val" id="val-over-crit">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">オーバー連撃</span>
+    <span class="val" id="val-over-rengeki">0%</span>
+  </div>
+</div>
+          </section>
+
+          <section class="grid-box summon-area">
+            <h2>召喚石編成 (メイン 1 / サブ 4 / サブ加護 2 / フレンド 1)</h2>
+            
+            <div class="deck-summary-grid">
+              <div class="grid-item label-main">メイン側</div>
+              <div id="sub-slot-1" class="grid-item"></div>
+              <div id="sub-slot-2" class="grid-item"></div>
+              <div id="blessing-slot-1" class="grid-item"></div>
+              <div class="grid-item label-friend">フレンド側</div>
+              <div id="sub-slot-3" class="grid-item"></div>
+              <div id="sub-slot-4" class="grid-item"></div>
+              <div id="blessing-slot-2" class="grid-item"></div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+    </section>
 
 <section id="weapon-screen" class="tab-content hidden">
     <div class="weapon-db-container">
@@ -217,6 +469,32 @@
             </div>
         </form>
     </dialog>
+
+<dialog id="dial-weapon-select" class="weapon-select-modal">
+    <div class="modal-header">
+        <h3>武器を選択</h3>
+        <button type="button" id="btn-weapon-select-close">キャンセル</button>
+    </div>
+    <div class="modal-filter">
+        <select id="modal-filter-element">
+              <option value="all">全属性</option>
+               <option value="fire">火</option>
+               <option value="water">水</option>
+               <option value="earth">土</option>
+               <option value="wind">風</option>
+               <option value="light">光</option>
+               <option value="dark">闇</option>
+            </select>
+
+            <select id="modal-filter-series">
+              <option value="all">全シリーズ</option>
+              <option value="all">リミテッド</option>
+            </select>
+
+    </div>
+    <div id="modal-weapon-list" class="modal-weapon-list">
+        </div>
+</dialog>
 
     <script src="skills.js"></script>
     <script src="weapons.js"></script>

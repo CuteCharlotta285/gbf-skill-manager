@@ -39,7 +39,8 @@ body {
 /* コンテンツエリア */
 .tab-content {
     flex: 1;
-    overflow: hidden;
+    /* hidden から auto に変更 */
+    overflow-y: auto; 
 }
 
 /* active クラスがついているものだけを表示する */
@@ -52,7 +53,684 @@ body {
 
 /*********************************
 **********************************
-　　　武器リストページのレイアウト
+    武器リストページのレイアウト
+**********************************
+**********************************/
+
+/* --- 共通の囲い（各エリアの紺色ボックス） --- */
+.grid-box {
+  background: #1e293b; /* ボックスの背景色 */
+  border: 1px solid #334155; /* ボックスの細い枠線 */
+  border-radius: 8px; /* ボックスの角を丸める */
+  padding: 15px; /* ボックス内の余白 */
+}
+
+.grid-box h2 {
+  margin-top: 0; /* 見出しの上の余白を消す */
+  font-size: 1.1rem; /* 見出しの文字サイズ */
+  color: #94a3b8; /* 見出しの文字色（少し薄くする） */
+  border-bottom: 1px solid #334155; /* 見出しの下の区切り線 */
+  padding-bottom: 8px; /* 線と文字の間の隙間 */
+}
+
+/* =========================================
+     2. メインレイアウト（4分割の配置設定）
+     ========================================= */
+.calc-layout {
+  display: grid; /* グリッドレイアウト（タイル並べ）を使う */
+  grid-template-columns: 2fr 1fr; /* 横幅を「左側2：右側1」の比率に分ける */
+  /* 各エリアの名前をどこに配置するか設定（chara=キャラ, weapon=武器, summon=召喚石, result=結果） */
+  grid-template-areas:
+    "chara   result" /* 1段目：左にキャラ、右に結果 */
+    "weapon  result" /* 2段目：左に武器、右に結果 */
+    "summon  result"; /* 3段目：左に石、右に結果 */
+  gap: 20px; /* 各ボックスの間の隙間 */
+  padding: 20px; /* 画面端とボックスの間の余白 */
+}
+
+/* HTMLの各クラスと配置エリアを紐付ける */
+.chara-area {
+  grid-area: chara;
+}
+.weapon-area {
+  grid-area: weapon;
+}
+.summon-area {
+  grid-area: summon;
+}
+.result-area {
+  grid-area: result;
+}
+
+/* --- 右側の計算結果エリア（縦長・2列レイアウト） --- */
+.result-area {
+  position: sticky; /* 画面をスクロールしても場所を固定する */
+  top: 20px; /* 画面の一番上からどれくらい離れて止まるか */
+  height: 1000px; /* 縦長に設定 */
+  display: flex;
+  flex-direction: column;
+  background: #1e293b;
+  border: 2px solid #3b82f6; /* 結果エリアだけ青い太枠で目立たせる */
+  padding: 15px;
+  overflow-y: auto; /* 項目が増えたらスクロール可能に */
+}
+
+/* --- キャラ別ダメージ表示のコンテナ（枠全体を大きく） --- */
+.character-damage-container {
+  background: rgba(0, 0, 0, 0.3); /* 背景を少し濃くして視認性アップ */
+  padding: 15px; /* 内側の余白を広げる */
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #334155; /* 薄い枠線を追加 */
+}
+
+/* 各キャラの行設定（高さを出してゆとりを作る） */
+.char-dmg-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0; /* 上下の余白を大幅にアップ（12px） */
+  border-bottom: 1px solid #334155;
+}
+
+/* 最後のキャラの行は線を消す */
+.char-dmg-row:last-child {
+  border-bottom: none;
+}
+
+/* キャラ名の文字サイズ */
+.char-name {
+  font-size: 17px; /* 少し大きく */
+  color: #94a3b8;
+  font-weight: bold;
+}
+
+/* ダメージ数字（ここを一番強調！） */
+.char-dmg-val {
+  font-size: 24px; /* 18pxから24pxへ大幅アップ */
+  color: #22d3ee; /* 水色 */
+  font-weight: bold;
+  font-family: "Courier New", monospace;
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.4); /* 数字を少し光らせる */
+}
+
+/* スキル合計値の2列グリッド */
+.skill-summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2列に分割 */
+  gap: 5px 15px; /* 縦5px、横15pxの隙間 */
+}
+
+.skill-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px; /* 項目が多いので小さめに */
+  padding: 4px 0;
+  border-bottom: 1px solid #334155;
+}
+
+.skill-item .label {
+  color: #94a3b8;
+}
+.skill-item .val {
+  color: #e2e8f0;
+  font-weight: bold;
+}
+
+/* セクションの小見出し */
+.section-title {
+  font-size: 12px;
+  color: #3b82f6;
+  font-weight: bold;
+  margin: 10px 0 5px 0;
+  text-transform: uppercase;
+}
+
+/* 区切り線 */
+.divider {
+  border: 0;
+  border-top: 1px solid #475569;
+  margin: 15px 0;
+}
+
+/* =========================================
+     3. スロット共通パーツ（すべての枠の基本形）
+     ========================================= */
+.slot-card {
+  width: 250px; /* 枠の基本の横幅 */
+  height: 150px; /* 枠の基本の高さ */
+  background: #0f172a; /* 枠の中の背景色 */
+  border: 2px solid #475569; /* 枠の基本の線の色 */
+  border-radius: 6px; /* 枠の角を丸める */
+  display: flex; /* 中身を並べる */
+  flex-direction: column; /* 中身を縦に並べる */
+  align-items: center; /* 中身を左右中央に */
+  justify-content: space-between; /* 中身を上下に広げる */
+  padding: 5px; /* 枠内の余白 */
+  cursor: pointer; /* 指マークにする */
+  box-sizing: border-box; /* ズレ防止 */
+}
+
+.slot-name {
+  font-size: 20px; /* 文字サイズ */
+  color: #94a3b8; /* 文字の色 */
+  text-align: center;
+}
+
+.slot-icon {
+  font-size: 24px; /* ＋マークの大きさ */
+  color: #334155; /* ＋マークの色 */
+  margin-bottom: 20px;
+}
+
+/* スロットの種類ごとの枠線カラー */
+.main-slot {
+  border-color: #fbbf24;
+} /* 金色：メイン用 */
+.sub-slot {
+  border-color: #3b82f6;
+} /* 青色：サブ用 */
+.ex-slot {
+  border-color: #a855f7;
+} /* 紫色：EX用 */
+.support-slot {
+  border-color: #10b981;
+} /* 緑色：加護石用 */
+.friend-slot {
+  border-color: #f43f5e;
+} /* 赤色：フレンド用 */
+
+/* =========================================
+     4. キャラクター編成の詳細設定（縦長カード）
+     ========================================= */
+.chara-grid-layout {
+  display: flex; /* 横に並べる */
+  align-items: flex-start; /* 上揃え */
+  gap: 10px; /* キャラ同士の隙間 */
+  padding: 10px; /* エリア内の余白 */
+  background: #16213e; /* エリアの背景色 */
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.chara-slot {
+  width: 170px; /* 横幅 */
+  height: 150px; /* 武器スロット3段分相当 */
+  background: #0f172a;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+/* サブメンバー前の仕切り（SUBの文字） */
+.chara-main-end {
+  margin-right: 15px; /* 隙間を広げる */
+  position: relative;
+}
+
+.chara-main-end::after {
+  content: "SUB";
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  color: #475569;
+}
+
+.chara-hero {
+  border: 2px solid #fbbf24 !important;
+} /* 主人公：金枠 */
+.chara-main {
+  border: 2px solid #3b82f6 !important;
+} /* メイン：青枠 */
+.chara-sub {
+  border: 2px solid #64748b !important;
+} /* サブ：グレー枠 */
+
+/* =========================================
+     5. 武器編成の詳細設定（3x3 + EX3）
+     ========================================= */
+.weapon-grid-layout {
+  display: grid;
+  grid-template-columns: 250px repeat(3, 250px); /* 1列目120px, 残り85px */
+  grid-template-rows: repeat(4, 150px); /* 110pxを4段 */
+  gap: 10px;
+  padding: 10px;
+  background: #16213e;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.main-slot {
+  grid-column: 1; /* 1列目に配置 */
+  grid-row: 1 / span 3; /* 3マス分ぶち抜き */
+  height: 100% !important;
+  width: 100% !important;
+  border: 2px solid #fbbf24 !important;
+  background: rgba(251, 191, 36, 0.1);
+}
+
+.ex-slot {
+  grid-row: 4; /* 4段目に配置 */
+  grid-column: calc(var(--ex-index, 0) + 2); /* 2列目から順に並べる */
+  border: 2px solid #a855f7 !important;
+}
+
+.sub-slot {
+  border: 2px solid #3b82f6 !important;
+}
+
+/* スロット内のメイン情報（アイコンと名前） */
+.slot-main-info {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* スキル表示用のコンテナ */
+.slot-skill-container {
+    margin-top: auto;
+    padding-top: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* スキル名と数値を左右の端に寄せる */
+.slot-skill-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    color: #8b949e;
+    line-height: 1.4;
+}
+
+/* スキルの数値の色 */
+.slot-skill-row span:last-child {
+    color: #58a6ff;
+}
+
+/* =========================================
+     6. 召喚石編成の詳細設定（メイン/サブ/フレンド）
+     ========================================= */
+
+.deck-summary-grid {
+    display: grid;
+    /* 横に4等分（各140px程度） */
+    grid-template-columns: repeat(4, 250px); 
+    /* [修正点1] 行の最大高さを指定。武器スロット(height: 90pxなど)に合わせる */
+    grid-template-rows: repeat(2, 150px); 
+    gap: 10px; /* 隙間を10pxに */
+    padding: 10px;
+    background-color: #0d1117;
+    border-radius: 8px;
+    border: 1px solid #30363d;
+}
+
+.grid-item {
+    /* [修正点2] 中央寄せを廃止し、武器スロットと同じFlexbox構成にする */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 上詰めに */
+    align-items: stretch;     /* 幅いっぱいまで広げる */
+    
+    background-color: #1c2128;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 6px; /* 武器スロットと同じパディング */
+    box-sizing: border-box; /* パディングを含めてサイズを計算 */
+    
+    /* [修正点3] 武器スロットと同じ高さにする */
+    height: 150px;
+    
+    font-size: 14px;
+    overflow: hidden; /* はみ出し防止 */
+}
+
+/* 「メイン側」「フレンド側」のラベル専用スタイル */
+.label-main {
+    /* [修正点4] ラベルも上詰めで表示する */
+    justify-content: center; /* ラベルだけ中央寄せしたいならそのまま */
+    font-weight: bold;
+    color: #8b949e;
+    border-left: 4px solid #f2ca30; /* 左側にアクセントライン */
+    background-color: rgba(242, 202, 48, 0.05); /* ほんのり黄色背景 */
+}
+.label-main { color: #f2ca30; }
+
+.label-friend {
+    /* [修正点4] ラベルも上詰めで表示する */
+    justify-content: center; /* ラベルだけ中央寄せしたいならそのまま */
+    font-weight: bold;
+    color: #8b949e;
+    border-left: 4px solid #ff4b4b;
+    background-color: rgba(255, 75, 75, 0.05);
+}
+.label-friend { color: #ff4b4b; }
+
+/* サブ（青系） */
+.summon-slot {
+    border-left: 4px solid #58a6ff;
+    background-color: rgba(88, 166, 255, 0.05);
+}
+
+/* 加護スロット専用のスタイル（もし強調したければ） */
+.blessing-slot {
+border-left: 4px solid #3fb950;
+    background-color: rgba(63, 185, 80, 0.05);
+}
+.blessing-slot .slot-label {
+    color: #3fb950;
+}
+
+/* 共通：文字が見えにくくならないよう調整 */
+.grid-item .slot-label {
+    font-weight: bold;
+    filter: brightness(1.2); /* ラベルの色を少し明るく */
+}
+
+/* --- 加護入力欄のスタイル（選択UIに変わったので不要になりましたが、
+   もしHTMLに残っている場合のズレ防止用に残しておきます） --- */
+.blessing-box .slot-label {
+    font-size: 11px;
+    color: #8b949e;
+}
+
+.blessing-input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 8px;
+}
+.blessing-input-group input {
+    width: 60px;
+    height: 30px;
+    font-size: 18px;
+}
+
+.input-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.input-row span {
+  font-size: 13px;
+  color: #94a3b8;
+}
+.input-row input,
+.input-row select {
+  width: 70%;
+  padding: 8px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: white;
+  border-radius: 4px;
+}
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* モーダルの背景（画面全体を暗くする） */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* 背景を70%の黒にする */
+  display: none; /* 初期状態は隠す */
+  align-items: center; /* 中身を上下中央に */
+  justify-content: center; /* 中身を左右中央に */
+  z-index: 9999; /* 一番手前に表示されるようにする */
+}
+
+/* モーダルの中身（白いボックス部分） */
+.modal-content {
+  background-color: #1e293b;
+  padding: 25px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* 影をつけて浮いている感を出す */
+  border: 1px solid #334155;
+}
+
+/* タイトルを少し強調 */
+.modal-content h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #3b82f6;
+  border-bottom: 1px solid #334155;
+  padding-bottom: 10px;
+}
+
+/* 1. 項目名（ラベル）の文字を大きくする */
+.input-row span {
+  font-size: 18px; /* 13pxから大幅アップ */
+  font-weight: bold;
+  color: #e2e8f0; /* 少し明るい白にして読みやすく */
+}
+
+/* 2. 入力ボックスとセレクトボックスの文字・サイズを大きくする */
+.input-row input, 
+.input-row select {
+  width: 70%;
+  padding: 12px; /* 余白を増やして押しやすく */
+  font-size: 18px; /* 入力文字を大きく */
+  background: #0f172a;
+  border: 2px solid #334155; /* 枠線を少し太く */
+  color: white;
+  border-radius: 6px;
+}
+
+/* 3. モーダルのタイトルを強調 */
+.modal-content h3 {
+  font-size: 24px;
+  margin-bottom: 25px;
+  color: #60a5fa;
+}
+
+/* 武器選択エリア全体の調整 */
+.chip-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px; /* チップ同士の隙間を広げる */
+  padding: 15px;
+  background: #0f172a;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 武器チップ（ラベル部分）の調整 */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px; /* チェックボックスと文字の隙間 */
+  padding: 12px 20px; /* クリックしやすいように大きく */
+  background: #334155;
+  color: #e2e8f0;
+  border-radius: 8px;
+  font-size: 20px; /* 「剣」「斧」などの文字を大きく */
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+  user-select: none;
+}
+
+/* チェックボックス本体（□）を大きくして表示する */
+.chip input[type="checkbox"] {
+  display: inline-block; /* 隠さずに表示 */
+  width: 22px;  /* ボックスを大きく */
+  height: 22px; /* ボックスを大きく */
+  cursor: pointer;
+  accent-color: #3b82f6; /* チェック時の色を青に */
+}
+
+/* 選択された時のチップの背景色 */
+.chip:has(input:checked) {
+  background: #1e40af; /* 濃い青 */
+  border-color: #3b82f6;
+  color: white;
+}
+
+/* ホバー時の反応 */
+.chip:hover {
+  background: #475569;
+}
+
+/* 5. 下部のボタンも大きくして押しやすく */
+.modal-content .btn-primary,
+.modal-content .tab-btn {
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* モーダル本体のサイズ固定 */
+#dial-weapon-select {
+    width: 1000px;           /* 幅を固定（5列が綺麗に収まるサイズ） */
+    height: 800px;          /* 高さを固定 */
+    padding: 0;             /* 内部の余白を一旦リセット */
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    color: #c9d1d9;
+}
+
+/* モーダル内のリストコンテナ */
+.modal-weapon-list {
+    display: grid;
+    /* 1列を「1つ分の幅」として、それを5回繰り返す設定 */
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 10px;          /* 武器カード同士の隙間 */
+    padding: 15px;
+/* ここが重要：残りの高さをすべて使い、溢れたらスクロール */
+    height: calc(1200px - 600px); /* 全体高さ - (ヘッダー+フィルタの高さ) */
+    overflow-y: auto; 
+}
+
+/* 武器ひとつひとつのアイテム */
+.modal-weapon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* 上詰めに変更（アイコン位置を揃えるため） */
+    
+    /* --- サイズ固定の設定 --- */
+    width: 180px;           /* タイルの横幅を固定 */
+    height: 100px;          /* タイルの高さを固定 */
+    box-sizing: border-box; /* パディングを含めて100pxにする */
+    
+    background-color: #1c2128;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 10px 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-align: center;
+}
+
+/* 名前ラベルの調整 */
+.weapon-name-label {
+    font-size: 14px;        /* 15pxだと100px幅には少し大きいので、11〜12pxがオススメ */
+    margin-top: 6px;
+    width: 100%;            /* 親要素いっぱいに広げる */
+    
+    /* --- 名前が長い時の処理 --- */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;       /* 溢れた分を隠す */
+    line-height: 1.2;
+}
+
+.modal-weapon-item:hover {
+    background-color: #30363d;
+    border-color: #58a6ff;
+}
+
+/* アイコンのサイズ調整 */
+.modal-weapon-item .element-icon {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #30363d;
+    flex-shrink: 0;         /* スクロールさせずに固定する */
+}
+
+#btn-weapon-select-close {
+    background: none;
+    border: none;
+    color: #8b949e;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#btn-weapon-select-close:hover {
+    color: #f85149; /* ホバーで赤くする */
+}
+
+/* 「外す」ボタン専用のスタイル */
+.modal-weapon-item.remove-item {
+    border-color: #f85149; /* 赤っぽい枠線 */
+    color: #f85149;
+}
+
+.modal-weapon-item.remove-item .weapon-icon-circle {
+    background-color: #442d2d;
+    font-weight: bold;
+}
+
+.modal-weapon-item.remove-item:hover {
+    background-color: #3e2b2b;
+}
+
+.modal-filter-area {
+    padding: 10px 15px;
+    background-color: #0d1117;
+    display: flex; /* 横並びにする */
+    gap: 10px;    /* セレクトボックス間の隙間 */
+    flex-shrink: 0;         /* スクロールさせずに固定する */
+}
+
+#modal-filter-element, 
+#modal-filter-series {
+    flex: 1; /* 同じ幅で広がるようにする */
+    background-color: #1c2128;
+    color: #c9d1d9;
+    border: 1px solid #30363d;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+
+
+
+
+
+
+/*********************************
+**********************************
+    武器リストページのレイアウト
 **********************************
 **********************************/
 

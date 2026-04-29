@@ -236,8 +236,8 @@ const WeaponDatabase = {
                 label: "イラマグナ杖", element: "fire", level: 150,
                 skill1: "マグナ・ブーストファイア", skill1Val: 0,
                 skill2: "機炎方陣・攻刃Ⅲ15", skill2Val: 0,
-                skill3: "機炎の星醒", skill3Val: 0,
-                skill4: "", skill4Val: 0
+                skill3: "機炎方陣・攻刃Ⅲ15", skill3Val: 0,
+                skill4: "機炎方陣・攻刃Ⅲ15", skill4Val: 0
             }
         }
     },
