@@ -11,6 +11,7 @@
             <button class="tab-btn active" data-target="main-screen">武器編成</button>
             <button class="tab-btn" data-target="weapon-screen">武器リスト</button>
             <button class="tab-btn" data-target="db-screen">スキルリスト</button>
+            <button class="tab-btn" data-target="summon-screen">召喚石リスト</button>
         </nav>
 
     <section id="main-screen" class="tab-content">
@@ -252,20 +253,20 @@
 </div>
           </section>
 
-          <section class="grid-box summon-area">
-            <h2>召喚石編成 (メイン 1 / サブ 4 / サブ加護 2 / フレンド 1)</h2>
-            
-            <div class="deck-summary-grid">
-              <div class="grid-item label-main">メイン側</div>
-              <div id="sub-slot-1" class="grid-item"></div>
-              <div id="sub-slot-2" class="grid-item"></div>
-              <div id="blessing-slot-1" class="grid-item"></div>
-              <div class="grid-item label-friend">フレンド側</div>
-              <div id="sub-slot-3" class="grid-item"></div>
-              <div id="sub-slot-4" class="grid-item"></div>
-              <div id="blessing-slot-2" class="grid-item"></div>
-            </div>
-          </section>
+<section class="grid-box summon-area">
+  <h2>召喚石編成 (メイン 1 / サブ 4 / サブ加護 2 / フレンド 1)</h2>
+  
+  <div class="deck-summary-grid">
+    <div id="slot-main" class="grid-item summon-slot" onclick="openSummonSelect('main')">メイン</div>
+    <div id="slot-sub1" class="grid-item summon-slot" onclick="openSummonSelect('sub1')">サブ1</div>
+    <div id="slot-sub2" class="grid-item summon-slot" onclick="openSummonSelect('sub2')">サブ2</div>
+    <div id="slot-support1" class="grid-item summon-slot" onclick="openSummonSelect('support1')">サブ加護1</div>
+    <div id="slot-friend" class="grid-item summon-slot" onclick="openSummonSelect('friend')">フレンド</div>
+    <div id="slot-sub3" class="grid-item summon-slot" onclick="openSummonSelect('sub3')">サブ3</div>
+    <div id="slot-sub4" class="grid-item summon-slot" onclick="openSummonSelect('sub4')">サブ4</div>
+    <div id="slot-support2" class="grid-item summon-slot" onclick="openSummonSelect('support2')">サブ加護2</div>
+  </div>
+</section>
 
         </div>
       </div>
@@ -443,7 +444,74 @@
                 </main>
             </div>
         </section>
-    </div>
+
+<!-- 召喚石データベースセクション -->
+<section id="summon-screen" class="tab-content hidden">
+  <div class="db-container">
+    <!-- サイドバー：神石、マグナ、属性石などのグループ分け -->
+    <aside class="db-sidebar">
+      <div class="sidebar-header">
+        <span>シリーズ</span>
+        <div class="header-controls">
+          <button id="summon-btn-export" class="icon-btn" title="バックアップ（保存）">📥</button>
+          <button id="summon-btn-import" class="icon-btn" title="復元（読み込み）">📤</button>
+          <button id="summon-add-group-btn" class="add-btn">＋</button>
+        </div>
+      </div>
+      <input type="file" id="summon-import-file" style="display:none" accept=".json">
+      <ul class="group-list" id="summon-group-list">
+        <!-- JSでグループ一覧（火属性、マグナ等）を表示 -->
+      </ul>
+    </aside>
+<main class="db-main">
+      <div class="db-header">
+        <div class="db-title-area">
+          <h2 id="current-summon-group-name">召喚石一覧</h2>
+          <span id="summon-count" class="count">(全 0 件)</span>
+        </div>
+        <div class="db-controls">
+          <select id="summon-filter-element">
+            <option value="all">全属性</option>
+            <option value="fire">火</option>
+            <option value="water">水</option>
+            <option value="earth">土</option>
+            <option value="wind">風</option>
+            <option value="light">光</option>
+            <option value="dark">闇</option>
+          </select>
+          <button id="summon-btn-open" class="green-btn">＋ 石追加</button>
+          <button id="summon-save-all-btn" class="save-all-btn">一括保存</button>
+        </div>
+      </div>
+
+      <!-- 召喚石専用のテーブル構造 -->
+      <div class="table-wrapper">
+        <table id="summon-master-table">
+          <thead>
+    <tr>
+        <th>属性</th>
+        <th>名称</th>
+        <th>メイン加護1</th>
+        <th>効果量</th>
+        <th>メイン加護2</th>
+        <th>効果量</th>
+        <th>フレ加護</th>
+        <th>効果量</th>
+        <th>サブ加護1</th>
+        <th>効果量</th>
+        <th>サブ加護2</th>
+        <th>効果量</th>
+        <th>操作</th>
+    </tr>
+</thead>
+<tbody id="summon-master-body">
+            <!-- ここに登録した石が並ぶ -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</section>
 
     <dialog id="dial-reg">
         <form method="dialog">
@@ -496,8 +564,55 @@
         </div>
 </dialog>
 
+<!-- 召喚石登録用ダイアログ -->
+<dialog id="dial-summon-add" class="master-dialog">
+    <div class="dial-content">
+        <h3>新規召喚石の追加</h3>
+        <div class="input-group">
+            <label>名称:</label>
+            <input type="text" id="new-summon-label" placeholder="例：バハムート">
+        </div>
+        <div class="input-group">
+            <label>属性:</label>
+            <select id="new-summon-element">
+                <option value="fire">火</option>
+                <option value="water">水</option>
+                <option value="earth">土</option>
+                <option value="wind">風</option>
+                <option value="light">光</option>
+                <option value="dark">闇</option>
+            </select>
+        </div>
+        <div class="dial-btns">
+            <button class="green-btn" onclick="addNewSummon()">登録</button>
+            <button class="cancel-btn" onclick="document.getElementById('dial-summon-add').close()">キャンセル</button>
+        </div>
+    </div>
+</dialog>
+
+<dialog id="dial-summon-select" class="summon-select-modal">
+    <div class="modal-header">
+        <h3>召喚石を選択</h3>
+        <select id="summon-select-filter-element" onchange="renderSummonSelectionList()">
+            <option value="all">全属性</option>
+            <option value="fire">火</option>
+            <option value="water">水</option>
+            <option value="earth">土</option>
+            <option value="wind">風</option>
+            <option value="light">光</option>
+            <option value="dark">闇</option>
+        </select>
+        <button type="button" onclick="document.getElementById('dial-summon-select').close()">×</button>
+    </div>
+    <div id="summon-selection-list" class="modal-summon-list">
+    </div>
+</dialog>
+
+    </div>
+
     <script src="skills.js"></script>
     <script src="weapons.js"></script>
+    <script src="summons.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

@@ -7,6 +7,14 @@ let activeWeaponGroupId = Object.keys(weaponDatabase)[0] || null;
 // 現在の編成（13本分）を保持する配列。中身は武器データオブジェクトを入れる
 let currentDeckWeapons = Array(13).fill(null);
 
+// 実際にアプリで使う変数の初期化
+// localStorage に保存されているデータがあればそれを使い、なければ今作ったデフォルトを使う
+summonDatabase = JSON.parse(localStorage.getItem('summon_db_data')) || window.defaultSummonDatabase;
+
+// 選択中のグループID（最初のグループを選択状態にする）
+activeSummonGroupId = Object.keys(summonDatabase)[0] || null;
+
+
 // ==========================================
 // 2. ページ読み込み時の起動処理
 // ==========================================
@@ -101,6 +109,7 @@ tabs.forEach(tab => {
         const target = tab.dataset.target;
         contents.forEach(c => c.classList.add('hidden'));
         document.getElementById(target).classList.remove('hidden');
+        
 
         if(target === 'main-screen') { 
             console.log("計算機を再描画します");
@@ -110,6 +119,7 @@ tabs.forEach(tab => {
 
         if(target === 'weapon-screen') renderWeaponMasterDB();
         if(target === 'db-screen') renderMasterDB();
+        if(target === 'summon-screen') refreshSummonDB();
     };
 });
 
@@ -506,6 +516,187 @@ function setupOthers() {
     }
   }
 }
+
+
+
+let currentSelectingSummonSlot = null; // どのスロットを編集中かメモ
+
+// --- 1. ダイアログを開く関数 ---
+function openSummonSelect(slotId) {
+    currentSelectingSummonSlot = slotId;
+    const dialog = document.getElementById('dial-summon-select');
+    
+    if (dialog) {
+        renderSummonSelectionList(); // リストを作成
+        dialog.showModal();
+    } else {
+        console.error("ダイアログ 'dial-summon-select' が見つかりません");
+    }
+}
+
+// --- 2. リストの中身を作る関数 ---
+function renderSummonSelectionList() {
+// HTML側のIDがどちらでも動くようにする（ここが真っ暗の原因！）
+    const listContainer = document.getElementById('modal-summon-list') || 
+                          document.getElementById('summon-selection-list');
+    
+    if (!listContainer) {
+        console.error("表示用のコンテナが見つかりません。HTMLに id='modal-summon-list' があるか確認してください。");
+        return;
+    }
+
+    // --- ここを修正： IDが違ってもエラーにならないようにする ---
+    // HTML側のIDが 'summon-modal-filter-element' か 'summon-select-filter-element' のどちらかを探す
+    const filterEl = document.getElementById('summon-modal-filter-element') || 
+                     document.getElementById('summon-select-filter-element');
+    
+    // 見つかればその値を使い、なければ 'all' にする
+    const filterValue = filterEl ? filterEl.value : 'all';
+
+    listContainer.innerHTML = '';
+
+    // --- 「外す」ボタンの追加 ---
+    const removeDiv = document.createElement('div');
+    removeDiv.className = 'summon-selection-item'; 
+    removeDiv.style.borderColor = '#c0392b';
+    removeDiv.style.backgroundColor = 'rgba(192, 57, 43, 0.1)';
+    removeDiv.innerHTML = `
+        <div style="color: #e74c3c; font-size: 20px; margin-bottom: 4px;">×</div>
+        <div class="sl-name" style="color: #e74c3c; font-weight: bold;">外す</div>
+    `;
+    removeDiv.onclick = () => {
+        removeSummonFromSlot(currentSelectingSummonSlot);
+        const dial = document.getElementById('dial-summon-select');
+        if (dial) dial.close();
+    };
+    listContainer.appendChild(removeDiv);
+
+    // --- リスト表示 ---
+    Object.values(summonDatabase).forEach(group => {
+        if (!group.summons) return;
+        Object.entries(group.summons).forEach(([sId, s]) => {
+            // 修正した filterValue を使って判定
+            if (filterValue !== 'all' && s.element !== filterValue) return;
+
+            const div = document.createElement('div');
+            div.className = 'summon-selection-item';
+            div.innerHTML = `
+                <div class="sl-el el-${s.element}">${elementMap[s.element] || ''}</div>
+                <div class="sl-name">${s.label}</div>
+                <div class="sl-info">${s.type || ''} 加護:${s.mainValue || 0}%</div>
+            `;
+            div.onclick = () => {
+                applySummonToSlot(sId, s);
+                const dial = document.getElementById('dial-summon-select');
+                if (dial) dial.close();
+            };
+            listContainer.appendChild(div);
+        });
+    });
+}
+
+// 装備を外す専用の関数
+function removeSummonFromSlot(slotId) {
+    const slot = document.getElementById(`slot-${slotId}`);
+    if (!slot) return;
+
+    // 見た目を初期状態に戻す
+    slot.classList.remove('equipped');
+    slot.innerHTML = '未設定';
+
+    // TODO: 編成データ（currentDeckなど）からも削除する処理をここに入れる
+    console.log(`${slotId} の装備を外しました`);
+    
+    // 計算を再実行
+    // updateCalculations();
+}
+
+function applySummonToSlot(summonId, summonData) {
+    const slotKey = currentSelectingSummonSlot; // 'main', 'friend', 'sub1', 'support1' など
+    const slotId = `slot-${slotKey}`;
+    const slot = document.getElementById(slotId);
+    
+    if (!slot) {
+        console.error("スロットが見つかりません:", slotId);
+        return;
+    }
+
+    // 装備済みクラスを付与
+    slot.classList.add('equipped');
+// --- 加護情報のリストを生成するロジック ---
+    const kagoList = []; // 表示する加護の配列 [{label, value, type}, ...]
+
+    if (slotKey === 'main') {
+        // メイン1
+        kagoList.push({
+            label: "メイン加護1",
+            value: summonData.main1Value || summonData.mainValue || 0,
+            type: summonData.main1Type || summonData.mainType || "属性"
+        });
+        // メイン2（値がある場合のみ追加）
+        if (summonData.main2Value && summonData.main2Value > 0) {
+            kagoList.push({
+                label: "メイン加護2",
+                value: summonData.main2Value,
+                type: summonData.main2Type || "その他"
+            });
+        }
+    } else if (slotKey === 'friend') {
+        kagoList.push({
+            label: "フレ加護",
+            value: summonData.friendValue || summonData.main1Value || summonData.mainValue || 0,
+            type: summonData.friendType || summonData.main1Type || summonData.mainType || "属性"
+        });
+    } else if (slotKey.startsWith('sub') || slotKey.startsWith('support')) {
+        // サブ1
+        kagoList.push({
+            label: "サブ加護1",
+            value: summonData.sub1Value || summonData.subValue || 0,
+            type: summonData.sub1Type || summonData.subType || "サブ"
+        });
+        // サブ2（値がある場合、または属性や与ダメなど特定のタイプが設定されている場合）
+        if (summonData.sub2Value > 0 || (summonData.sub2Type && summonData.sub2Type !== "なし")) {
+            kagoList.push({
+                label: "サブ加護2",
+                value: summonData.sub2Value || 0,
+                type: summonData.sub2Type || "サブ"
+            });
+        }
+    }
+
+    // --- HTMLの組み立て ---
+    // 加護の行を動的に生成
+    const kagoHtml = kagoList.map(kago => `
+        <div class="slot-skill-container" style="width: 100%; border-top: 1px solid #444; margin-top: 2px; padding-top: 2px;">
+            <div class="slot-skill-row">
+                <span>${kago.label}</span>
+                <span>${kago.value}${kago.type === '与ダメ上昇' ? '' : '%'}</span>
+            </div>
+            <div class="slot-skill-row" style="font-size: 10px; color: #58a6ff;">
+                <span>${kago.type}</span>
+            </div>
+        </div>
+    `).join('');
+
+    // スロット内部の書き換え
+    slot.innerHTML = `
+        <div class="slot-main-info">
+            <span class="el-${summonData.element}">${elementMap[summonData.element] || ''}</span>
+            <span class="slot-name" style="font-size: 14px;">${summonData.label}</span>
+        </div>
+        ${kagoHtml}
+    `;
+
+// モーダルを閉じる
+    const dialog = document.getElementById('dial-summon-select');
+    if (dialog) dialog.close();
+
+    // デッキデータへの保存（もし関数があるなら）
+    if (typeof updateDeckSummon === 'function') {
+        updateDeckSummon(slotKey, summonId);
+    }
+}
+
 
 // 最後に実行して画面を作る
 setupWeaponGrid();
@@ -1384,6 +1575,434 @@ window.moveSkill = (event, key, direction) => {
     renderMasterDB();
 };
 
+
+
+
+
+// 召喚石画面のすべてを更新する
+function refreshSummonDB() {
+  renderSummonGroups();
+  renderSummonTable();
+}
+
+// サイドバーのグループ一覧を描画
+function renderSummonGroups() {
+  const list = document.getElementById('summon-group-list');
+  if (!list) return;
+  list.innerHTML = '';
+
+  Object.keys(summonDatabase).forEach(id => {
+    const group = summonDatabase[id];
+    const li = document.createElement('li');
+        li.className = `group-item ${id === activeSummonGroupId ? 'active' : ''}`;
+        li.innerHTML = `<span class="group-name">${group.name}</span>`;
+        li.onclick = () => {
+      activeSummonGroupId = id;
+      refreshSummonDB();
+    };
+    list.appendChild(li);
+  });
+}
+
+function addNewSummonGroup() {
+    const groupName = prompt("新しい召喚石シリーズの名前を入力してください", "新シリーズ");
+
+    if (groupName === null || groupName.trim() === "") return;
+
+    const newGroupId = "group_" + Date.now();
+
+    // 1. データベースに追加
+    summonDatabase[newGroupId] = {
+        name: groupName,
+        summons: {}
+    };
+
+    activeSummonGroupId = newGroupId;
+
+    // 2. 画面を更新
+    if (typeof refreshSummonDB === 'function') {
+        refreshSummonDB();
+    } else {
+        renderSummonGroups();
+        renderSummonTable();
+    }
+    
+    // 3. 【重要】ここを確実に保存される書き方に変更
+    // 関数があれば実行し、なければ直接localStorageに書き込む
+    if (typeof saveSummonDatabase === 'function') {
+        saveSummonDatabase();
+    } else {
+        localStorage.setItem('gbf_summon_db', JSON.stringify(summonDatabase));
+        console.log("直接保存を実行しました");
+    }
+}
+
+// メインテーブルの石一覧を描画
+function renderSummonTable() {
+    const body = document.getElementById('summon-master-body');
+    if (!body || !activeSummonGroupId) return;
+
+    const group = summonDatabase[activeSummonGroupId];
+    const filterEl = document.getElementById('summon-filter-element').value;
+    document.getElementById('current-summon-group-name').innerText = group.name;
+    const count = Object.keys(group.summons).length;
+    document.getElementById('summon-count').innerText = `(全 ${count} 件)`;
+    
+    body.innerHTML = '';
+
+    Object.entries(group.summons).forEach(([sId, s]) => {
+        
+        if (filterEl !== 'all' && s.element !== filterEl) {
+            return; 
+        }
+
+        const tr = document.createElement('tr');
+        const elementLabel = elementMap[s.element] || s.element;
+
+        // タイプ選択の共通パーツ
+        const typeOptions1 = (val) => `
+            <option value="神石" ${val === '神石' ? 'selected' : ''}>神石</option>
+            <option value="マグナ" ${val === 'マグナ' ? 'selected' : ''}>マグナ</option>
+            <option value="属性" ${val === '属性' ? 'selected' : ''}>属性</option>
+            <option value="その他" ${val === 'その他' ? 'selected' : ''}>その他</option>
+            <option value="加護なし" ${val === '加護なし' ? 'selected' : ''}>加護なし</option>
+        `;
+
+        const typeOptions2 = (val) => `
+            <option value="神石" ${val === '神石' ? 'selected' : ''}>神石</option>
+            <option value="マグナ" ${val === 'マグナ' ? 'selected' : ''}>マグナ</option>
+            <option value="属性" ${val === '属性' ? 'selected' : ''}>属性</option>
+            <option value="TA率" ${val === 'TA率' ? 'selected' : ''}>TA率</option>
+            <option value="HP" ${val === 'HP' ? 'selected' : ''}>HP</option>
+            <option value="加護なし" ${val === '加護なし' ? 'selected' : ''}>加護なし</option>
+        `;
+
+// --- renderSummonTable 関数内 ---
+
+// サブ加護用の選択肢パーツ
+const subTypeOptions = (val) => {
+    const opts = ["サブ加護", "属性", "攻撃力", "防御力", "HP", "与ダメ上昇", "与ダメUP", "ダメ上限", "なし"];
+    return opts.map(opt => 
+        `<option value="${opt}" ${val === opt ? 'selected' : ''}>${opt}</option>`
+    ).join('');
+};
+
+// ★ tr.innerHTML を以下に差し替え
+tr.innerHTML = `
+    <td><span class="el-${s.element}">${elementLabel}</span></td>
+    <td><input type="text" value="${s.label}" class="edit-summon-label"></td>
+    
+    <td><select class="edit-summon-main1-type">${typeOptions1(s.main1Type || s.mainType)}</select></td>
+    <td><input type="number" value="${s.main1Value || s.mainValue || 0}" class="edit-summon-main1-val">%</td>
+    
+    <td><select class="edit-summon-main2-type">${typeOptions2(s.main2Type || '加護なし')}</select></td>
+    <td><input type="number" value="${s.main2Value || 0}" class="edit-summon-main2-val">%</td>
+    
+    <td><select class="edit-summon-friend-type">${typeOptions1(s.friendType || s.mainType)}</select></td>
+    <td><input type="number" value="${s.friendValue || s.mainValue || 0}" class="edit-summon-friend-val">%</td>
+    
+    <td>
+        <select class="edit-summon-sub1-type">
+            ${subTypeOptions(s.sub1Type || s.subType || 'なし')}
+        </select>
+    </td>
+    <td><input type="number" value="${s.sub1Value || s.subValue || 0}" class="edit-summon-sub1-val">%</td>
+
+    <td>
+        <select class="edit-summon-sub2-type">
+            ${subTypeOptions(s.sub2Type || s.subType2 || 'なし')}
+        </select>
+    </td>
+    <td><input type="number" value="${s.sub2Value || s.subValue2 || 0}" class="edit-summon-sub2-val">%</td>
+    
+    <td>
+        <div class="action-cell">
+            <button class="move-btn" onclick="moveSummon('${sId}', -1)">▲</button>
+            <button class="move-btn" onclick="moveSummon('${sId}', 1)">▼</button>
+            <button class="delete-btn" onclick="deleteSummon('${sId}')">削除</button>
+        </div>
+    </td>
+`;
+    body.appendChild(tr);
+    });
+}
+
+function saveSummonChanges() {
+    if (!activeSummonGroupId) return;
+    const group = summonDatabase[activeSummonGroupId];
+    const rows = document.querySelectorAll('#summon-master-body tr');
+
+    // フィルタリング（属性絞り込み）の状態を考慮して、
+    // 画面に表示されている行から正しいsIdを特定して保存します
+    rows.forEach((tr) => {
+        // 削除ボタンや移動ボタンに埋め込んだ sId を取得するのが最も確実です
+        // もしボタンに sId がない場合は、行のデータ属性などから取得する必要があります
+        // ここでは、以前作成したボタンの onclick 属性から sId を抽出する例にします
+        const deleteBtn = tr.querySelector('.delete-btn');
+        if (!deleteBtn) return;
+        
+        // onclick="deleteSummon('ID')" から ID を抽出
+        const sId = deleteBtn.getAttribute('onclick').match(/'([^']+)'/)[1];
+        const s = group.summons[sId];
+        if (!s) return;
+
+        // 名称
+        s.label = tr.querySelector('.edit-summon-label').value;
+        
+        // メイン1 (mainType/mainValue から main1Type/main1Value に移行)
+        s.main1Type = tr.querySelector('.edit-summon-main1-type').value;
+        s.main1Value = parseInt(tr.querySelector('.edit-summon-main1-val').value) || 0;
+
+        // メイン2
+        s.main2Type = tr.querySelector('.edit-summon-main2-type').value;
+        s.main2Value = parseInt(tr.querySelector('.edit-summon-main2-val').value) || 0;
+        
+        // フレンド
+        s.friendType = tr.querySelector('.edit-summon-friend-type').value;
+        s.friendValue = parseInt(tr.querySelector('.edit-summon-friend-val').value) || 0;
+        
+        // サブ1
+        s.sub1Type = tr.querySelector('.edit-summon-sub1-type').value;
+        s.sub1Value = parseInt(tr.querySelector('.edit-summon-sub1-val').value) || 0;
+
+        // サブ2
+        s.sub2Type = tr.querySelector('.edit-summon-sub2-type').value;
+        s.sub2Value = parseInt(tr.querySelector('.edit-summon-sub2-val').value) || 0;
+        
+        // 互換性のために古いプロパティも更新しておく（任意）
+        s.mainType = s.main1Type;
+        s.mainValue = s.main1Value;
+        s.subType = s.sub1Type;
+        s.subValue = s.sub1Value;
+    });
+
+    // ストレージへの保存（保存キーが 'summon_db_data' か 'gbf_summon_db' か統一してください）
+    localStorage.setItem('summon_db_data', JSON.stringify(summonDatabase));
+    
+    // もし共通の保存関数があるならそれも呼ぶ
+    if (window.saveSummonDatabase) window.saveSummonDatabase();
+
+    alert('保存しました');
+}
+
+// ページが完全に読み込まれてからボタンを探す設定
+document.addEventListener('DOMContentLoaded', () => {
+    const saveBtn = document.getElementById('summon-save-all-btn');
+    if (saveBtn) {
+        saveBtn.onclick = saveSummonChanges;
+        console.log("召喚石の保存ボタンを有効化しました");
+    } else {
+        console.error("保存ボタン(id='summon-save-all-btn')が見つかりません");
+    }
+});
+
+
+// 石追加ボタンの動作設定
+const addSummonBtn = document.getElementById('summon-btn-open');
+if (addSummonBtn) {
+    addSummonBtn.onclick = () => {
+        const dial = document.getElementById('dial-summon-add'); 
+        if (dial) {
+            dial.showModal(); // ダイアログを表示
+        } else {
+            console.error("ダイアログ 'dial-summon-add' が見つかりません");
+        }
+    };
+}
+
+// 「＋」ボタンをクリックしたときにaddNewSummonGroupを実行する
+document.getElementById('summon-add-group-btn')?.addEventListener('click', addNewSummonGroup);
+
+function addNewSummon() {
+    if (!activeSummonGroupId) return;
+
+    const label = document.getElementById('new-summon-label').value;
+    const element = document.getElementById('new-summon-element').value;
+
+    if (!label) {
+        alert("名前を入力してください");
+        return;
+    }
+
+    // IDを生成（現在のタイムスタンプなどで重複回避）
+    const newId = "summon_" + Date.now();
+
+    // 新しいデータ構造でオブジェクトを作成
+    const newSummon = {
+        label: label,
+        element: element,
+        type: "属性",        // デフォルト値
+        mainType: "属性",    // 追加
+        mainValue: 0,
+        friendType: "属性",  // 追加
+        friendValue: 0,
+        subType: "サブ加護", // 追加
+        subValue: 0,
+        subType2: "サブ加護",// 追加
+        subValue2: 0
+    };
+
+    // データベースに追加
+    summonDatabase[activeSummonGroupId].summons[newId] = newSummon;
+
+    // ローカルストレージに保存
+    localStorage.setItem('summon_db_data', JSON.stringify(summonDatabase));
+
+    // 画面を更新してダイアログを閉じる
+    renderSummonTable();
+    document.getElementById('dial-summon-add').close();
+    
+    // 入力欄をクリア
+    document.getElementById('new-summon-label').value = "";
+}
+
+function deleteSummon(sId) {
+    // 1. ユーザーに確認（誤操作防止）
+    const isConfirmed = confirm("この召喚石を削除してもよろしいですか？\n※一括保存を押すまでブラウザには保存されません。");
+    
+    if (!isConfirmed) return;
+
+    // 2. メモリ上のデータベースから削除
+    if (activeSummonGroupId && summonDatabase[activeSummonGroupId].summons[sId]) {
+        delete summonDatabase[activeSummonGroupId].summons[sId];
+        
+        // 3. 画面を再描画（削除されたことを即座に反映）
+        renderSummonTable();
+        
+        // 4. 注意：この時点ではまだ localStorage には書き込まれていません。
+        // 「一括保存」ボタンを押すか、ここで自動保存させるか選べます。
+        // 自動保存させたい場合は以下の1行を追加してください。
+        // localStorage.setItem('summon_db_data', JSON.stringify(summonDatabase));
+    } else {
+        console.error("削除対象の石が見つかりませんでした:", sId);
+    }
+}
+
+// --- 1. エクスポート処理 ---
+function exportSummonData() {
+    if (!summonDatabase || Object.keys(summonDatabase).length === 0) {
+        alert("エクスポートするデータがありません。");
+        return;
+    }
+    const dataStr = JSON.stringify(summonDatabase, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    
+    const a = document.createElement('a');
+    a.href = url;
+    // ファイル名に今日の日付を入れる（親切設計）
+    a.download = `gbf_summons_${new Date().toLocaleDateString().replace(/\//g, '-')}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+// --- 2. インポート処理 ---
+function importSummonData(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const data = JSON.parse(e.target.result);
+            // 武器データとの取り違えを防ぐ簡単なチェック
+            if (data && typeof data === 'object') {
+                summonDatabase = data; 
+                
+                // 【重要】ここの関数名が「実際にlocalStorageへ保存する関数名」と合っているか確認！
+                if (typeof saveSummonDatabase === 'function') {
+                    saveSummonDatabase(); 
+                } else {
+                    // もし保存関数がない場合は直接書く
+                    localStorage.setItem('gbf_summon_db', JSON.stringify(summonDatabase));
+                }
+                
+                alert("召喚石データを復元しました。");
+                location.reload(); 
+            }
+        } catch (err) {
+            console.error(err);
+            alert("ファイルの形式が正しくありません。");
+        }
+    };
+    reader.readAsText(file);
+}
+
+// --- 3. イベントの紐付け ---
+function initSummonEvents() {
+    const exportBtn = document.getElementById('summon-btn-export');
+    if (exportBtn) {
+        exportBtn.onclick = exportSummonData;
+    }
+
+    const importBtn = document.getElementById('summon-btn-import');
+    const fileInput = document.getElementById('summon-import-file');
+    if (importBtn && fileInput) {
+        importBtn.onclick = () => fileInput.click(); 
+        fileInput.onchange = (e) => importSummonData(e); 
+    }
+}
+
+// 初期化時に実行
+initSummonEvents();
+
+/**
+ * 召喚石の順番を入れ替える関数
+ */
+function moveSummon(targetId, direction) {
+    const group = summonDatabase[activeSummonGroupId];
+    if (!group) return;
+
+    // オブジェクトを [ID, データ] の配列に変換
+    const entries = Object.entries(group.summons);
+    const index = entries.findIndex(([id]) => id === targetId);
+
+    // 移動先を計算
+    const newIndex = index + direction;
+
+    // 配列の範囲外なら何もしない
+    if (newIndex < 0 || newIndex >= entries.length) return;
+
+    // 要素を入れ替え
+    [entries[index], entries[newIndex]] = [entries[newIndex], entries[index]];
+
+    // 新しいオブジェクトを再構築して順番を確定させる
+    const newSummons = {};
+    entries.forEach(([id, data]) => {
+        newSummons[id] = data;
+    });
+
+    // データベースを更新
+    group.summons = newSummons;
+
+    // 再描画（並び替えた結果を画面に反映）
+    renderSummonTable();
+    
+    // 必要であればここで保存
+    // saveSummonDatabase(); 
+}
+
+
+
+
+
+
+
+// 属性フィルタを切り替えたら表を再描画
+const filterSelect = document.getElementById('summon-filter-element');
+if (filterSelect) {
+    filterSelect.onchange = renderSummonTable;
+}
+
+
+
+
+
+
+
+
+
+
 // app.js の最後の方（app.js:697付近を含む場所）
 
 function initApp() {
@@ -1406,6 +2025,7 @@ function initApp() {
             activeWeaponGroupId = weaponKeys[0];
         }
     }
+
 
 // app.jsの最後に記述
 setupWeaponGrid();

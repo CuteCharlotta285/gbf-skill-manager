@@ -53,7 +53,7 @@ body {
 
 /*********************************
 **********************************
-    武器リストページのレイアウト
+    編成画面ページのレイアウト
 **********************************
 **********************************/
 
@@ -416,8 +416,26 @@ body {
 
 /* サブ（青系） */
 .summon-slot {
-    border-left: 4px solid #58a6ff;
-    background-color: rgba(88, 166, 255, 0.05);
+    background: #2a2a2a;
+    border: 1px dashed #555;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 0.85rem;
+}
+
+.summon-slot:hover {
+    background: #3a3a3a;
+    border-color: #888;
+}
+
+.summon-slot.equipped {
+    border-style: solid;
+    border-color: #4a90e2;
+    background: #1a2635;
 }
 
 /* 加護スロット専用のスタイル（もし強調したければ） */
@@ -619,8 +637,10 @@ border-left: 4px solid #3fb950;
     gap: 10px;          /* 武器カード同士の隙間 */
     padding: 15px;
 /* ここが重要：残りの高さをすべて使い、溢れたらスクロール */
-    height: calc(1200px - 600px); /* 全体高さ - (ヘッダー+フィルタの高さ) */
-    overflow-y: auto; 
+    height: 600px;           /* 固定でもOKですが */
+    align-content: start;    /* これを追加すれば上に詰まります！ */
+    
+    overflow-y: auto;
 }
 
 /* 武器ひとつひとつのアイテム */
@@ -722,6 +742,89 @@ border-left: 4px solid #3fb950;
     border-radius: 4px;
 }
 
+
+/* 召喚石選択モーダル本体の設定 */
+#dial-summon-select {
+    width: 1000px;           /* 武器と同じ幅 */
+    height: 800px;          /* 武器と同じ高さ */
+    padding: 0;
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    color: #c9d1d9;
+}
+
+/* 召喚石リストのグリッド設定（5列） */
+/* 召喚石リストのコンテナ（Flexboxに変更） */
+.modal-summon-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 10px;
+    padding: 15px;
+    height: 600px;
+    align-content: start;
+
+    /* ↓これだけ追加：グリッド全体を水平方向に中央寄せする */
+    justify-content: center; 
+    
+    /* ↓もしアイテムが5個未満のときに中央に寄らない場合は、以下を試してください */
+    justify-items: center; 
+}
+
+#summon-selection-list {
+    /* 5列の幅を固定して、余白を左右に作る場合 */
+    justify-content: center; 
+    
+    /* または、各マスの中身を中央にする */
+    justify-items: center; 
+}
+
+/* 召喚石ひとつひとつのアイテム */
+.summon-selection-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    /* 武器の modal-weapon-item と同じサイズにする */
+    width: 100%;           /* グリッドの枠いっぱいに広げる */
+    margin: 0 auto;        /* 枠の中で中央に寄せる */
+    box-sizing: border-box;
+    
+    background-color: #1c2128;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 10px 5px;
+    cursor: pointer;
+}
+
+.summon-selection-item:hover {
+    background-color: #30363d;
+    border-color: #58a6ff;
+}
+
+/* タイル内の各情報のサイズ調整 */
+.summon-selection-item .sl-el {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.summon-selection-item .sl-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #adbac7;
+    width: 100%;
+    /* 名前が長い時の処理 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.summon-selection-item .sl-info {
+    font-size: 11px;
+    color: #8b949e;
+    margin-top: 4px;
+}
 
 
 
@@ -1634,6 +1737,149 @@ td:last-child {
     /* スクロールバーの見た目をスッキリさせる設定（任意） */
     scrollbar-width: thin;
 }
+
+
+
+/*********************************
+**********************************
+    召喚石リストページのレイアウト
+**********************************
+**********************************/
+
+/* 召喚石リスト専用のID・クラス微調整 */
+
+/* 基本レイアウトはスキルリストと共通なので、
+   HTML側のIDを summon-master-table などにしても
+   table, th, td などのタグ指定セレクタにより自動でデザインが適用されます */
+
+/* 召喚石テーブル用の個別幅設定 */
+.edit-summon-label { width: 220px; text-align: left; } /* 石の名前 */
+.edit-summon-type { width: 140px; text-align: center; } /* 通常/マグナ/属性 */
+.edit-summon-val { width: 80px; text-align: right; } /* 加護量 % */
+.edit-summon-target { width: 120px; text-align: center; } /* 火属性のみ 等 */
+
+/* 召喚石リスト用の追加装飾 */
+#summon-master-table th {
+    background-color: #1c2128; /* スキルリストと少し色を変えて区別しやすく */
+    color: #58a6ff; /* ヘッダー文字を青系に */
+}
+
+/* 召喚石の種類に応じたバッジ風スタイル（任意） */
+.type-badge {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.type-opt { background-color: #23863622; color: #3fb950; border: 1px solid #3fb950; } /* 神石 */
+.type-magna { background-color: #1f6feb22; color: #58a6ff; border: 1px solid #58a6ff; } /* マグナ */
+.type-ele { background-color: #a371f722; color: #a371f7; border: 1px solid #a371f7; } /* 属性 */
+
+/* サイドバーの召喚石グループ用 */
+#summon-group-list .group-item.active {
+    background-color: #23863611; /* 召喚石側は少し緑寄りのアクティブ色に */
+    color: #3fb950;
+    border-left: 3px solid #3fb950;
+}
+
+
+
+/* 召喚石・武器共通のリストコンテナ */
+#summon-selection-list, 
+.modal-weapon-list {
+    display: grid !important;
+    /* 5列に分割 */
+    grid-template-columns: repeat(5, 1fr) !important;
+    /* 1マスの中での配置を中央にする */
+    justify-items: center !important; 
+    /* 上に詰める */
+    align-content: start !important;
+    gap: 10px !important;
+}
+
+/* リスト内の各アイテム（カード） */
+.summon-selection-item, 
+.modal-weapon-item {
+    /* 固定幅を解除して、グリッドの列幅に合わせる */
+    width: 100% !important; 
+    max-width: 180px !important; /* 広がりすぎないように制限 */
+    
+    /* 余白を自動調整して中央へ */
+    margin: 0 auto !important; 
+    
+    /* 中身のテキスト等も中央へ */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+/* 全ての高さを一度リセットし、上詰めに強制固定する */
+#dial-summon-select #modal-summon-list {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-content: flex-start !important; /* 縦方向を上に詰める */
+    justify-content: flex-start !important; /* 横方向を左に詰める */
+    
+    /* 100%にせず、中身の高さに合わせる */
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: 600px !important; 
+    overflow-y: auto !important;
+    
+    gap: 10px !important;
+    padding: 15px !important;
+}
+
+/* アイテム自体の高さを固定し、伸びないようにする */
+#modal-summon-list .summon-selection-item {
+    flex: 0 0 calc(20% - 10px) !important; /* 5列固定 */
+    height: 100px !important;
+    min-height: 100px !important;
+    margin: 0 !important;
+    
+    /* 中身の配置 */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+
+
+
+/* 召喚石リスト：入力欄のサイズ調整 */
+
+/* 石の名前（テキストボックス） */
+.edit-summon-label {
+    width: 200px;         /* ここを好きな数字に変えれば横に伸びます */
+    padding: 6px 8px;     /* 内側の余白 */
+    font-size: 14px;
+}
+
+/* 効果量（数値ボックス） */
+.edit-summon-main1-val,
+.edit-summon-main2-val,
+.edit-summon-friend-val,
+.edit-summon-sub1-val,
+.edit-summon-sub2-val {
+    width: 80px;          /* 数値入力欄を少し広げる */
+    text-align: center;   /* 数字を中央に */
+}
+
+/* セレクトボックス（タイプ選択） */
+.edit-summon-main1-type,
+.edit-summon-main2-type,
+.edit-summon-friend-type,
+.edit-summon-sub1-type,
+.edit-summon-sub2-type {
+    width: 110px;
+    padding: 4px;
+}
+
+
+
 
 /* ChromeやEdge用のスクロールバーデザイン（任意） */
 .group-list::-webkit-scrollbar {
