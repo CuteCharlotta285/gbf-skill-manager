@@ -380,6 +380,18 @@ function updateSkillTotals() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 // ****************************
 // **  編成画面ページ       **
 // ****************************
@@ -609,6 +621,7 @@ function removeSummonFromSlot(slotId) {
     
     // 計算を再実行
     // updateCalculations();
+    updateSummonTotal();
 }
 
 function applySummonToSlot(summonId, summonData) {
@@ -695,6 +708,8 @@ function applySummonToSlot(summonId, summonData) {
     if (typeof updateDeckSummon === 'function') {
         updateDeckSummon(slotKey, summonId);
     }
+
+    updateSummonTotal();
 }
 
 
@@ -702,7 +717,74 @@ function applySummonToSlot(summonId, summonData) {
 setupWeaponGrid();
 setupOthers();
 
+function updateSummonTotal() {
+    const displayEl = document.getElementById('summon-total-list');
+    if (!displayEl) return;
 
+    const totals = {};      
+    const subMaxValues = {}; 
+
+    const skillContainers = document.querySelectorAll('.slot-skill-container');
+
+    skillContainers.forEach(container => {
+        const slotEl = container.closest('.summon-slot');
+        const isSubSlot = slotEl && (slotEl.id.includes('sub') || slotEl.id.includes('support'));
+
+        // 石の属性を取得 (slot-main-infoの中にある el-xxx クラスを探す)
+        const elementEl = slotEl.querySelector('.slot-main-info span[class*="el-"]');
+        let elementPrefix = "";
+        if (elementEl) {
+            // クラス名から 'el-' を除いた部分（fire, waterなど）を取得し、日本語ラベルに変換
+            const elKey = elementEl.className.match(/el-(\w+)/)[1];
+            elementPrefix = `（${elementMap[elKey] || elKey}）`;
+        }
+
+        const row = container.querySelector('.slot-skill-row:first-child');
+        const typeEl = container.querySelector('.slot-skill-row[style*="color"]');
+
+        if (row && typeEl) {
+            let type = typeEl.innerText.trim();
+            const valueText = row.querySelector('span:last-child').innerText;
+            const value = parseFloat(valueText.replace('%', '')) || 0;
+
+            if (type && type !== 'なし' && value !== 0) {
+                // --- 「属性」タイプの場合のみ、属性名を付与する ---
+                if (type === "属性") {
+                    type = `属性攻撃力${elementPrefix}`;
+                }
+
+                if (isSubSlot) {
+                    if (!subMaxValues[type] || value > subMaxValues[type]) {
+                        subMaxValues[type] = value;
+                    }
+                } else {
+                    totals[type] = (totals[type] || 0) + value;
+                }
+            }
+        }
+    });
+
+    for (const [type, maxVal] of Object.entries(subMaxValues)) {
+        totals[type] = (totals[type] || 0) + maxVal;
+    }
+
+    // --- 表示処理 ---
+    const entries = Object.entries(totals);
+    if (entries.length === 0) {
+        displayEl.innerHTML = '<div style="color: #666; font-size: 12px; padding: 10px; text-align: center;">石をセットしてください</div>';
+        return;
+    }
+
+    // 属性別に並び替えると見やすいです
+    entries.sort();
+
+    displayEl.innerHTML = entries.map(([type, val]) => `
+        <div class="total-row" style="display: flex; justify-content: space-between; padding: 4px 12px; border-bottom: 1px solid #333;">
+            <span style="color: #58a6ff; font-size: 13px;">${type}</span>
+            <span style="font-weight: bold; color: #fff; font-size: 13px;">${val}${type.includes('与ダメ上昇') ? '' : '%'}</span>
+        </div>
+    `).join('');
+}
 
 
 
@@ -2001,7 +2083,12 @@ if (filterSelect) {
 
 
 
+function setSummonToSlot(slotKey, summonId) {
+    // ...既存のセット処理...
 
+    // 最後に合計値を更新
+    updateSummonTotal();
+}
 
 // app.js の最後の方（app.js:697付近を含む場所）
 

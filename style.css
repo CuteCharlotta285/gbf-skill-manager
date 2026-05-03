@@ -164,7 +164,7 @@ body {
 .skill-item {
   display: flex;
   justify-content: space-between;
-  font-size: 11px; /* 項目が多いので小さめに */
+  font-size: 18px; /* 項目が多いので小さめに */
   padding: 4px 0;
   border-bottom: 1px solid #334155;
 }
@@ -191,6 +191,38 @@ body {
   border: 0;
   border-top: 1px solid #475569;
   margin: 15px 0;
+}
+
+.total-summary {
+    background: #1a1a1a;
+    border: 1px solid #444;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.total-summary h3 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #888;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    font-family: monospace; /* 数字を揃えやすくする */
+}
+
+.total-type {
+    color: #58a6ff;
+}
+
+.total-value {
+    font-weight: bold;
+    color: #fff;
 }
 
 /* =========================================
