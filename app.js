@@ -153,23 +153,27 @@ document.getElementById("modal-filter-element")?.addEventListener("change", () =
 
 // --- 武器を選択した時の処理 ---
 function selectWeapon(weapon) {
-    // 選択したスロット（index）に武器データを保存
+    // 1. 選択したスロット（index）に武器データを保存
     currentDeckWeapons[currentSelectingIndex] = weapon;
     
-// エラー防止：weaponが存在するときだけ名前を表示する
+    // 【追加】ローカルストレージに保存する
+    // 武器そのものを保存すると重くなるので、武器のID（あれば）や名前を保存するのが理想ですが、
+    // まずは今の仕組みに合わせて currentDeckWeapons を丸ごと保存します。
+    localStorage.setItem('gbf_weapon_deck', JSON.stringify(currentDeckWeapons));
+
     if (weapon) {
         console.log(`${currentSelectingIndex}番のスロットに「${weapon.label}」をセットしました`);
     } else {
         console.log(`${currentSelectingIndex}番のスロットを解除しました`);
     }
 
-// 2. モーダルを閉じる
+    // 2. モーダルを閉じる
     document.getElementById("dial-weapon-select").close();
     
     // 3. 画面を再描画して、武器名を表示させる
     setupWeaponGrid(); 
     
-    // 4. 【重要】スキル合計値の計算を呼び出す
+    // 4. スキル合計値の計算
     updateSkillTotals(); 
 }
 
@@ -612,20 +616,33 @@ function removeSummonFromSlot(slotId) {
     const slot = document.getElementById(`slot-${slotId}`);
     if (!slot) return;
 
-    // 見た目を初期状態に戻す
+    // 1. 見た目を初期状態に戻す
     slot.classList.remove('equipped');
     slot.innerHTML = '未設定';
 
-    // TODO: 編成データ（currentDeckなど）からも削除する処理をここに入れる
+    // 2. 編成データ（currentDeck）から削除
+    if (window.currentDeck && window.currentDeck.summons) {
+        currentDeck.summons[slotId] = null; 
+        
+        // ★重要：最新の状態（外した状態）を保存する
+        localStorage.setItem('gbf_summon_deck', JSON.stringify(currentDeck.summons));
+    }
+
+    // --- ここを追加！：召喚石選択ダイアログを閉じる ---
+    const dial = document.getElementById('dial-summon-select');
+    if (dial) {
+        dial.close();
+    }
+
     console.log(`${slotId} の装備を外しました`);
     
-    // 計算を再実行
-    // updateCalculations();
+    // 3. 加護合計の再計算
     updateSummonTotal();
 }
 
-function applySummonToSlot(summonId, summonData) {
-    const slotKey = currentSelectingSummonSlot; // 'main', 'friend', 'sub1', 'support1' など
+// 第3引数に = false を入れることで、エラーを防ぎつつ復元判定ができるようになります
+function applySummonToSlot(summonId, summonData, isRestoring = false) {
+    const slotKey = currentSelectingSummonSlot; 
     const slotId = `slot-${slotKey}`;
     const slot = document.getElementById(slotId);
     
@@ -636,23 +653,17 @@ function applySummonToSlot(summonId, summonData) {
 
     // 装備済みクラスを付与
     slot.classList.add('equipped');
-// --- 加護情報のリストを生成するロジック ---
-    const kagoList = []; // 表示する加護の配列 [{label, value, type}, ...]
 
+    // --- 加護情報のリスト生成 (ここは既存のロジック) ---
+    const kagoList = [];
     if (slotKey === 'main') {
-        // メイン1
         kagoList.push({
             label: "メイン加護1",
             value: summonData.main1Value || summonData.mainValue || 0,
             type: summonData.main1Type || summonData.mainType || "属性"
         });
-        // メイン2（値がある場合のみ追加）
         if (summonData.main2Value && summonData.main2Value > 0) {
-            kagoList.push({
-                label: "メイン加護2",
-                value: summonData.main2Value,
-                type: summonData.main2Type || "その他"
-            });
+            kagoList.push({ label: "メイン加護2", value: summonData.main2Value, type: summonData.main2Type || "その他" });
         }
     } else if (slotKey === 'friend') {
         kagoList.push({
@@ -660,25 +671,18 @@ function applySummonToSlot(summonId, summonData) {
             value: summonData.friendValue || summonData.main1Value || summonData.mainValue || 0,
             type: summonData.friendType || summonData.main1Type || summonData.mainType || "属性"
         });
-    } else if (slotKey.startsWith('sub') || slotKey.startsWith('support')) {
-        // サブ1
+    } else {
         kagoList.push({
             label: "サブ加護1",
             value: summonData.sub1Value || summonData.subValue || 0,
             type: summonData.sub1Type || summonData.subType || "サブ"
         });
-        // サブ2（値がある場合、または属性や与ダメなど特定のタイプが設定されている場合）
         if (summonData.sub2Value > 0 || (summonData.sub2Type && summonData.sub2Type !== "なし")) {
-            kagoList.push({
-                label: "サブ加護2",
-                value: summonData.sub2Value || 0,
-                type: summonData.sub2Type || "サブ"
-            });
+            kagoList.push({ label: "サブ加護2", value: summonData.sub2Value || 0, type: summonData.sub2Type || "サブ" });
         }
     }
 
-    // --- HTMLの組み立て ---
-    // 加護の行を動的に生成
+    // --- HTMLの書き換え ---
     const kagoHtml = kagoList.map(kago => `
         <div class="slot-skill-container" style="width: 100%; border-top: 1px solid #444; margin-top: 2px; padding-top: 2px;">
             <div class="slot-skill-row">
@@ -691,7 +695,6 @@ function applySummonToSlot(summonId, summonData) {
         </div>
     `).join('');
 
-    // スロット内部の書き換え
     slot.innerHTML = `
         <div class="slot-main-info">
             <span class="el-${summonData.element}">${elementMap[summonData.element] || ''}</span>
@@ -700,15 +703,22 @@ function applySummonToSlot(summonId, summonData) {
         ${kagoHtml}
     `;
 
-// モーダルを閉じる
-    const dialog = document.getElementById('dial-summon-select');
-    if (dialog) dialog.close();
+    // --- 保存と終了処理 ---
+    
+    // 復元中ではない場合のみ、ダイアログを閉じてデータを保存する
+    if (!isRestoring) {
+        const dialog = document.getElementById('dial-summon-select');
+        if (dialog) dialog.close();
 
-    // デッキデータへの保存（もし関数があるなら）
-    if (typeof updateDeckSummon === 'function') {
-        updateDeckSummon(slotKey, summonId);
+        // currentDeck変数が無ければ作成して保存
+        if (!window.currentDeck) window.currentDeck = { summons: {} };
+        currentDeck.summons[slotKey] = summonId;
+
+        // localStorageに保存
+        localStorage.setItem('gbf_summon_deck', JSON.stringify(currentDeck.summons));
     }
 
+    // 合計値を計算（これは常に実行）
     updateSummonTotal();
 }
 
@@ -721,13 +731,19 @@ function updateSummonTotal() {
     const displayEl = document.getElementById('summon-total-list');
     if (!displayEl) return;
 
+    // 武器エリアと混ざらないよう、召喚石のスロットが並んでいる親要素のIDを指定してください
+    // 例として 'summon-slots-container' としていますが、実際のHTMLのIDに合わせてください
+    const summonArea = document.getElementById('summon-slots-container') || document.body;
+    
+    // summonArea の中にあるものだけを探す
+    const skillContainers = summonArea.querySelectorAll('.slot-skill-container');
+
     const totals = {};      
     const subMaxValues = {}; 
 
-    const skillContainers = document.querySelectorAll('.slot-skill-container');
-
     skillContainers.forEach(container => {
         const slotEl = container.closest('.summon-slot');
+        if (!slotEl) return; // 召喚石スロット以外（武器など）なら無視
         const isSubSlot = slotEl && (slotEl.id.includes('sub') || slotEl.id.includes('support'));
 
         // 石の属性を取得 (slot-main-infoの中にある el-xxx クラスを探す)
@@ -775,7 +791,7 @@ function updateSummonTotal() {
         return;
     }
 
-    // 属性別に並び替えると見やすいです
+    // 属性別に並び替えると見やすい
     entries.sort();
 
     displayEl.innerHTML = entries.map(([type, val]) => `
@@ -2112,6 +2128,110 @@ function initApp() {
             activeWeaponGroupId = weaponKeys[0];
         }
     }
+
+window.addEventListener('DOMContentLoaded', () => {
+    // --- 武器の復元（ここを追加！） ---
+    const savedWeaponData = localStorage.getItem('gbf_weapon_deck');
+    if (savedWeaponData) {
+        const restoredWeapons = JSON.parse(savedWeaponData);
+        
+        // currentDeckWeapons（配列）の中身を復元
+        // 配列の要素を一つずつコピーします
+        restoredWeapons.forEach((w, index) => {
+            currentDeckWeapons[index] = w;
+        });
+
+        // 画面の見た目（グリッド）を構築し、名前を表示させる
+        setupWeaponGrid(); 
+        
+        // スキル合計値の再計算
+        if (typeof updateSkillTotals === 'function') {
+            updateSkillTotals();
+        }
+    }
+
+        // --- 召喚石の復元 ---
+    const savedSummonData = localStorage.getItem('gbf_summon_deck');
+    if (savedSummonData) {
+        const summons = JSON.parse(savedSummonData);
+        if (!window.currentDeck) window.currentDeck = { summons: {} };
+        currentDeck.summons = summons;
+
+        Object.entries(summons).forEach(([slotKey, sId]) => {
+            if (!sId) return;
+            const sData = findSummonDataById(sId);
+            if (sData) {
+                currentSelectingSummonSlot = slotKey;
+                applySummonToSlot(sId, sData, true);
+            }
+        });
+    }
+});
+
+// IDから石を探す関数
+function findSummonDataById(id) {
+    for (const group of Object.values(summonDatabase)) {
+        if (group.summons && group.summons[id]) return group.summons[id];
+    }
+    return null;
+}
+
+
+
+
+
+
+
+
+/**
+ * 武器計算機に渡すための加護合計データを取得する
+ */
+function getSummonKagoBoss() {
+    const totals = {
+        magna: 0,   // マグナ加護合計 (%)
+        optimum: 0, // 神石加護合計 (%)
+        element: {},// 属性別攻撃力 { "火": 150, ... }
+        special: {} // 与ダメUP、HPなど
+    };
+
+    // currentDeck.summons をスキャンして集計するロジックをここに書く
+    // (updateSummonTotalで行っている集計と似ていますが、戻り値としてデータを返します)
+    
+    return totals;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // app.jsの最後に記述
