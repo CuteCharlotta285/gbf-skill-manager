@@ -51,6 +51,7 @@ body {
 .hidden { display: none !important; }
 
 
+
 /*********************************
 **********************************
     編成画面ページのレイアウト
@@ -106,7 +107,7 @@ body {
 .result-area {
   position: sticky; /* 画面をスクロールしても場所を固定する */
   top: 20px; /* 画面の一番上からどれくらい離れて止まるか */
-  height: 1000px; /* 縦長に設定 */
+  height: 1400px; /* 縦長に設定 */
   display: flex;
   flex-direction: column;
   background: #1e293b;
@@ -223,6 +224,21 @@ body {
 .total-value {
     font-weight: bold;
     color: #fff;
+}
+
+/* 上限に達した数値の色 */
+.status-max {
+    color: #ff9800 !important; /* オレンジ色 */
+    font-weight: bold;
+}
+
+/* オーバー枠（超過分）の背景色や文字色 */
+.over-skill-row {
+    background-color: rgba(255, 152, 0, 0.1); /* 薄いオレンジの背景 */
+}
+.over-skill-val {
+    color: #ff5722 !important; /* 少し強めの朱色 */
+    font-weight: bold;
 }
 
 /* =========================================
@@ -388,6 +404,35 @@ body {
     color: #58a6ff;
 }
 
+/* ラベル行を横並びにして両端に配置 */
+.slot-label {
+    display: flex;
+    justify-content: space-between; /* これで左と右に分かれます */
+    align-items: center;            /* 上下の中心を揃える */
+    padding: 2px 6px;
+    background: rgba(0, 0, 0, 0.3); /* 背景を少し暗くすると見やすい */
+    font-size: 15px;
+}
+
+/* 武器種のバッジデザイン */
+.weapon-type-badge {
+    color: #212121;              /* 文字色は少し控えめに */
+    background: #cfcfcf;         /* 背景を暗くしてバッジ風に */
+    padding: 1px 5px;
+    border-radius: 3px;
+    border: 1px solid #444;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* 属性の色分け（前回のおさらい） */
+.el-fire  { color: #ff4d4d !important; font-weight: bold; }
+.el-water { color: #4db8ff !important; font-weight: bold; }
+.el-earth { color: #ffb84d !important; font-weight: bold; }
+.el-wind  { color: #4dff88 !important; font-weight: bold; }
+.el-light { color: #ffff88 !important; font-weight: bold; }
+.el-dark  { color: #cc88ff !important; font-weight: bold; }
+
 /* =========================================
      6. 召喚石編成の詳細設定（メイン/サブ/フレンド）
      ========================================= */
@@ -449,14 +494,17 @@ body {
 /* サブ（青系） */
 .summon-slot {
     background: #2a2a2a;
-    border: 1px dashed #555;
+    border-radius: 4px;
     min-height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: 0.2s;
-    font-size: 0.85rem;
+    font-size: 20px; /* 好みの大きさに調整（標準は14〜16pxくらい） */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .summon-slot:hover {
@@ -468,6 +516,35 @@ body {
     border-style: solid;
     border-color: #4a90e2;
     background: #1a2635;
+}
+
+/* メイン枠：少し目立つ金・黄色系 */
+#slot-main {
+    border: 2px solid #ffca28;
+    background-color: rgba(255, 202, 40, 0.05);
+}
+
+/* フレンド枠：協力者らしい青・水色系 */
+#slot-friend {
+    border: 2px solid #e43a3a;
+    background-color: rgba(79, 195, 247, 0.05);
+}
+
+/* サブ枠（1〜4）：標準的なグレーや濃い青 */
+#slot-sub1, #slot-sub2, #slot-sub3, #slot-sub4 {
+    border: 2px solid #3b82f6;
+    background-color: rgba(120, 144, 156, 0.05);
+}
+
+/* サブ加護枠：特殊な役割なので紫やピンク系 */
+#slot-support1, #slot-support2 {
+    border: 2px solid #ce93d8;
+    background-color: rgba(206, 147, 216, 0.05);
+}
+
+/* 装備済みの時の強調（おまけ） */
+.summon-slot.equipped {
+    background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 /* 加護スロット専用のスタイル（もし強調したければ） */
@@ -529,6 +606,22 @@ border-left: 4px solid #3fb950;
   justify-content: space-between;
   align-items: center;
 }
+
+/* 属性別背景色（透明度を低くしてうっすら色付け） */
+/* 「.summon-slot というクラスを持っていて、かつ .bg-fire も持っている要素」という指定にする */
+/* これでID指定（#slot-main等）と同等以上の強さになります */
+
+/*
+ .summon-slot.bg-fire { background-color: rgba(255, 82, 82, 0.2) !important; }
+ .summon-slot.bg-water { background-color: rgba(33, 150, 243, 0.2) !important; }
+ .summon-slot.bg-earth { background-color: rgba(121, 85, 72, 0.2) !important; }
+ .summon-slot.bg-wind { background-color: rgba(76, 175, 80, 0.2) !important; }
+ .summon-slot.bg-light { background-color: rgba(255, 235, 59, 0.15) !important; }
+ .summon-slot.bg-dark { background-color: rgba(156, 39, 176, 0.2) !important; }
+*/
+
+
+
 
 /* モーダルの背景（画面全体を暗くする） */
 .modal-overlay {
@@ -1179,7 +1272,7 @@ input[type="text"], input[type="number"], select {
 /* 各入力ボックスの個別幅設定 */
 .weapon-edit-label { width: 185px; }
 .weapon-edit-lv { width: 50px; text-align: left; }
-.weapon-edit-skill { width: 190px; }
+.weapon-edit-skill { width: 185px; }
 .weapon-edit-eff-val { width: 60px; text-align: left; }
 
 /* 属性別カラー */
@@ -1191,6 +1284,22 @@ input[type="text"], input[type="number"], select {
 .weapon-el-light { color: #fbff1b; font-weight: bold; }
 .weapon-el-dark  { color: #a371f7; font-weight: bold; }
 .weapon-el-hakai  { color: #270401; font-weight: bold; }
+
+/* 武器種入力欄のサイズ調整 */
+.we-edit-type {
+    width: 50px;           /* 幅を短く設定 */
+    text-align: center;    /* 文字を真ん中に寄せる */
+    padding: 2px 4px;      /* 内側の余白を調整 */
+    border: 1px solid #444;
+    background: #222;
+    color: #fff;
+    border-radius: 3px;
+}
+
+/* ついでに武器名入力欄も少し調整したい場合はこちら */
+.we-edit-label {
+    width: 180px;          /* 武器名は少し長めに確保 */
+}
 
 /* ボタン共通 */
 .weapon-green-btn {
@@ -1308,6 +1417,28 @@ td:last-child {
 
     /* スクロールバーの見た目をスッキリさせる設定（任意） */
     scrollbar-width: thin;
+}
+
+.skill-input-container {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.kago-check-label {
+    cursor: pointer;
+    font-size: 12px;
+    filter: grayscale(1); /* チェックがない時はグレー */
+    transition: 0.2s;
+}
+
+.kago-check-label:has(input:checked) {
+    filter: grayscale(0); /* チェックがある時はカラー（キラキラ） */
+    text-shadow: 0 0 5px orange;
+}
+
+.we-edit-kago {
+    display: none; /* 実際のチェックボックスは隠す */
 }
 
 /* ChromeやEdge用のスクロールバーデザイン（任意） */

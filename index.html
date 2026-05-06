@@ -56,13 +56,32 @@
 
             <hr class="divider" />
 
+<div style="background: #1c2128; padding: 10px; border-radius: 6px; margin: 10px 0;">
+    <label>現在のHP: <span id="hp-display">100</span>%</label>
+    <input type="range" id="hp-slider" min="1" max="100" value="100" 
+           style="width: 100%;" oninput="updateSkillTotals()">
+</div>
+
 <div id="summon-total-container" class="total-summary">
     <h3>加護合計</h3>
     <div id="summon-total-list">
         </div>
 </div>
 
-            <hr class="divider" />
+<div id="boost-summary" style="display: flex; gap: 10px; margin: 10px 0;">
+    <!-- 神石ブースト用 -->
+    <div id="box-boost-opti" style="flex: 1; padding: 8px; background: #2a2a2a; border-radius: 5px; border-left: 4px solid #f1c40f; display: none;">
+        <div style="font-size: 0.8em; color: #aaa;">神石ブースト</div>
+        <div id="display-boost-opti" style="font-weight: bold; color: #f1c40f; font-size: 1.1em;">+0.00%</div>
+    </div>
+    <!-- マグナブースト用 -->
+    <div id="box-boost-magna" style="flex: 1; padding: 8px; background: #2a2a2a; border-radius: 5px; border-left: 4px solid #e74c3c; display: none;">
+        <div style="font-size: 0.8em; color: #aaa;">マグナブースト</div>
+        <div id="display-boost-magna" style="font-weight: bold; color: #e74c3c; font-size: 1.1em;">+0.00%</div>
+    </div>
+</div>
+
+<hr class="divider" />
 
 <p class="section-title">スキル合計値</p>
 <div class="skill-summary-grid">
@@ -123,8 +142,12 @@
     <span class="val" id="val-ta">0%</span>
   </div>
   <div class="skill-item">
-    <span class="label">ブースト</span>
+    <span class="label">神石ブースト</span>
     <span class="val" id="val-boost">0%</span>
+  </div>
+  <div class="skill-item">
+    <span class="label">マグナブースト</span>
+    <span class="val" id="val-magna-boost">0%</span>
   </div>
   <div class="skill-item">
     <span class="label">襲刃</span>
@@ -180,7 +203,7 @@
   </div>
   <div class="skill-item">
     <span class="label">通常与ダメ(特殊)</span>
-    <span class="val" id="val-norm-yodmg-sp">0</span>
+    <span class="val" id="val-norm-yodmg-sp">0%</span>
   </div>
   <div class="skill-item">
     <span class="label">アビダメ</span>
@@ -196,7 +219,7 @@
   </div>
   <div class="skill-item">
     <span class="label">アビ与ダメ(特殊)</span>
-    <span class="val" id="val-abil-yodmg-sp">0</span>
+    <span class="val" id="val-abil-yodmg-sp">0%</span>
   </div>
   <div class="skill-item">
     <span class="label">奥義ダメ</span>
@@ -212,7 +235,7 @@
   </div>
   <div class="skill-item">
     <span class="label">奥義与ダメ(特殊)</span>
-    <span class="val" id="val-ougi-yodmg-sp">0</span>
+    <span class="val" id="val-ougi-yodmg-sp">0%</span>
   </div>
   <div class="skill-item">
     <span class="label">与ダメ</span>
@@ -236,7 +259,7 @@
   </div>
   <div class="skill-item">
     <span class="label">防御無視</span>
-    <span class="val" id="val-ignore-def">OFF</span>
+    <span class="val" id="val-kanpa">0%</span>
   </div>
   <div class="skill-item">
     <span class="label">奥義ゲージ上昇</span>
@@ -325,9 +348,9 @@
                 <table id="weapon-master-table">
                     <thead>
                         <tr>
-                            <th style="width: 80px;">属性</th>
+                            <th style="width: 30px;">属性</th>
                             <th>名称</th>
-                            <th style="width: 60px;">レベル</th>
+                            <th style="width: 30px;">武器種</th>
                             <th>スキル1</th>
                             <th>効果量1</th>
                             <th>スキル2</th>
@@ -365,17 +388,11 @@
                 <option value="dark">闇</option>
             </select>
         </div>
-        <div class="input-group">
-            <label>シリーズ:</label> <select id="we-weapon_series">
-                <option value="speriol_weapon">スペリオル武器</option>
-                <option value="ruminas_weapon">ルミナス武器</option>
-                <option value="kojo_weapon">恒常武器</option>
-                <option value="limited_weapon">リミテッド武器</option>
-                <option value="season_limited_weapon">季節限定武器</option>
-                <option value="syumatu_weapon">終末武器</option>
-                <option value="corabo_weapon">コラボ武器</option>
-            </select>
-        </div>
+<div class="reg-field">
+    <label>シリーズ選択</label>
+    <select id="we-group-select">
+        </select>
+</div>
 
         <div class="btns">
             <button type="button" id="btn-weapon-save-exec" class="green-btn">登録</button>
@@ -531,6 +548,7 @@
             <div class="input-group">
                 <label>属性:</label>
                 <select id="in-element">
+                    <option value="all">全属性</option>
                     <option value="fire">火</option>
                     <option value="water">水</option>
                     <option value="earth">土</option>
@@ -561,6 +579,20 @@
                <option value="light">光</option>
                <option value="dark">闇</option>
             </select>
+
+            <select id="modal-filter-type">
+    <option value="all">全武器種</option>
+    <option value="剣">剣</option>
+    <option value="短剣">短剣</option>
+    <option value="槍">槍</option>
+    <option value="斧">斧</option>
+    <option value="杖">杖</option>
+    <option value="銃">銃</option>
+    <option value="格闘">格闘</option>
+    <option value="弓">弓</option>
+    <option value="楽器">楽器</option>
+    <option value="刀">刀</option>
+</select>
 
             <select id="modal-filter-series">
               <option value="all">全シリーズ</option>

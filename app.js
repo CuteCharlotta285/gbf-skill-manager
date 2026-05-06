@@ -237,144 +237,322 @@ function setWeapon(index, weaponData) {
     updateSkillTotals(); 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
- * 武器スキルの合計値を計算して画面に反映する
+ * スキル名からレベル数値を抽出する補助関数
  */
-function updateSkillTotals() {
-  console.log("--- 精精密計開始 ---");
-
-  if (typeof skillDatabase === 'undefined') {
-    console.error("エラー: skillDatabase が定義されていません。");
-    return;
-  }
-
-  const skillMap = {
-    "通常攻刃": "val-atk",
-    "マグナ攻刃": "val-m-atk",
-    "EX攻刃": "val-ex-atk",
-    "EX攻刃(特殊)": "val-ex-atk-sp",
-    "渾身": "val-konshin",
-    "M渾身": "val-m-konshin",
-    "背水": "val-haisui",
-    "M背水": "val-m-haisui",
-    "属性攻撃": "val-ele-atk",
-    "属性攻撃(進境)": "val-ele-shinkyo",
-    "クリティカル": "val-crit",
-    "カウンター率": "val-counter",
-    "DA確率": "val-da",
-    "TA確率": "val-ta",
-    "ブースト": "val-boost",
-    "襲刃": "val-shujin",
-    "HP": "val-hp",
-    "通常守護": null,
-    "マグナ守護": null,
-    "回復上限": "val-heal-limit",
-    "防御": "val-def",
-    "弱体耐性": "val-deb-res",
-    "属性軽減": "val-ele-red",
-    "ダメ上限": "val-dmg-limit",
-    "ダメ上限(特殊)": "val-dmg-limit-sp",
-    "与ダメ": "val-yodmg-base",
-    "与ダメ(汎用)": "val-yodmg-gen",
-    "対有利与ダメ": "val-fav-yodmg",
-    "対無属性与ダメ": "val-none-yodmg",
-    "通常ダメ上限": "val-norm-limit",
-    "通常ダメ上限(特殊)": "val-norm-limit-sp",
-    "通常与ダメ(特殊)": "val-norm-yodmg-sp",
-    "アビダメ": "val-abil-dmg",
-    "アビダメ上限": "val-abil-limit",
-    "アビダメ上限(特殊)": "val-abil-limit-sp",
-    "アビ与ダメ(特殊)": "val-abil-yodmg-sp",
-    "奥義ダメ": "val-ougi-dmg",
-    "奥義ダメ上限": "val-ougi-limit",
-    "奥義ダメ上限(特殊)": "val-ougi-limit-sp",
-    "奥義与ダメ(特殊)": "val-ougi-yodmg-sp",
-    "アビ与ダメ": "val-abil-yodmg",
-    "奥義与ダメ": "val-ougi-yodmg",
-    "CBダメ": "val-cb-dmg",
-    "CBダメ上限": "val-cb-limit",
-    "奥義ゲージ上昇": "val-ougi-up",
-    "オーバーHP": "val-over-hp",
-    "ダメ上限緩和": "val-limit-relax",
-    "オーバークリ": "val-over-crit",
-    "オーバー連撃": "val-over-rengeki"
-  };
-
-  const totals = {};
-  Object.keys(skillMap).forEach(key => totals[key] = 0);
-
-  // --- 手順② & ③：全階層からLabelが一致するスキルを探す関数 ---
-  function findSkillByLabel(labelName) {
-    for (const categoryKey in skillDatabase) {
-      const category = skillDatabase[categoryKey];
-      if (category.skills) {
-        for (const skillKey in category.skills) {
-          const skillData = category.skills[skillKey];
-          if (skillData.label === labelName) {
-            return skillData;
-          }
-        }
-      }
+function extractLevelFromName(name) {
+    if (!name) return null;
+    const matches = name.match(/\d+/g);
+    if (matches && matches.length > 0) {
+        return parseInt(matches[matches.length - 1], 10);
     }
     return null;
-  }
-
-  // 編成武器のループ
-  currentDeckWeapons.forEach((wpn, idx) => {
-    if (!wpn) return;
-
-    // ① 武器のskill1〜skill4（名前）を走査
-    for (let i = 1; i <= 4; i++) {
-      let weaponSkillName = wpn[`skill${i}`];
-      if (!weaponSkillName) continue;
-      weaponSkillName = String(weaponSkillName).trim();
-
-      // ② & ③ 深い階層から一致するスキルデータを検索
-      const masterData = findSkillByLabel(weaponSkillName);
-
-      if (masterData && masterData.effects) {
-        // ④ effects配列を走査して合算
-        masterData.effects.forEach(eff => {
-          const categoryName = eff.type; // "通常攻刃" など
-          const val = parseFloat(eff.value) || 0;
-
-          if (categoryName && totals.hasOwnProperty(categoryName)) {
-            totals[categoryName] += val;
-            console.log(`✅ [合算] ${weaponSkillName} -> ${categoryName}: +${val}`);
-          }
-        });
-      } else {
-        console.warn(`❌ [不一致] "${weaponSkillName}" が skillDatabase に見つかりません。`);
-      }
-    }
-  });
-
-  totals["HP"] = totals["通常守護"] + totals["マグナ守護"];
-
-// 画面反映
-  Object.keys(skillMap).forEach(category => {
-    const htmlId = skillMap[category];
-    if (!htmlId) return; // IDがない項目（通常守護など）は表示をスキップ
-
-    const element = document.getElementById(htmlId);
-    if (element) {
-      const val = totals[category];
-
-      // 表示形式の出し分け
-      if (category.includes("与ダメ") || category === "オーバーHP") {
-        element.innerText = val.toLocaleString();
-      } else {
-        // HPも含め、基本は % 表示
-        element.innerText = `${Math.round(val * 100) / 100}%`;
-      }
-    }
-  });
-
-  console.log("集計完了:", totals);
 }
 
+/**
+ * 渾身の効果量を数式から算出する
+ */
+function getKonshinDynamicValue(hp, sLv, weaponSkillName) {
+    if (hp < 25) return 0;
+    
+    let safeSLv = sLv;
+    if (!Number.isInteger(sLv) || sLv < 1 || sLv > 20) {
+        const extracted = extractLevelFromName(weaponSkillName);
+        safeSLv = extracted || 15;
+    }
 
+    const sLvKisu = safeSLv <= 15 ? safeSLv : 15 + (safeSLv - 15) * 0.4;
+    let konshinKisu = 65; 
 
+    if (weaponSkillName.includes("方陣")) {
+        if (weaponSkillName.includes("渾身Ⅲ")) {
+            konshinKisu = 56.4; 
+        } else if (weaponSkillName.includes("渾身Ⅱ")) {
+            konshinKisu = 60.4; 
+        } else {
+            konshinKisu = 60.4; 
+        }
+    } 
+    else if (weaponSkillName.includes("渾身Ⅱ")) {
+        konshinKisu = 45.4; 
+    } 
+    else if (/(紅蓮|霧氷|地裂|乱気|天光|奈落|\(大\))/.test(weaponSkillName)) {
+        konshinKisu = 56.4; 
+    } 
+    else if (/(業火|渦潮|大地|竜巻|雷電|憎悪|\(中\))/.test(weaponSkillName)) {
+        konshinKisu = 65;   
+    } 
+    else if (/(火の|水の|土の|風の|光の|闇の|\(小\))/.test(weaponSkillName)) {
+        konshinKisu = 80;   
+    }
+
+    const base = hp / (konshinKisu - sLvKisu);
+    const result = 2.1 + Math.pow(base, 2.9);
+
+    return result;
+}
+
+/**
+ * 全スキル計算・UI更新
+ */
+function updateSkillTotals() {
+    const hpSliderEl = document.getElementById('hp-slider');
+    const currentHpPercent = hpSliderEl ? parseInt(hpSliderEl.value) : 100;
+
+    if (document.getElementById('hp-display')) {
+        document.getElementById('hp-display').innerText = currentHpPercent;
+    }
+
+    function getKagoPower(typeName) {
+        const displayEl = document.getElementById('summon-total-list');
+        if (!displayEl) return 0;
+        const rows = displayEl.querySelectorAll('.total-row');
+        for (let row of rows) {
+            if (row.innerText.includes(typeName)) {
+                const valText = row.querySelector('span:last-child').innerText;
+                return parseFloat(valText.replace('%', '')) || 0;
+            }
+        }
+        return 0;
+    }
+
+    const skillMap = {
+        "通常攻刃": "val-atk", "マグナ攻刃": "val-m-atk", "EX攻刃": "val-ex-atk",
+        "EX攻刃(特殊)": "val-ex-atk-sp", "渾身": "val-konshin", "M渾身": "val-m-konshin",
+        "背水": "val-haisui", "M背水": "val-m-haisui", "属性攻撃": "val-ele-atk",
+        "属性攻撃(進境)": "val-ele-shinkyo", "クリティカル": "val-crit", "カウンター率": "val-counter",
+        "DA確率": "val-da", "TA確率": "val-ta", "神石ブースト": "val-boost", "マグナブースト": "val-magna-boost", "通常襲刃": "val-shujin", "防御無視": "val-kanpa",
+        "HP": "val-hp", "通常守護": null, "マグナ守護": null, "回復上限": "val-heal-limit",
+        "防御": "val-def", "弱体耐性": "val-deb-res", "属性軽減": "val-ele-red",
+        "ダメ上限": "val-dmg-limit", "ダメ上限(特殊)": "val-dmg-limit-sp", "与ダメ": "val-yodmg-base",
+        "与ダメ(汎用)": "val-yodmg-gen", "対有利与ダメ": "val-fav-yodmg", "対無属性与ダメ": "val-none-yodmg",
+        "通常ダメ上限": "val-norm-limit", "通常ダメ上限(特殊)": "val-norm-limit-sp", "通常与ダメ(特殊)": "val-norm-yodmg-sp",
+        "アビダメUP": "val-abil-dmg", "アビダメ上限": "val-abil-limit", "アビダメ上限(特殊)": "val-abil-limit-sp",
+        "アビ与ダメ(特殊)": "val-abil-yodmg-sp", "奥義ダメUP": "val-ougi-dmg", "奥義上限UP": "val-ougi-limit",
+        "奥義ダメ上限(特殊)": "val-ougi-limit-sp", "奥義与ダメ(特殊)": "val-ougi-yodmg-sp", "アビ与ダメ": "val-abil-yodmg",
+        "奥義与ダメ": "val-ougi-yodmg", "CBダメ": "val-cb-dmg", "CBダメ上限": "val-cb-limit",
+        "奥義ゲージ上昇": "val-ougi-up", "オーバーHP": "val-over-hp", "ダメ上限緩和": "val-limit-relax",
+        "オーバークリティカル": "val-over-crit", "オーバー連撃": "val-over-rengeki"
+    };
+
+    const totals = {};
+    Object.keys(skillMap).forEach(key => totals[key] = 0);
+
+    function findSkillByLabel(labelName) {
+        if (typeof skillDatabase === 'undefined') return null;
+        for (const cat in skillDatabase) {
+            for (const key in skillDatabase[cat].skills) {
+                if (skillDatabase[cat].skills[key].label === labelName) return skillDatabase[cat].skills[key];
+            }
+        }
+        return null;
+    }
+
+    // --- 修正点1: 最初にブースト合計を算出して加護倍率を確定させる ---
+    let preBoostOpti = 0;
+    let preBoostMagna = 0;
+
+    for (const wpn of currentDeckWeapons) {
+        if (!wpn) continue;
+        for (let i = 1; i <= 4; i++) {
+            const skillName = String(wpn[`skill${i}`] || "").trim();
+            const master = findSkillByLabel(skillName);
+            if (!master || !master.effects) continue;
+
+            for (const eff of master.effects) {
+                const userV = parseFloat(wpn[`skill${i}Val`]);
+                const masterV = parseFloat(eff.value) || 0;
+                const masterFirstV = parseFloat(master.effects[0].value) || 1;
+                const baseVal = (Number.isInteger(userV) && userV > 0) ? (masterV * (userV / masterFirstV)) : masterV;
+
+                if (eff.type === "ブースト" || eff.type === "神石ブースト") preBoostOpti += baseVal;
+                if (eff.type === "マグナブースト") preBoostMagna += baseVal;
+            }
+        }
+    }
+
+    // 加護倍率の確定 (召喚石 + ブースト)
+    const shinshiMult = 1 + ((getKagoPower("神石") + preBoostOpti) / 100);
+    const magnaMult = 1 + ((getKagoPower("マグナ") + preBoostMagna) / 100);
+
+    // --- 修正点2: メインループ ---
+    for (const wpn of currentDeckWeapons) {
+        if (!wpn) continue;
+        for (let i = 1; i <= 4; i++) {
+            const weaponSkillName = String(wpn[`skill${i}`] || "").trim();
+            if (!weaponSkillName) continue;
+
+            const masterData = findSkillByLabel(weaponSkillName);
+            if (!masterData || !masterData.effects) continue;
+
+            const userVal = parseFloat(wpn[`skill${i}Val`]);
+            const isKago = wpn[`skill${i}Kago`] !== false;
+
+            // --- 注目：ここからスキルの効果ループ ---
+            for (const eff of masterData.effects) {
+                const categoryName = eff.type;
+                const isKonshinEffect = categoryName.includes("渾身");
+
+                if (isKonshinEffect) {
+                    let sLv = (Number.isInteger(userVal) && userVal >= 1 && userVal <= 20) ? userVal : (extractLevelFromName(weaponSkillName) || 15);
+                    
+                    // getKonshinDynamicValue自体がHPに応じた計算をするので、DBの複数データを使う必要がない
+                    const finalVal = getKonshinDynamicValue(currentHpPercent, sLv, weaponSkillName);
+
+                    let targetKey = (categoryName.includes("マグナ") || categoryName.startsWith("M")) ? "M渾身" : "渾身";
+                    let currentMult = isKago ? ((targetKey === "M渾身") ? magnaMult : shinshiMult) : 1;
+
+                    totals[targetKey] += (finalVal * currentMult) + 0.0000001;
+
+                    // 【重要】渾身の計算が終わったら、このスキルのループ(eff)を抜ける
+                    // これにより、DBにある75%や50%のデータで二重加算されるのを防ぎます
+                    break; 
+
+                } else {
+                    // 渾身以外のスキル（攻刃など）は今まで通り全効果を処理
+                    const masterVal = parseFloat(eff.value) || 0;
+                    const masterFirstVal = parseFloat(masterData.effects[0].value) || 1;
+                    const calcVal = (Number.isInteger(userVal) && userVal > 0) ? (masterVal * (userVal / masterFirstVal)) : masterVal;
+                    
+                    let targetKey = categoryName;
+                    if (categoryName === "ブースト" || categoryName === "神石ブースト") targetKey = "神石ブースト";
+                    else if (categoryName === "マグナブースト") targetKey = "マグナブースト";
+
+                    if (targetKey && totals.hasOwnProperty(targetKey)) {
+                        let currentMult = 1;
+                        if (isKago) {
+                            currentMult = (targetKey === "神石ブースト" || targetKey === "マグナブースト") ? 1 : ((targetKey.startsWith("M") || targetKey.includes("マグナ")) ? magnaMult : shinshiMult);
+                        }
+                        totals[targetKey] += (calcVal * currentMult) + 0.0000001;
+                    }
+                }
+            }
+        }
+    }
+
+    // --- 上限・超過フロー処理 ---
+    
+    // クリティカル
+    const totalCrit = totals["クリティカル"] || 0;
+    if (totalCrit > 100) {
+        totals["オーバークリティカル"] += ((totalCrit - 100) / 2);
+        totals["クリティカル"] = 100;
+    }
+    if (totals["オーバークリティカル"] > 100) totals["オーバークリティカル"] = 100;
+
+    // 連撃
+    const totalDA = totals["DA確率"] || 0;
+    const totalTA = totals["TA確率"] || 0;
+    if (totalDA > 75) {
+        totals["オーバー連撃"] += ((totalDA - 75) * 0.4);
+        totals["DA確率"] = 75;
+    }
+    if (totalTA > 75) {
+        totals["オーバー連撃"] += ((totalTA - 75) * 0.6);
+        totals["TA確率"] = 75;
+    }
+    if (totals["オーバー連撃"] > 100) totals["オーバー連撃"] = 100;
+
+    // ダメ上限
+    const totalDmgLimit = totals["ダメ上限"] || 0;
+    if (totalDmgLimit > 20) {
+        totals["ダメ上限緩和"] += ((totalDmgLimit - 20) / 2);
+        totals["ダメ上限"] = 20;
+    }
+    if (totals["ダメ上限緩和"] > 20) totals["ダメ上限緩和"] = 20;
+
+    // HP
+    const totalRawHP = (totals["通常守護"] || 0) + (totals["マグナ守護"] || 0);
+    if (totalRawHP > 400) {
+        totals["オーバーHP"] += ((totalRawHP - 400) * 0.05);
+        totals["HP"] = 400;
+    } else {
+        totals["HP"] = totalRawHP;
+    }
+    if (totals["オーバーHP"] > 20) totals["オーバーHP"] = 20;
+
+    // --- 修正点3: HPバーの下のブースト表示枠の更新 ---
+    const optiBox = document.getElementById('box-boost-opti');
+    const magnaBox = document.getElementById('box-boost-magna');
+    
+    if (optiBox) {
+        if (preBoostOpti > 0) {
+            optiBox.style.display = "block";
+            document.getElementById('display-boost-opti').innerText = `+${preBoostOpti.toFixed(2)}%`;
+        } else {
+            optiBox.style.display = "none";
+        }
+    }
+    if (magnaBox) {
+        if (preBoostMagna > 0) {
+            magnaBox.style.display = "block";
+            document.getElementById('display-boost-magna').innerText = `+${preBoostMagna.toFixed(2)}%`;
+        } else {
+            magnaBox.style.display = "none";
+        }
+    }
+
+    // --- 最終表示更新 ---
+    Object.keys(skillMap).forEach(category => {
+        const htmlId = skillMap[category];
+        if (!htmlId) return;
+        const element = document.getElementById(htmlId);
+        if (!element) return;
+
+        const val = totals[category];
+        const row = element.closest('tr') || element.parentElement;
+
+        // クラスのリセット
+        element.classList.remove('status-max', 'over-skill-val');
+        if (row) row.classList.remove('over-skill-row');
+
+        if (val !== 0) {
+            if (row) row.style.display = "";
+
+            // --- 上限判定のロジック ---
+            let isMax = false;
+            if (category === "クリティカル" && val >= 100) isMax = true;
+            if ((category === "DA確率" || category === "TA確率") && val >= 75) isMax = true;
+            if (category === "ダメ上限" && val >= 20) isMax = true;
+            if (category === "HP" && val >= 400) isMax = true;
+            if (category === "ダメ上限緩和" && val >= 20) isMax = true;
+
+            // オレンジ色にするクラスの適用
+            if (isMax) {
+                element.classList.add('status-max');
+            }
+
+            // オーバー枠（超過分）のスタイル適用
+            if (category.startsWith("オーバー")) {
+                element.classList.add('over-skill-val');
+                if (row) row.classList.add('over-skill-row');
+            }
+
+            // 数値の表示処理
+            if (category.includes("与ダメ") || category === "オーバーHP") {
+                element.innerText = Math.round(val).toLocaleString();
+            } else {
+                element.innerText = (Math.round((val + 0.0001) * 100) / 100).toFixed(2) + "%";
+            }
+        } else {
+            if (row) row.style.display = "none";
+        }
+    });
+}
 
 
 
@@ -427,19 +605,25 @@ function createSlot(containerId, label, typeClass, index = null, style = "") {
       const s3HTML = wpn.skill3 ? `<div class="slot-skill-row"><span>${wpn.skill3}</span><span>${wpn.skill3Val}%</span></div>` : "";
       const s4HTML = wpn.skill4 ? `<div class="slot-skill-row"><span>${wpn.skill4}</span><span>${wpn.skill4Val}%</span></div>` : "";
 
-      slot.innerHTML = `
-        <div class="slot-label">${label}</div>
-        <div class="slot-main-info">
-          <span class="element-icon ${wpn.element}">${elementMap[wpn.element] || ''}</span>
-          <span class="slot-weapon-name">${wpn.label}</span>
-        </div>
-        <div class="slot-skill-container">
-          ${s1HTML}
-          ${s2HTML}
-          ${s3HTML}
-          ${s4HTML}
-        </div>
-      `;
+// 武器種（wpn.type）を表示に含める修正案
+slot.innerHTML = `
+  <div class="slot-label">
+    <span class="label-text">${label}</span>
+    <span class="weapon-type-badge">${wpn.type}</span>
+  </div>
+  <div class="slot-main-info">
+    <div class="weapon-title-row">
+      <span class="element-icon el-${wpn.element}">${elementMap[wpn.element] || ''}</span>
+      <span class="slot-weapon-name">${wpn.label}</span>
+    </div>
+  </div>
+  <div class="slot-skill-container">
+    ${s1HTML}
+    ${s2HTML}
+    ${s3HTML}
+    ${s4HTML}
+  </div>
+`;
     } else {
       // --- 未設定の場合 ---
       slot.innerHTML = `
@@ -617,8 +801,10 @@ function removeSummonFromSlot(slotId) {
     if (!slot) return;
 
     // 1. 見た目を初期状態に戻す
-    slot.classList.remove('equipped');
-    slot.innerHTML = '未設定';
+// --- ここを追加：属性背景クラスをすべて消す ---
+    slot.classList.remove('bg-fire', 'bg-water', 'bg-earth', 'bg-wind', 'bg-light', 'bg-dark');
+
+    slot.innerHTML = '未設定'; // または元のラベル
 
     // 2. 編成データ（currentDeck）から削除
     if (window.currentDeck && window.currentDeck.summons) {
@@ -637,7 +823,8 @@ function removeSummonFromSlot(slotId) {
     console.log(`${slotId} の装備を外しました`);
     
     // 3. 加護合計の再計算
-    updateSummonTotal();
+    updateSummonTotal(); // 石の合計を更新
+    updateSkillTotals(); // ★石が減ったので、武器スキルの計算（加護倍率）もやり直す
 }
 
 // 第3引数に = false を入れることで、エラーを防ぎつつ復元判定ができるようになります
@@ -651,7 +838,16 @@ function applySummonToSlot(summonId, summonData, isRestoring = false) {
         return;
     }
 
-    // 装備済みクラスを付与
+// --- ここを追加：以前の属性クラスを一度リセット ---
+    slot.classList.remove('bg-fire', 'bg-water', 'bg-earth', 'bg-wind', 'bg-light', 'bg-dark');
+    
+// 属性クラスを付与
+    if (summonData.element) {
+        const bgClass = `bg-${summonData.element}`;
+        slot.classList.add(bgClass);
+        console.log("付与したクラス:", bgClass); // コンソールで bg-fire 等が出ているか確認
+    }
+
     slot.classList.add('equipped');
 
     // --- 加護情報のリスト生成 (ここは既存のロジック) ---
@@ -685,11 +881,11 @@ function applySummonToSlot(summonId, summonData, isRestoring = false) {
     // --- HTMLの書き換え ---
     const kagoHtml = kagoList.map(kago => `
         <div class="slot-skill-container" style="width: 100%; border-top: 1px solid #444; margin-top: 2px; padding-top: 2px;">
-            <div class="slot-skill-row">
+            <div class="slot-skill-row" style="font-size: 14px; font-weight: bold;">
                 <span>${kago.label}</span>
                 <span>${kago.value}${kago.type === '与ダメ上昇' ? '' : '%'}</span>
             </div>
-            <div class="slot-skill-row" style="font-size: 10px; color: #58a6ff;">
+            <div class="slot-skill-row" style="font-size: 16px; color: #58a6ff;">
                 <span>${kago.type}</span>
             </div>
         </div>
@@ -698,7 +894,7 @@ function applySummonToSlot(summonId, summonData, isRestoring = false) {
     slot.innerHTML = `
         <div class="slot-main-info">
             <span class="el-${summonData.element}">${elementMap[summonData.element] || ''}</span>
-            <span class="slot-name" style="font-size: 14px;">${summonData.label}</span>
+            <span class="slot-name" style="font-size: 16px;">${summonData.label}</span>
         </div>
         ${kagoHtml}
     `;
@@ -719,7 +915,8 @@ function applySummonToSlot(summonId, summonData, isRestoring = false) {
     }
 
     // 合計値を計算（これは常に実行）
-    updateSummonTotal();
+    updateSummonTotal(); // 石の合計を更新
+    updateSkillTotals(); // ★石が減ったので、武器スキルの計算（加護倍率）もやり直す
 }
 
 
@@ -832,6 +1029,9 @@ const openWeaponDial = () => {
     if (dialWeaponReg) {
         // スキル選択肢を最新にする関数があればここで呼ぶ
         if (typeof updateSkillSelects === 'function') updateSkillSelects();
+
+        // 【追加】シリーズ（グループ）の選択肢をプルダウンに反映
+        updateWeaponGroupSelect();
         dialWeaponReg.showModal();
     }
 };
@@ -846,30 +1046,36 @@ btnWeaponClose.onclick = () => dialWeaponReg.close();
 if(btnWeaponSave) btnWeaponSave.onclick = () => {
     const nameEl = document.getElementById('we-name');
     const elementEl = document.getElementById('we-element');
+    const typeEl = document.getElementById('we-type');
+    
+    // --- 1. 追加：ダイアログで選択されたグループIDを取得 ---
+    const groupSelect = document.getElementById('we-group-select');
+    const targetGroupId = groupSelect ? groupSelect.value : activeWeaponGroupId;
     
     if(!nameEl || !nameEl.value) return alert("武器名称を入力してください");
 
-    // 新規武器IDの生成
     const newWeaponKey = "wp_" + Date.now();
     
-    // 現在選択中の武器シリーズ（グループ）にデータを追加
-    // ※武器はレベル200、スキル1〜4の構造で初期化
-    weaponDatabase[activeWeaponGroupId].weapons[newWeaponKey] = {
+    // --- 2. 修正：activeWeaponGroupId ではなく targetGroupId に保存する ---
+    weaponDatabase[targetGroupId].weapons[newWeaponKey] = {
         label: nameEl.value,
         element: elementEl.value,
-        level: 200, 
+        type: typeEl ? typeEl.value : "剣",
         skill1: "", skill1Val: 0,
         skill2: "", skill2Val: 0,
         skill3: "", skill3Val: 0,
         skill4: "", skill4Val: 0
     };
 
-    saveWeaponToLocalStorage(); // 武器専用の保存関数を実行
-    renderWeaponMasterDB();    // 武器テーブルを再描画
+    saveWeaponToLocalStorage();
     
-    dialWeaponReg.close();      // ダイアログを閉じる
+    // --- 3. 任意：保存したグループへ自動的に画面を切り替える ---
+    activeWeaponGroupId = targetGroupId; 
     
-    // 入力欄をリセット
+    renderWeaponMasterDB();
+    if (typeof renderWeaponSidebar === 'function') renderWeaponSidebar(); // サイドバーの選択状態も更新
+    
+    dialWeaponReg.close();
     nameEl.value = "";
 };
 
@@ -950,14 +1156,14 @@ weaponKeys.forEach(key => {
 
 // スキル選択肢の生成（スキルデータベースから動的に取得する想定）
         // ここでは4枠分ループ
-        let skillsHtml = "";
+let skillsHtml = "";
         for (let i = 1; i <= 4; i++) {
             const sKey = wp[`skill${i}`] || "";
             const sVal = wp[`skill${i}Val`] || 0;
-            
-            // スキル名のプルダウン（簡易版：実際は全スキルリストからoptionを生成）
-// skillsHtml を生成しているループ内
-skillsHtml += `
+            // 追加：加護フラグの状態を取得（未定義ならtrueをデフォルトにする）
+            const isKago = wp[`skill${i}Kago`] !== false;
+
+            skillsHtml += `
     <td>
         <select class="weapon-edit-skill" data-index="${i}" 
                 onchange="handleSkillChange('${key}', ${i}, this)"> 
@@ -966,26 +1172,39 @@ skillsHtml += `
         </select>
     </td>
     <td>
-        <input type="number" value="${sVal}" class="weapon-edit-eff-val" 
-               id="val-${key}-${i}"  
-               readonly 
-               tabindex="-1"
-               style="background-color: #1c2128; color: #8b949e; cursor: not-allowed; border: 1px solid #30363d;">
+        <div style="display: flex; align-items: center; gap: 4px;">
+            <input type="number" value="${sVal}" class="weapon-edit-eff-val" 
+                   id="val-${key}-${i}"  
+                   readonly 
+                   tabindex="-1"
+                   style="width: 50px; background-color: #1c2128; color: #8b949e; cursor: not-allowed; border: 1px solid #30363d;">
+            
+            <label class="kago-toggle" title="加護対象">
+                <input type="checkbox" ${isKago ? 'checked' : ''} 
+                       onchange="updateKagoFlag('${key}', ${i}, this)" 
+                       style="display: none;">
+                <span class="kago-icon" style="cursor: pointer; font-size: 14px; filter: ${isKago ? 'none' : 'grayscale(1) opacity(0.3)'};">✨</span>
+            </label>
+        </div>
     </td>
 `;
         }
 
-        tr.innerHTML = `
-            <td class="weapon-el-${elLabel}">${elJapanese}</td>
-            <td><input type="text" value="${wp.label}" class="weapon-edit-label" onblur="saveWeaponMaster('${key}', this)"></td>
-            <td><input type="number" value="${wp.level}" class="weapon-edit-lv" onblur="saveWeaponMaster('${key}', this)"></td>
-            ${skillsHtml}
-            <td>
-                <button class="weapon-move-btn" onclick="moveWeapon(event, '${key}', -1)">▲</button>
-                <button class="weapon-move-btn" onclick="moveWeapon(event, '${key}', 1)">▼</button>
-                <button class="weapon-delete-btn" onclick="deleteWeaponMaster('${key}')">削除</button>
-            </td>
-        `;
+tr.innerHTML = `
+    <td class="el-${elLabel}">${elJapanese}</td>
+    <td><input type="text" value="${wp.label}" class="we-edit-label" onblur="saveWeaponDetail('${key}', this)"></td>
+    
+    <td>
+      <input type="text" value="${wp.type || ''}" class="we-edit-type" placeholder="武器種" onblur="saveWeaponDetail('${key}', this)">
+    </td>
+    
+    ${skillsHtml}
+<td class="master-action-cell">
+        <button class="move-btn" onclick="moveWeapon(event, '${key}', -1)" title="上へ">▲</button>
+        <button class="move-btn" onclick="moveWeapon(event, '${key}', 1)" title="下へ">▼</button>
+        <button class="delete-btn" onclick="deleteWeapon('${key}')">削除</button>
+    </td>
+`;
         weaponMasterBody.appendChild(tr);
     });
 }
@@ -1084,6 +1303,28 @@ if (weaponAddGroupBtn) {
     };
 }
 
+// シリーズの選択肢を更新する関数
+function updateWeaponGroupSelect() {
+    const selectEl = document.getElementById('we-group-select');
+    if (!selectEl) return;
+
+    selectEl.innerHTML = ""; // 一旦クリア
+
+    Object.keys(weaponDatabase).forEach(groupId => {
+        const group = weaponDatabase[groupId];
+        const option = document.createElement('option');
+        option.value = groupId;
+        option.innerText = group.name || groupId; // グループ名を表示
+        
+        // 現在選択中のグループを初期選択状態にする
+        if (groupId === activeWeaponGroupId) {
+            option.selected = true;
+        }
+        
+        selectEl.appendChild(option);
+    });
+}
+
 // --- 武器シリーズの並び替え関数 ---
 window.moveWeaponGroup = (event, index, direction) => {
     event.stopPropagation(); // 親要素（li）のクリックイベントを止める
@@ -1147,10 +1388,42 @@ window.deleteWeaponGroup = (event, id) => {
     renderWeaponMasterDB();
 };
 
+window.saveWeaponDetail = (key, element) => {
+    // 現在表示されている（アクティブな）グループを取得
+    const group = weaponDatabase[activeWeaponGroupId];
+    if (!group || !group.weapons[key]) {
+        console.error("保存先の武器が見つかりません:", key);
+        return;
+    }
+
+    const wp = group.weapons[key];
+    const row = element.closest('tr');
+
+    // 武器名と武器種を取得してデータに反映
+    const nameInput = row.querySelector('.we-edit-label');
+    const typeInput = row.querySelector('.we-edit-type');
+
+    if (nameInput) wp.label = nameInput.value;
+    if (typeInput) wp.type = typeInput.value;
+
+    // ローカルストレージに書き込み
+    saveWeaponToLocalStorage();
+    
+    // 保存したことがわかるように一瞬光らせる（任意）
+    element.style.backgroundColor = "rgba(0, 255, 0, 0.2)";
+    setTimeout(() => {
+        element.style.backgroundColor = "";
+    }, 100);
+
+    console.log(`保存完了: ${wp.label} (${wp.type})`);
+};
+
 // --- 5. 共通処理 (LocalStorage / インポート・エクスポート) ---
 
 function saveWeaponToLocalStorage() {
-    localStorage.setItem('gbfWeaponManagerData', JSON.stringify(weaponDatabase));
+    // 修正: weaponDatabase を JSON 文字列にして保存
+    localStorage.setItem('weapon_db_data', JSON.stringify(weaponDatabase));
+    console.log("武器データをLocalStorageに保存しました");
 }
 
 function saveAllWeapons() {
@@ -1185,6 +1458,22 @@ window.moveWeapon = (event, key, direction) => {
     weaponDatabase[activeWeaponGroupId].weapons = newWps;
     saveWeaponToLocalStorage();
     renderWeaponMasterDB();
+};
+
+// 加護フラグを更新して保存する関数
+window.updateKagoFlag = (weaponKey, skillIndex, checkbox) => {
+    const wp = weaponDatabase[activeWeaponGroupId].weapons[weaponKey];
+    if (wp) {
+        wp[`skill${skillIndex}Kago`] = checkbox.checked;
+        
+        // アイコンの見た目を即座に変える（グレースケール制御）
+        const icon = checkbox.nextElementSibling;
+        icon.style.filter = checkbox.checked ? 'none' : 'grayscale(1) opacity(0.3)';
+        
+        saveWeaponToLocalStorage();
+        // 編成画面の計算結果にも影響するので、必要なら再計算を走らせる
+        if (typeof updateSkillTotals === 'function') updateSkillTotals();
+    }
 };
 
 // 初期化実行
@@ -1257,6 +1546,11 @@ if (weaponBtnImport && weaponImportFile) {
         e.target.value = '';
     };
 }
+
+
+
+
+
 
 
 
@@ -2130,27 +2424,8 @@ function initApp() {
     }
 
 window.addEventListener('DOMContentLoaded', () => {
-    // --- 武器の復元（ここを追加！） ---
-    const savedWeaponData = localStorage.getItem('gbf_weapon_deck');
-    if (savedWeaponData) {
-        const restoredWeapons = JSON.parse(savedWeaponData);
-        
-        // currentDeckWeapons（配列）の中身を復元
-        // 配列の要素を一つずつコピーします
-        restoredWeapons.forEach((w, index) => {
-            currentDeckWeapons[index] = w;
-        });
 
-        // 画面の見た目（グリッド）を構築し、名前を表示させる
-        setupWeaponGrid(); 
-        
-        // スキル合計値の再計算
-        if (typeof updateSkillTotals === 'function') {
-            updateSkillTotals();
-        }
-    }
-
-        // --- 召喚石の復元 ---
+    // --- 召喚石の復元 ---
     const savedSummonData = localStorage.getItem('gbf_summon_deck');
     if (savedSummonData) {
         const summons = JSON.parse(savedSummonData);
@@ -2165,7 +2440,28 @@ window.addEventListener('DOMContentLoaded', () => {
                 applySummonToSlot(sId, sData, true);
             }
         });
+        // 全ての石をセットし終えた後に、加護の数値を画面に反映
+        updateSummonTotal();
     }
+
+    // --- 武器の復元 ---
+    const savedWeaponData = localStorage.getItem('gbf_weapon_deck');
+    if (savedWeaponData) {
+        const restoredWeapons = JSON.parse(savedWeaponData);
+        restoredWeapons.forEach((w, index) => {
+            currentDeckWeapons[index] = w;
+        });
+        setupWeaponGrid(); 
+    } // ← ここで if 文を閉じる
+
+    // --- 【重要】最後に一括で再計算 ---
+    setTimeout(() => {
+        if (typeof updateSkillTotals === 'function') {
+            console.log("復元後の最終計算（加護乗算を含む）を実行します");
+            updateSkillTotals();
+        }
+    }, 100); 
+
 });
 
 // IDから石を探す関数
