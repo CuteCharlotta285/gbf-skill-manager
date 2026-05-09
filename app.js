@@ -215,9 +215,9 @@ function renderModalWeaponList() {
     if (!listContainer) return;
     listContainer.innerHTML = "";
 
-// 修正：要素がない場合は "all" として扱う安全策を追加
-    const filterSelect = document.getElementById("modal-filter-element");
-    const filterElement = filterSelect ? filterSelect.value : "all";
+// 1. フィルタの選択値を「ループの外」でまとめて取得
+    const filterElement = document.getElementById("modal-filter-element")?.value || "all";
+    const filterType = document.getElementById("modal-filter-type")?.value || "all";
     const filterSeries = document.getElementById("modal-filter-series")?.value || "all";
 
 // --- 追加：【外す】ボタンを先頭に作成 ---
@@ -236,15 +236,30 @@ function renderModalWeaponList() {
         Object.keys(group.weapons).forEach(weaponKey => {
             const wpn = group.weapons[weaponKey];
 
-            // 【フィルタ処理】属性が一致しない場合はスキップ（all以外の場合）
+            // --- 【フィルタ判定：追加】 ---
+            
+            // 属性チェック
             if (filterElement !== "all" && wpn.element !== filterElement) {
-                return;
+                return; // 一致しないなら次の武器へ
             }
-            
+
+            // 武器種チェック
+            // ※ wpn.type が設定されていない武器がある場合は注意
+            if (filterType !== "all" && wpn.type !== filterType) {
+                return; // 一致しないなら次の武器へ
+            }
+
+            // シリーズ（グループ）チェック
+            // HTMLの <option value="group_limit"> 等と groupId が一致するか
+            if (filterSeries !== "all" && groupId !== filterSeries) {
+                return; // 一致しないなら次の武器へ
+            }
+
+            // --- 4. すべての条件をクリアした武器だけが表示される ---
             const div = document.createElement("div");
-            div.className = "modal-weapon-item"; // スタイルはすべてCSS側で管理します
+            // 属性背景色のためのクラス追加
+            div.className = `modal-weapon-item ${wpn.element}`; 
             
-            // 5列で見やすくするため、アイコンと名前を分けた構造にします
             div.innerHTML = `
                 <div class="weapon-icon-circle ${wpn.element}">
                     ${elementMap[wpn.element] || ''}

@@ -2041,7 +2041,20 @@ td:last-child {
     padding: 4px;
 }
 
+/* モーダル内の武器アイテム：属性別背景色 */
+.modal-weapon-item.fire { background-color: rgba(255, 71, 71, 0.15); border: 1px solid rgba(255, 71, 71, 0.3); }
+.modal-weapon-item.water { background-color: rgba(52, 152, 219, 0.15); border: 1px solid rgba(52, 152, 219, 0.3); }
+.modal-weapon-item.earth { background-color: rgba(186, 139, 87, 0.15); border: 1px solid rgba(186, 139, 87, 0.3); }
+.modal-weapon-item.wind { background-color: rgba(46, 204, 113, 0.15); border: 1px solid rgba(46, 204, 113, 0.3); }
+.modal-weapon-item.light { background-color: rgba(241, 196, 15, 0.15); border: 1px solid rgba(241, 196, 15, 0.3); }
+.modal-weapon-item.dark { background-color: rgba(155, 89, 182, 0.15); border: 1px solid rgba(155, 89, 182, 0.3); }
 
+/* ホバーした時に少し濃くするとさらに使いやすくなります */
+.modal-weapon-item:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    transition: all 0.2s ease;
+}
 
 
 /* ChromeやEdge用のスクロールバーデザイン（任意） */

@@ -2,6 +2,8 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer">
+
     <title>GBF Skill Manager</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -620,36 +622,56 @@
         <button type="button" id="btn-weapon-select-close">キャンセル</button>
     </div>
     <div class="modal-filter">
-        <select id="modal-filter-element">
-              <option value="all">全属性</option>
-               <option value="fire">火</option>
-               <option value="water">水</option>
-               <option value="earth">土</option>
-               <option value="wind">風</option>
-               <option value="light">光</option>
-               <option value="dark">闇</option>
-            </select>
+    <select id="modal-filter-element" onchange="renderModalWeaponList()">
+        <option value="all">全属性</option>
+        <option value="fire">火</option>
+        <option value="water">水</option>
+        <option value="earth">土</option>
+        <option value="wind">風</option>
+        <option value="light">光</option>
+        <option value="dark">闇</option>
+    </select>
 
-            <select id="modal-filter-type">
-    <option value="all">全武器種</option>
-    <option value="剣">剣</option>
-    <option value="短剣">短剣</option>
-    <option value="槍">槍</option>
-    <option value="斧">斧</option>
-    <option value="杖">杖</option>
-    <option value="銃">銃</option>
-    <option value="格闘">格闘</option>
-    <option value="弓">弓</option>
-    <option value="楽器">楽器</option>
-    <option value="刀">刀</option>
-</select>
+    <select id="modal-filter-type" onchange="renderModalWeaponList()">
+        <option value="all">全武器種</option>
+        <option value="剣">剣</option>
+        <option value="短剣">短剣</option>
+        <option value="槍">槍</option>
+        <option value="斧">斧</option>
+        <option value="杖">杖</option>
+        <option value="銃">銃</option>
+        <option value="格闘">格闘</option>
+        <option value="弓">弓</option>
+        <option value="楽器">楽器</option>
+        <option value="刀">刀</option>
+    </select>
 
-            <select id="modal-filter-series">
-              <option value="all">全シリーズ</option>
-              <option value="all">リミテッド</option>
-            </select>
-
-    </div>
+    <select id="modal-filter-series" onchange="renderModalWeaponList()">
+        <option value="all">全シリーズ</option>
+        <option value="group_limited">リミテッド</option>
+        <option value="group_superior">スペリオル</option>
+        <option value="group_Illustrious">ルミナス</option>
+        <option value="group_season">季節限定</option>
+        <option value="group_Regular">ガチャ恒常</option>
+        <option value="group_vintage">ヴィンテージ</option>
+        <option value="group_syumatu">終末武器</option>
+        <option value="group_dragon_weapon">ドラポン</option>
+        <option value="group_hakai">破壊武器</option>
+        <option value="group_isizue">礎武器</option>
+        <option value="group_astral">アスポン</option>
+        <option value="group_omega">オメガ</option>
+        <option value="group_baha">礎武器</option>
+        <option value="group_magna">マグナ1</option>
+        <option value="group_imagna2">マグナ2</option>
+        <option value="group_magna3">マグナ3</option>
+        <option value="group_ennead">エニアド</option>
+        <option value="group_odious">禁禍</option>
+        <option value="group_malice">マリス</option>
+        <option value="group_menace">メナス</option>
+        <option value="group_six_dragon">六竜武器</option>
+        <option value="group_revans">レヴァンス</option>
+    </select>
+</div>
     <div id="modal-weapon-list" class="modal-weapon-list">
         </div>
 </dialog>
