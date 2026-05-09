@@ -53,6 +53,38 @@ function refreshAllWeaponSkillValues() {
     });
 }
 
+/**
+ * 設定を一括保存する
+ */
+function saveSettings() {
+    const shumatsu = document.getElementById('shumatsu-pendulum').value;
+    const omega = document.getElementById('omega-skill2').value;
+    const omega3 = document.getElementById('omega-skill3').value;
+    
+    localStorage.setItem('shumatsu_pendulum_choice', shumatsu);
+    localStorage.setItem('omega_skill2_choice', omega);
+    localStorage.setItem('omega_skill3_choice', omega3);
+}
+
+/**
+ * 設定を一括読み込みする
+ */
+function loadSettings() {
+    const savedShumatsu = localStorage.getItem('shumatsu_pendulum_choice');
+    const savedOmega = localStorage.getItem('omega_skill2_choice');
+    const savedOmega3 = localStorage.getItem('omega_skill3_choice');
+
+    if (savedShumatsu) document.getElementById('shumatsu-pendulum').value = savedShumatsu;
+    if (savedOmega) document.getElementById('omega-skill2').value = savedOmega;
+    if (savedOmega3) document.getElementById('omega-skill3').value = savedOmega3;
+}
+
+// ページ読み込み時に実行
+window.addEventListener('DOMContentLoaded', () => {
+    loadSettings();
+    updateSkillTotals();
+});
+
 window.onload = () => {
     console.log("初期化開始...");
     
@@ -299,6 +331,9 @@ function getKonshinDynamicValue(hp, sLv, weaponSkillName) {
     else if (/(火の|水の|土の|風の|光の|闇の|\(小\))/.test(weaponSkillName)) {
         konshinKisu = 80;   
     }
+    else if (/(オメガ|\(大\))/.test(weaponSkillName)) {
+        konshinKisu = 53.7;   
+    }
 
     const base = hp / (konshinKisu - sLvKisu);
     const result = 2.1 + Math.pow(base, 2.9);
@@ -307,11 +342,84 @@ function getKonshinDynamicValue(hp, sLv, weaponSkillName) {
 }
 
 /**
+ * ボルテージ・コンバージェンスの計算
+ * ※重複に対応するため、呼び出されるたびに計算・加算します
+ */
+function calculateVoltageBySkillName(skillName, deck, totals) {
+    // 1. まず編成内の全武器種の本数を集計する
+    const counts = {};
+    deck.forEach(wpn => {
+        if (!wpn || !wpn.type) return;
+        const type = wpn.type; // 「斧」「剣」など
+        counts[type] = (counts[type] || 0) + 1;
+    });
+
+    // 2. コンバージェンスの処理（どれか1種でも4本あれば発動）
+    if (skillName.includes("コンバージェンス")) {
+        const maxCount = Math.max(...Object.values(counts), 0);
+        if (maxCount >= 4) {
+            // 重複する場合、ここを通るたびに totals に加算されます
+            totals["防御"] += 25;
+            totals["ダメ上限(特殊)"] += 7;
+            // --- 変更点：EX攻刃(特殊)には返さず、通常のEX攻刃に直接加算する ---
+            totals["EX攻刃"] += 40; 
+            console.log("コンバージェンス発動（EX攻刃+40% / 防御+25% / 特殊上限+7%）");
+            return 0; // EX攻刃(特殊)へは 0 を返す（ボルテージ枠に加算させないため）
+        }
+        return 0;
+    }
+
+    // 3. ボルテージの処理（従来通りスキル名と同じ武器種をカウント）
+    const VOLTAGE_MAP = {
+        "アックス": ["axe", "アックス", "斧"],
+        "ソード": ["sword", "ソード", "剣"],
+        "スピア": ["spear", "スピア", "槍"],
+        "ボウ": ["bow", "ボウ", "弓"],
+        "スタッフ": ["staff", "スタッフ", "杖"],
+        "メイス": ["melee", "メイス", "格闘", "拳"],
+        "ダガー": ["dagger", "ダガー", "短剣"],
+        "カタナ": ["katana", "カタナ", "刀"],
+        "ハープ": ["harp", "ハープ", "楽器", "琴"],
+        "ガン": ["gun", "ガン", "銃"]
+    };
+
+    let targetTags = [];
+    for (const [jpName, tags] of Object.entries(VOLTAGE_MAP)) {
+        if (skillName.includes(jpName)) {
+            targetTags = tags;
+            break;
+        }
+    }
+
+    if (targetTags.length > 0) {
+        let voltageCount = 0;
+        // スキル名に含まれる武器種（例：アックスなら斧）が何本あるか数える
+        for (const type in counts) {
+            if (targetTags.some(tag => type.includes(tag))) {
+                voltageCount += counts[type];
+            }
+        }
+        return voltageCount * 8;
+    }
+
+    return 0;
+}
+
+/**
  * 全スキル計算・UI更新
  */
 function updateSkillTotals() {
     const hpSliderEl = document.getElementById('hp-slider');
     const currentHpPercent = hpSliderEl ? parseInt(hpSliderEl.value) : 100;
+
+// --- 1. まず最初に関数内で使う変数を宣言する ---
+    const shumatsuEl = document.getElementById('shumatsu-pendulum');
+    const omegaEl = document.getElementById('omega-skill2');
+    const omegaEL3 = document.getElementById('omega-skill3');
+    
+    const shumatsuVal = shumatsuEl ? shumatsuEl.value : "none";
+    const omegaVal = omegaEl ? omegaEl.value : "none";
+    const omegaVal3 = omegaEL3 ? omegaEL3.value : "none"; // 追加
 
     if (document.getElementById('hp-display')) {
         document.getElementById('hp-display').innerText = currentHpPercent;
@@ -334,17 +442,17 @@ function updateSkillTotals() {
         "通常攻刃": "val-atk", "マグナ攻刃": "val-m-atk", "EX攻刃": "val-ex-atk",
         "EX攻刃(特殊)": "val-ex-atk-sp", "渾身": "val-konshin", "M渾身": "val-m-konshin",
         "背水": "val-haisui", "M背水": "val-m-haisui", "属性攻撃": "val-ele-atk",
-        "属性攻撃(進境)": "val-ele-shinkyo", "クリティカル": "val-crit", "カウンター率": "val-counter",
+        "属性攻撃(進境)": "val-ele-shinkyo", "クリティカル": "val-crit", "クリティカル(特殊)": "val-crit_sp", "カウンター率": "val-counter",
         "DA確率": "val-da", "TA確率": "val-ta", "神石ブースト": "val-boost", "マグナブースト": "val-magna-boost", "通常襲刃": "val-shujin", "防御無視": "val-kanpa",
         "HP": "val-hp", "通常守護": null, "マグナ守護": null, "回復上限": "val-heal-limit",
         "防御": "val-def", "弱体耐性": "val-deb-res", "属性軽減": "val-ele-red",
-        "ダメ上限": "val-dmg-limit", "ダメ上限(特殊)": "val-dmg-limit-sp", "与ダメ": "val-yodmg-base",
-        "与ダメ(汎用)": "val-yodmg-gen", "対有利与ダメ": "val-fav-yodmg", "対無属性与ダメ": "val-none-yodmg",
+        "ダメ上限": "val-dmg-limit", "ダメ上限(特殊)": "val-dmg-limit-sp", "与ダメ上昇": "val-yodmg-base",
+        "与ダメUP": "val-yodmg-gen", "対有利与ダメ": "val-fav-yodmg", "対無属性与ダメ": "val-none-yodmg",
         "通常ダメ上限": "val-norm-limit", "通常ダメ上限(特殊)": "val-norm-limit-sp", "通常与ダメ(特殊)": "val-norm-yodmg-sp",
         "アビダメUP": "val-abil-dmg", "アビダメ上限": "val-abil-limit", "アビダメ上限(特殊)": "val-abil-limit-sp",
         "アビ与ダメ(特殊)": "val-abil-yodmg-sp", "奥義ダメUP": "val-ougi-dmg", "奥義上限UP": "val-ougi-limit",
-        "奥義ダメ上限(特殊)": "val-ougi-limit-sp", "奥義与ダメ(特殊)": "val-ougi-yodmg-sp", "アビ与ダメ": "val-abil-yodmg",
-        "奥義与ダメ": "val-ougi-yodmg", "CBダメ": "val-cb-dmg", "CBダメ上限": "val-cb-limit",
+        "奥義ダメ上限(特殊)": "val-ougi-limit-sp", "奥義与ダメ(特殊)": "val-ougi-yodmg-sp", "アビ与ダメ上昇": "val-abil-yodmg", "クリティカル与ダメUP": "val-crit-yodmg",
+        "奥義与ダメ上昇": "val-ougi-yodmg", "CBダメ": "val-cb-dmg", "CBダメ上限": "val-cb-limit", "特殊ダメ上限": "val-sp-limit",
         "奥義ゲージ上昇": "val-ougi-up", "オーバーHP": "val-over-hp", "ダメ上限緩和": "val-limit-relax",
         "オーバークリティカル": "val-over-crit", "オーバー連撃": "val-over-rengeki"
     };
@@ -361,6 +469,18 @@ function updateSkillTotals() {
         }
         return null;
     }
+
+    /**
+ * キャラクターの得意武器とオメガ武器のスキルが一致するか判定する
+ * 現状はキャラ未実装のため、常に true を返す
+ */
+function isOmegaWeaponMatch(weaponType) {
+    // 【将来の拡張】
+    // const playerCharacters = getCurrentPartyMembers();
+    // return playerCharacters.some(ch => ch.favWeapons.includes(weaponType));
+    
+    return true; 
+}
 
     // --- 修正点1: 最初にブースト合計を算出して加護倍率を確定させる ---
     let preBoostOpti = 0;
@@ -389,12 +509,22 @@ function updateSkillTotals() {
     const shinshiMult = 1 + ((getKagoPower("神石") + preBoostOpti) / 100);
     const magnaMult = 1 + ((getKagoPower("マグナ") + preBoostMagna) / 100);
 
+    // ここで宣言することで、ループ内でもループ外でも参照可能になります
+    let voltageExSum = 0;
+
     // --- 修正点2: メインループ ---
     for (const wpn of currentDeckWeapons) {
         if (!wpn) continue;
         for (let i = 1; i <= 4; i++) {
             const weaponSkillName = String(wpn[`skill${i}`] || "").trim();
             if (!weaponSkillName) continue;
+
+            // ボルテージの個別処理
+            if (weaponSkillName.includes("ボルテージ") || weaponSkillName.includes("コンバージェンス")) {
+            // 第3引数に totals を追加して、防御や上限を中で加算させます
+            voltageExSum += calculateVoltageBySkillName(weaponSkillName, currentDeckWeapons, totals);
+            continue; 
+        }
 
             const masterData = findSkillByLabel(weaponSkillName);
             if (!masterData || !masterData.effects) continue;
@@ -443,6 +573,73 @@ function updateSkillTotals() {
             }
         }
     }
+
+    // --- オメガ武器の条件判定 ---
+    // オメガスキルの効果量を取得（一致しない場合は 0 にする）
+    let finalOmegaPower = 0;
+    if (omegaVal !== "none") {
+        // オメガ武器自体の種類（剣、斧など）を取得して判定に回す
+        // ※ omegaWeaponType は、オメガ武器を選択した際に保存しておく必要があります
+        const omegaType = localStorage.getItem('omega_weapon_type') || "剣"; 
+
+        if (isOmegaWeaponMatch(omegaType)) {
+            finalOmegaPower = getSkillPower(omegaVal);
+        }
+    }
+
+    /**
+     * 終末・オメガのスキル反映と重複チェック
+     */
+    console.log(`終末選択: ${shumatsuVal} / オメガ選択: ${omegaVal}`);
+
+    // 1. 終末スキルの反映 (配列で返ってくる複数の効果をすべて処理)
+    const shumatsuEffects = getShumatsuPower(shumatsuVal); 
+    if (shumatsuEffects) {
+        shumatsuEffects.forEach(eff => {
+            if (totals.hasOwnProperty(eff.type)) {
+                // 上限系・UP系は「高い方を採用」のためにセット
+                // それ以外（連撃など）はそのまま加算
+                if (eff.type.includes("上限") || eff.type.includes("UP")) {
+                    totals[eff.type] = eff.power; 
+                } else {
+                    totals[eff.type] += eff.power;
+                }
+            }
+        });
+    }
+
+    // 2. オメガスキルの反映 (数値で返ってくる単一効果を比較)
+    if (omegaVal !== "none") {
+        const omegaPower = getSkillPower(omegaVal); 
+        if (totals.hasOwnProperty(omegaVal)) {
+            // 終末ですでにセットされた値よりもオメガの方が高ければ上書き
+            if (totals[omegaVal] < omegaPower) {
+                totals[omegaVal] = omegaPower;
+            }
+        }
+    }
+
+    // 3. オメガ第3スキルの反映 (★新規追加)
+    const omegaEff3 = getOmegaSkill3Power(omegaVal3);
+if (omegaEff3) {
+    // ログを出して動いているか確認
+    console.log("オメガ3発動:", omegaEff3.type, omegaEff3.power);
+
+    if (totals.hasOwnProperty(omegaEff3.type)) {
+        if (omegaEff3.type === "ダメ上限") {
+            // 既存の「ダメ上限」と比較して高い方を採用
+            if (totals[omegaEff3.type] < omegaEff3.power) {
+                totals[omegaEff3.type] = omegaEff3.power;
+            }
+        } else {
+            // それ以外は加算
+            totals[omegaEff3.type] += omegaEff3.power;
+        }
+    }
+}
+
+    // ボルテージをEX攻刃に加算 (上限80%)
+    totals["EX攻刃(特殊)"] += Math.min(voltageExSum, 80);
 
     // --- 上限・超過フロー処理 ---
     
@@ -506,6 +703,8 @@ function updateSkillTotals() {
         }
     }
 
+
+
     // --- 最終表示更新 ---
     Object.keys(skillMap).forEach(category => {
         const htmlId = skillMap[category];
@@ -526,10 +725,36 @@ function updateSkillTotals() {
             // --- 上限判定のロジック ---
             let isMax = false;
             if (category === "クリティカル" && val >= 100) isMax = true;
+            if (category === "クリティカル(特殊)" && val >= 100) isMax = true;
             if ((category === "DA確率" || category === "TA確率") && val >= 75) isMax = true;
+            if (category === "属性攻撃(進境)" && val >= 75) isMax = true;
+            if (category === "通常襲刃" && val >= 50) isMax = true;
+            if (category === "EX攻刃(特殊)" && val >= 80) isMax = true;
+            if (category === "背水" && val >= 800) isMax = true;
+            if (category === "M背水" && val >= 800) isMax = true;
+            if (category === "カウンター率" && val >= 20) isMax = true;
+            if (category === "防御" && val >= 400) isMax = true;
+            if (category === "弱体耐性" && val >= 30) isMax = true;
+            if (category === "属性軽減" && val >= 30) isMax = true;
+            if (category === "回復上限" && val >= 100) isMax = true;
+            if (category === "神石ブースト" && val >= 90) isMax = true;
             if (category === "ダメ上限" && val >= 20) isMax = true;
+            if (category === "ダメ上限(特殊)" && val >= 20) isMax = true;
+            if (category === "通常ダメ上限" && val >= 20) isMax = true;
+            if (category === "通常ダメ上限(特殊)" && val >= 20) isMax = true;
+            if (category === "アビダメ上限" && val >= 100) isMax = true;
+            if (category === "アビダメUP" && val >= 120) isMax = true;
+            if (category === "奥義ダメUP" && val >= 120) isMax = true;
+            if (category === "奥義ダメ上限" && val >= 100) isMax = true;
+            if (category === "特殊ダメ上限" && val >= 30) isMax = true;
+            if (category === "アビダメ上限(特殊)" && val >= 60) isMax = true;
+            if (category === "アビ与ダメ(特殊)" && val >= 20) isMax = true;
             if (category === "HP" && val >= 400) isMax = true;
             if (category === "ダメ上限緩和" && val >= 20) isMax = true;
+            if (category === "与ダメ上昇" && val >= 100000) isMax = true;
+            if (category === "アビ与ダメ上昇" && val >= 200000) isMax = true;
+            if (category === "奥義与ダメ上昇" && val >= 1000000) isMax = true;
+            if (category === "クリティカル与ダメUP" && val >= 20) isMax = true;
 
             // オレンジ色にするクラスの適用
             if (isMax) {
@@ -537,13 +762,18 @@ function updateSkillTotals() {
             }
 
             // オーバー枠（超過分）のスタイル適用
-            if (category.startsWith("オーバー")) {
+            if (category.startsWith("オーバー") || category === "ダメ上限緩和") {
                 element.classList.add('over-skill-val');
                 if (row) row.classList.add('over-skill-row');
             }
 
-            // 数値の表示処理
-            if (category.includes("与ダメ") || category === "オーバーHP") {
+// --- 数値の表示処理（約定・妙技・与ダメの%消し） ---
+            const isFixedValue = category.includes("与ダメ上昇") || 
+                                 category.includes("約定") || 
+                                 category.includes("妙技") || 
+                                 category === "オーバーHP";
+
+            if (isFixedValue) {
                 element.innerText = Math.round(val).toLocaleString();
             } else {
                 element.innerText = (Math.round((val + 0.0001) * 100) / 100).toFixed(2) + "%";
@@ -554,9 +784,65 @@ function updateSkillTotals() {
     });
 }
 
+// オメガ用（既存のまま）
+function getSkillPower(skillName) {
+    switch(skillName) {
+        case "通常ダメ上限": return 10;
+        case "アビダメ上限": return 50;
+        case "奥義上限UP": return 15;
+        case "CBダメ上限": return 50;
+        default: return 0;
+    }
+}
 
+// 終末専用（新しい複合効果用）
+function getShumatsuPower(skillName) {
+    if (!skillName || skillName === "none") return null;
+    switch(skillName) {
+        case "通常ダメ上限":
+            return [
+                { type: "通常ダメ上限", power: 10 },
+                { type: "TA確率", power: 5 },
+                { type: "DA確率", power: 5 }
+            ];
+        case "アビダメ上限":
+            return [
+                { type: "アビダメ上限", power: 50 },
+                { type: "アビ命中率", power: 5 }
+            ];
+        case "奥義上限UP":
+            return [
+                { type: "奥義上限UP", power: 15 },
+                { type: "特殊ダメ上限", power: 5 }
+            ];
+        case "CBダメ上限":
+            return [
+                { type: "CBダメ上限", power: 50 },
+                { type: "FCダメ上限", power: 20 }
+            ];
+        default: return null;
+    }
+}
 
+/**
+ * オメガ第3スキルの効果量取得
+ */
+function getOmegaSkill3Power(skillName) {
+    if (!skillName || skillName === "none") return null;
 
+    switch(skillName) {
+        case "ダメ上限":
+            return { type: "ダメ上限", power: 10 };
+        case "回復上限":
+            return { type: "回復上限", power: 50 };
+        case "対有利与ダメ":
+            return { type: "対有利与ダメ", power: 25 };
+        case "奥義ゲージ上昇":
+            return { type: "奥義ゲージ上昇", power: 10 };
+        default:
+            return null;
+    }
+}
 
 
 

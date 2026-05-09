@@ -62,6 +62,55 @@
            style="width: 100%;" oninput="updateSkillTotals()">
 </div>
 
+<div id="shumatsu-control-container" style="margin-top: 10px;">
+    <label for="shumatsu-pendulum">終末第2スキル: </label>
+<select id="shumatsu-pendulum" onchange="saveSettings(); updateSkillTotals();">
+    <option value="none">未設定</option>
+    <option value="通常ダメ上限">通常ダメ上限 (10%)</option>
+    <option value="アビダメ上限">アビダメ上限 (50%)</option>
+    <option value="奥義上限UP">奥義上限UP (15%)</option>
+    <option value="CBダメ上限">CBダメ上限 (50%)</option>
+</select>
+</div>
+
+<div class="omega-type-group" style="margin-top: 10px;">
+<label for="omega-weapon-type">オメガ武器種:</label>
+<select id="omega-weapon-type" onchange="saveSettings(); updateSkillTotals();">
+    <option value="剣">剣</option>
+    <option value="短剣">短剣</option>
+    <option value="槍">槍</option>
+    <option value="斧">斧</option>
+    <option value="杖">杖</option>
+    <option value="銃">銃</option>
+    <option value="格闘">格闘</option>
+    <option value="弓">弓</option>
+    <option value="楽器">楽器</option>
+    <option value="刀">刀</option>
+    </select>
+</div>
+<div class="control-group1" style="margin-top: 10px;">
+    <label for="omega-skill2">オメガ第2スキル: </label>
+    <select id="omega-skill2" onchange="saveSettings(); updateSkillTotals();">
+        <option value="none">未設定</option>
+        <option value="通常ダメ上限">通常ダメ上限 (10%)</option>
+        <option value="アビダメ上限">アビダメ上限 (50%)</option>
+        <option value="奥義上限UP">奥義上限UP (15%)</option>
+        <option value="CBダメ上限">CBダメ上限 (50%)</option>
+    </select>
+</div>
+<div class="control-group2" style="margin-top: 10px;">
+    <label for="omega-skill3">オメガ第3スキル: </label>
+    <select id="omega-skill3" onchange="saveSettings(); updateSkillTotals();">
+        <option value="none">未設定</option>
+        <option value="ダメ上限">エナ (ダメ上限)</option>
+        <option value="回復上限">ディオ (回復上限)</option>
+        <option value="対有利与ダメ">トリア (有利与ダメ)</option>
+        <option value="奥義ゲージ上昇">テーセラ (奥義ゲージ)</option>
+    </select>
+</div>
+
+
+
 <div id="summon-total-container" class="total-summary">
     <h3>加護合計</h3>
     <div id="summon-total-list">
@@ -182,8 +231,8 @@
     <span class="val" id="val-dmg-limit-sp">0%</span>
   </div>
   <div class="skill-item">
-    <span class="label">与ダメ</span>
-    <span class="val" id="val-yodmg-base">0</span>
+    <span class="label">与ダメUP</span>
+    <span class="val" id="val-yodmg-gen">0</span>
   </div>
   <div class="skill-item">
     <span class="label">対有利与ダメ</span>
@@ -239,7 +288,7 @@
   </div>
   <div class="skill-item">
     <span class="label">与ダメ</span>
-    <span class="val" id="val-yodmg-gen">0</span>
+    <span class="val" id="val-yodmg-base">0</span>
   </div>
   <div class="skill-item">
     <span class="label">アビ与ダメ</span>
@@ -270,12 +319,12 @@
     <span class="val" id="val-over-hp">0</span>
   </div>
   <div class="skill-item">
-    <span class="label">ダメ上限緩和</span>
-    <span class="val" id="val-limit-relax">0%</span>
-  </div>
-  <div class="skill-item">
     <span class="label">オーバークリ</span>
     <span class="val" id="val-over-crit">0%</span>
+  </div>
+    <div class="skill-item">
+    <span class="label">ダメ上限緩和</span>
+    <span class="val" id="val-limit-relax">0%</span>
   </div>
   <div class="skill-item">
     <span class="label">オーバー連撃</span>
@@ -380,6 +429,7 @@
         <div class="input-group">
             <label>属性:</label>
             <select id="we-element">
+                <option value="all">全属性</option>
                 <option value="fire">火</option>
                 <option value="water">水</option>
                 <option value="earth">土</option>
